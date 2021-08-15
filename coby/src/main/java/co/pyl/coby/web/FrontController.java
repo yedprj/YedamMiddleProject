@@ -6,7 +6,6 @@ import java.util.HashMap;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,7 +14,6 @@ import co.pyl.coby.command.Home;
 import co.pyl.coby.common.Command;
 
 
-@WebServlet("*.do")
 public class FrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private HashMap<String, Command> map = new HashMap<String, Command>();
@@ -38,8 +36,12 @@ public class FrontController extends HttpServlet {
 		Command command = map.get(path);
 		String viewPage = command.execute(request, response);
 		
-		if (!viewPage.endsWith(".do")) {
-			viewPage = "WEB-INF/views/" + viewPage + ".jsp";
+		if (!viewPage.endsWith(".do")) {	//Tiles 사용
+			if (!viewPage.endsWith(".jsp")) {
+				viewPage = viewPage + ".tiles";	// ex) home/home
+			} else {	//Tiles 안 사용
+				viewPage = "WEB-INF/views/"+ viewPage;	//ex) home/home.jsp 
+			}
 		}
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
