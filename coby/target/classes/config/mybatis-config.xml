@@ -19,7 +19,7 @@
 	</environments>
 	
 	<mappers>
-		<mapper resource=""/>
+		<mapper resource="co/pyl/coby/user/serviceImpl/user-map.xml"/>
 	</mappers>
   
 </configuration>
