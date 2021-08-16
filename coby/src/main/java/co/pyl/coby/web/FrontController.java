@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import co.pyl.coby.command.Home;
 import co.pyl.coby.common.Command;
+import co.pyl.coby.purchase.command.purchaseList;
 
 
 public class FrontController extends HttpServlet {
@@ -25,6 +26,9 @@ public class FrontController extends HttpServlet {
 
 	public void init(ServletConfig config) throws ServletException {
 		map.put("/home.do", new Home());
+		
+		//공동구매
+		map.put("/purchaseList.do", new purchaseList()); //공동구매글 리스트 보기
 	}
 
 
@@ -36,11 +40,11 @@ public class FrontController extends HttpServlet {
 		Command command = map.get(path);
 		String viewPage = command.execute(request, response);
 		
-		if (!viewPage.endsWith(".do")) {	//Tiles 사용
+		if (!viewPage.endsWith(".do")) {	    //Tiles 사용
 			if (!viewPage.endsWith(".jsp")) {
-				viewPage = viewPage + ".tiles";	// ex) home/home
-			} else {	//Tiles 안 사용
-				viewPage = "WEB-INF/views/"+ viewPage;	//ex) home/home.jsp 
+				viewPage = viewPage + ".tiles";	         // ex) home/home
+			} else {	                        //Tiles 안 사용
+				viewPage = "WEB-INF/views/"+ viewPage;	 //ex) home/home.jsp 
 			}
 		}
 		
