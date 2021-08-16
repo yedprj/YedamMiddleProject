@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import co.pyl.coby.command.Home;
 import co.pyl.coby.common.Command;
+import co.pyl.coby.mainpage.command.MyPage;
+import co.pyl.coby.mainpage.command.WishList;
 
 
 public class FrontController extends HttpServlet {
@@ -25,6 +27,10 @@ public class FrontController extends HttpServlet {
 
 	public void init(ServletConfig config) throws ServletException {
 		map.put("/home.do", new Home());
+		
+		//메인페이지 관련
+		map.put("/myPage.do", new MyPage());
+		map.put("/wishList.do", new WishList());
 	}
 
 
