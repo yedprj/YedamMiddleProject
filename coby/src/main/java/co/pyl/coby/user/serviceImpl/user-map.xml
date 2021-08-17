@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="co.pyl.coby.user.service.UserMapper">
+	<select id="loginUser" resultType="co.pyl.coby.user.vo.UserVO" >	
+		select * from cb_user where user_id=#{userId} and user_pw=#{userPw} and user_state='A'		
+	</select>
+</mapper>

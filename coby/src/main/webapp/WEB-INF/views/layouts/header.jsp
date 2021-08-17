@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<div class="container-fluid">
+<div class="container">
 	<header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
 		<a href="home.do" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
 			<img alt="" src="image/logo.PNG" class="bi me-2" width="160" height="45">
@@ -24,7 +24,12 @@
 			<c:if test="${user.userAuthor eq 'ADMIN'}">
 				<button type="button" class="btn btn-outline-primary me-2 btn-lg">관리자</button>				
 			</c:if>
-			<button type="button" class="btn btn-outline-primary me-2 btn-lg" onclick="location.href='loginForm.lo'">로그인</button>
+			<c:if test="${empty user.userId  }">			
+				<button type="button" class="btn btn-outline-primary me-2 btn-lg" onclick="location.href='loginForm.do'">로그인</button>
+			</c:if>
+			<c:if test="${not empty user.userId  }">
+				<button id="logoutBtn" type="button" class="btn btn-outline-primary me-2 btn-lg" onclick="location.href='logout.do'">로그아웃</button>
+			</c:if>
 		</div>
 	</header>
 </div>
