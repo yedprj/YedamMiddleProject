@@ -6,7 +6,7 @@ import co.pyl.coby.user.vo.UserVO;
 
 public interface UserMapper {
 	List<UserVO> selectAllUser();
-	UserVO selectOneUser();
+	UserVO selectOneUser(UserVO vo);
 	UserVO loginUser(UserVO vo);
 	int userInsert(UserVO vo);
 	int userDelect(UserVO vo);

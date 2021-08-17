@@ -1,7 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="co.pyl.coby.user.service.UserMapper">
-	<select id="loginUser" resultType="co.pyl.coby.user.vo.UserVO" >	
+
+	<!-- 한건 조회 -->
+	<select id="selectOneUser" resultType="UserVO">
+		select * from cb_user where user_id=#{userId}
+	</select>
+
+	<!-- 로그인 쿼리 -->
+	<select id="loginUser" resultType="UserVO" >	
 		select * from cb_user where user_id=#{userId} and user_pw=#{userPw} and user_state='A'		
 	</select>
+
+	<!-- 회원가입 쿼리 -->
+	<insert id="userInsert" parameterType="UserVO">
+		insert into cb_user 
+		values (#{userId},#{userPw},#{userName},#{userNickname},#{userEmail},#{userPhone},#{userProfile},'USER','A')
+	</insert>
+	
+	
 </mapper>

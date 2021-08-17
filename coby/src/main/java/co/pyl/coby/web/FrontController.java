@@ -11,8 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import co.pyl.coby.command.Home;
+import co.pyl.coby.command.IdCheck;
 import co.pyl.coby.command.Login;
 import co.pyl.coby.command.Logout;
+import co.pyl.coby.command.SignUp;
 import co.pyl.coby.common.Command;
 import co.pyl.coby.login.command.LoginForm;
 import co.pyl.coby.login.command.SignUpForm;
@@ -35,6 +37,8 @@ public class FrontController extends HttpServlet {
 		map.put("/loginForm.do", new LoginForm());
 		map.put("/signUpForm.do", new SignUpForm());
 		map.put("/logout.do", new Logout());  // 로그아웃
+		map.put("/signUp.do", new SignUp());  // 회원가입
+		map.put("/idCheck.do", new IdCheck());	// 아이디 중복 체크
 	}
 
 

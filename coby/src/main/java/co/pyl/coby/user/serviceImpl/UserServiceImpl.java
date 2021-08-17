@@ -20,21 +20,21 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public UserVO selectOneUser() {
-		// TODO Auto-generated method stub
-		return null;
+	public UserVO selectOneUser(UserVO vo) {
+		// TODO 한건 조회
+		return map.selectOneUser(vo);
 	}
 
 	@Override
 	public UserVO loginUser(UserVO vo) {
-		// TODO Auto-generated method stub
+		// TODO 로그인
 		return map.loginUser(vo);
 	}
 
 	@Override
 	public int userInsert(UserVO vo) {
-		// TODO Auto-generated method stub
-		return 0;
+		// TODO 회원가입
+		return map.userInsert(vo);
 	}
 
 	@Override
