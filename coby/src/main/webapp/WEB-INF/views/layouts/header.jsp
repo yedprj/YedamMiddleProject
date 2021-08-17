@@ -8,10 +8,10 @@
 		</a>
 		<ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
 			<li>
-				<a href="wishList.do" class="nav-link px-4 link-dark fs-4">공동구매</a>
+				<a href="#" class="nav-link px-4 link-dark fs-4">공동구매</a>
 			</li>
 			<li>
-				<a href="myPage.do" class="nav-link px-4 link-dark fs-4">커뮤니티</a>
+				<a href="#" class="nav-link px-4 link-dark fs-4">커뮤니티</a>
 			</li>
 			<li>
 				<a href="#" class="nav-link px-4 link-dark fs-4">공지사항</a>
