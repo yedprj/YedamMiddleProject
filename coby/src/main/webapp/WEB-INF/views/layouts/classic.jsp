@@ -10,7 +10,6 @@
 <title>Insert title here</title>
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <script src="js/bootstrap.bundle.js"></script>
-<script src="https://unpkg.com/@popperjs/core@2"></script>
 </head>
 <body>
 	<tiles:insertAttribute name="header"/>

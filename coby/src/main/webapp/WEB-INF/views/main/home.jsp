@@ -303,7 +303,7 @@
 						</div>
 					</div>
 					
-								<div class="col" style="float: left">
+					<div class="col" style="float: left">
 						<div class="card">
 							<img class="card-img-top"
 								src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(60).jpg"
