@@ -13,7 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 import co.pyl.coby.command.Home;
 import co.pyl.coby.common.Command;
 import co.pyl.coby.mainpage.command.MyPage;
+import co.pyl.coby.mainpage.command.UpdateUserForm;
 import co.pyl.coby.mainpage.command.WishList;
+import co.pyl.coby.mainpage.command.deleteUserForm;
 
 
 public class FrontController extends HttpServlet {
@@ -42,6 +44,7 @@ public class FrontController extends HttpServlet {
 		String path = request.getServletPath();
 		
 		Command command = map.get(path);
+		
 		String viewPage = command.execute(request, response);
 		
 		if (!viewPage.endsWith(".do")) {	//Tiles 사용

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <head>
 <link rel="canonical"
 	href="https://getbootstrap.com/docs/5.1/examples/jumbotron/">
@@ -44,6 +45,9 @@
 		class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
 		<span class="link-dark fs-4">위시리스트</span>
 	</div>
+	<c:forEach var="list" items="${list }">
+	${list.userId }, ${list.prWriter }
+</c:forEach>
 	<div class="h-100 p-5 border rounded-3">
 		<!-- 상단 전체선택 / 삭제 -->
 		<div class="border-bottom">

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="co.pyl.coby.wishlist.service.WishListMapper">
+	<resultMap type="HashMap" id="joinWishList">
+		<id column="user_id" property="userId" />
+		<id column="w_no" property="wNo" />
+		<id column="pr_title" property="prTitle" />
+		<id column="pr_writer" property="prWriter" />
+		<id column="pr_price" property="prPrice" />
+	</resultMap>
+
+
+	<select id="selectWishList" resultType="joinWishList" parameterType="co.pyl.coby.user.vo.UserVO">
+		select a.user_id, a.w_no,
+		b.pr_title, b.user_id AS pr_writer, b.pr_price
+		from cb_wish a join cb_purchase b
+		on a.pr_no = b.pr_no
+		where a.user_id=#{userId};
+	</select>
+
+</mapper>
