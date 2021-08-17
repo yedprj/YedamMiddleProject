@@ -1,19 +1,16 @@
-package co.pyl.coby.command;
+package co.pyl.coby.board;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import co.pyl.coby.common.Command;
 
-public class Home implements Command {
+public class BoardInsert implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
-		HttpSession session = request.getSession();
-		session.setAttribute("id", "user1");
-		
-		return "main/home";
+		// TODO Auto-generated method stub
+		return "board/boardInsert";
 	}
 
 }
