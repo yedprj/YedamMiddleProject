@@ -9,6 +9,9 @@
 <script>
 	//selectOne에는 위시리스트 번호가 들어가야한다..
 	$(document).ready(function() {
+		
+
+		
 		//최상단 체크박스 클릭
 		$("#selectAll").click(function() {
 			//클릭되었으면
