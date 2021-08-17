@@ -7,15 +7,20 @@
 		<id column="pr_title" property="prTitle" />
 		<id column="pr_writer" property="prWriter" />
 		<id column="pr_price" property="prPrice" />
+		<id column="user_nickname" property="userNickname" />
+		<id column="pr_no" property="prNo" />
 	</resultMap>
 
 
-	<select id="selectWishList" resultType="joinWishList" parameterType="co.pyl.coby.user.vo.UserVO">
-		select a.user_id, a.w_no,
-		b.pr_title, b.user_id AS pr_writer, b.pr_price
+	<select id="selectWishList" resultMap="joinWishList"
+		parameterType="co.pyl.coby.user.vo.UserVO">
+		select a.user_id, a.w_no, b.pr_no, b.pr_title, b.user_id AS pr_writer, b.pr_price,
+		c.user_nickname
 		from cb_wish a join cb_purchase b
 		on a.pr_no = b.pr_no
-		where a.user_id=#{userId};
+		join cb_user c
+		on b.user_id=c.user_id
+		where a.user_id=#{userId}
 	</select>
 
 </mapper>

@@ -19,7 +19,7 @@
 	</environments>
 	
 	<mappers>
-		<mapper resource="co/pyl/coby/user/serviceImpl/user-map.xml"/>
+		<!-- <mapper resource="co/pyl/coby/user/serviceImpl/user-map.xml"/> -->
 		<mapper resource="co/pyl/coby/wishlist/serviceImpl/wishlist-map.xml"/>
 	</mappers>
   

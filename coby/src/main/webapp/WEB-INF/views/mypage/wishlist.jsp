@@ -37,7 +37,39 @@
 				$("#selectAll").prop("checked", false);
 			}
 		})
-	})
+		
+		$.ajax({
+			url: 'WishListServlet', //요청 페이지
+			dataType: 'json',
+			success: function (result) {//콜백함수 매개값으로 result가 정해져 있음
+				console.log(result);
+				console.log("성공");
+				for (let i=0; i<result.length; i++) {
+					selectWishList(result[i]);
+				}
+			}, 
+			error: function(reject) {
+				console.log(reject);
+			}
+		});
+		
+		function selectWishList(data) {
+			let div_wishData = $(".wishData")
+			
+			console.log(div_wishData);
+			
+			let div_border = $('<div />').addClass("border-bottom");
+			let div_row_p4 = $('<div />').addClass("row p-4");
+			let div_sm4_1 = $('<div />').addClass("col-sm-4 text-center");
+			let div_row = $('<div />').addClass("row");
+			let div_sm4_2 = $('<div />').addClass("col-sm-4 align-self-center");
+			let input = $('<input>').addClass("form-check-input").attr('type', 'checkbox').attr('id', data.wNo); 
+			
+			
+		}
+		
+		
+	});
 </script>
 </head>
 <div class="container">
@@ -45,9 +77,6 @@
 		class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
 		<span class="link-dark fs-4">위시리스트</span>
 	</div>
-	<c:forEach var="list" items="${list }">
-	${list.userId }, ${list.prWriter }
-</c:forEach>
 	<div class="h-100 p-5 border rounded-3">
 		<!-- 상단 전체선택 / 삭제 -->
 		<div class="border-bottom">
@@ -66,7 +95,7 @@
 				</div>
 			</div>
 		</div>
-
+		<div class="wishData"></div>
 		<!-- 항목 -->
 		<div class="border-bottom">
 			<div class="row p-4">

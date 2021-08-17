@@ -17,7 +17,6 @@ import co.pyl.coby.mainpage.command.UpdateUserForm;
 import co.pyl.coby.mainpage.command.WishList;
 import co.pyl.coby.mainpage.command.deleteUserForm;
 
-
 public class FrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private HashMap<String, Command> map = new HashMap<String, Command>();
