@@ -22,3 +22,4 @@ public class DataSource {
 		return sqlSessionFactory;
 	}
 }
+

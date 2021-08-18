@@ -2,25 +2,44 @@
 <!DOCTYPE configuration
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
-  
+
 <configuration>
+
 	<properties resource="config/db.properties"/>
+	
+	<settings>
+		<!-- column명과 property명이 Camel Case, Snake Case로만 다를 경우 resultMap을 안 써도 이 코드 쓰면 알아서 바꿔줌 /김주영-->
+		<setting name="mapUnderscoreToCamelCase" value="true"/>
+		
+		<setting name="cacheEnabled" value="false" />
+		<!-- jdbcTypeForNull 사용하면 jdbcType=VARCHAR 컬럼명마다 사용해야되는것을 생략  -->
+		<setting name="jdbcTypeForNull" value="NULL" />
+    </settings>
+    
+ 	<typeAliases>
+    	<typeAlias type="co.pyl.coby.user.vo.UserVO" alias="UserVO"/>
+    	<typeAlias type="co.pyl.coby.purchase.vo.PurchaseVO" alias="PurchaseVO"/>
+    </typeAliases>
 	
 	<environments default="development">
 		<environment id="development">
-			<transactionManager type="JDBC"/>
+			<transactionManager type="JDBC" />
 			<dataSource type="POOLED">
-				<property name="driver" value="${driver}"/>
-				<property name="url" value="${url}"/>
-				<property name="username" value="${username}"/>
-				<property name="password" value="${password}"/>
+				<property name="driver" value="${driver}" />
+				<property name="url" value="${url}" />
+				<property name="username" value="${username}" />
+				<property name="password" value="${password}" />
 			</dataSource>
 		</environment>
 	</environments>
-	
+
 	<mappers>
 		<!-- <mapper resource="co/pyl/coby/user/serviceImpl/user-map.xml"/> -->
 		<mapper resource="co/pyl/coby/wishlist/serviceImpl/wishlist-map.xml"/>
+	    <!-- 공동구매 관련 매퍼 -->
+		<mapper resource="co/pyl/coby/purchase/serviceImpl/purchase-map.xml"/>
+		<mapper resource="co/pyl/coby/board/serviceImpl/board-map.xml" />
+		<mapper resource="co/pyl/coby/user/serviceImpl/user-map.xml"/>
 	</mappers>
-  
+
 </configuration>
