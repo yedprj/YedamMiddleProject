@@ -1,4 +1,4 @@
-package co.pyl.coby.mainpage.command;
+package co.pyl.coby.mypage.command;
 
 import java.io.IOException;
 import java.util.List;
@@ -17,9 +17,6 @@ import co.pyl.coby.user.vo.UserVO;
 import co.pyl.coby.wishlist.service.WishListService;
 import co.pyl.coby.wishlist.serviceImpl.WishListServiceImpl;
 
-/**
- * Servlet implementation class WishLIstServlet
- */
 @WebServlet("/WishListServlet")
 public class WishListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

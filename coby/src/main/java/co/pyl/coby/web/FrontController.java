@@ -12,10 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import co.pyl.coby.command.Home;
 import co.pyl.coby.common.Command;
-import co.pyl.coby.mainpage.command.MyPage;
-import co.pyl.coby.mainpage.command.UpdateUserForm;
-import co.pyl.coby.mainpage.command.WishList;
-import co.pyl.coby.mainpage.command.deleteUserForm;
+import co.pyl.coby.mypage.command.MyPage;
+import co.pyl.coby.mypage.command.UpdateUserForm;
+import co.pyl.coby.mypage.command.WishList;
+import co.pyl.coby.mypage.command.deleteUserForm;
 
 public class FrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -34,6 +34,7 @@ public class FrontController extends HttpServlet {
 		map.put("/wishList.do", new WishList());
 		map.put("/updateUserForm.do", new UpdateUserForm());
 		map.put("/deleteUserForm.do", new deleteUserForm());
+		map.put("/practice.do", new Practice());
 	}
 
 

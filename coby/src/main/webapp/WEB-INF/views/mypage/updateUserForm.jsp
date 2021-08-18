@@ -34,8 +34,8 @@
 }
 
 .profile-pic {
-	max-width: 200px;
-	max-height: 200px;
+	max-width: 128px;
+	max-height: 128px;
 	display: block;
 }
 
@@ -54,9 +54,10 @@
 }
 
 img {
+	width: 128px;
+	height: 128px;
 	max-width: 100%;
 	height: auto;
-	object-fit: cover;
 }
 
 .camera {
@@ -127,7 +128,7 @@ img {
 					<dd class="col-sm-9">
 						<dl class="row">
 							<dd class="col-sm-6">
-								<input class="form-control form-control-sm" type="text"
+								<input class="form-control form-control-sm" type="email"
 									name="userEmail" id="userEmail" value="이메일">
 							</dd>
 							<dd class="col-sm-6"></dd>
