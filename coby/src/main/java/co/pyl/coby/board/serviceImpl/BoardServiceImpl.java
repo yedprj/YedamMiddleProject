@@ -61,12 +61,6 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public int cmtDelete(BoardVO vo) {
-		// TODO Auto-generated method stub
-		return sqlSession.delete("cmtDelete", vo);
-	}
-
-	@Override
 	public int cmtDelete(CmtVO vo) {
 		// TODO Auto-generated method stub
 		return 0;
