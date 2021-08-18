@@ -10,11 +10,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import co.pyl.coby.board.BoardDelete;
-import co.pyl.coby.board.BoardInsert;
-import co.pyl.coby.board.BoardList;
-import co.pyl.coby.board.BoardSelect;
-import co.pyl.coby.board.BoardUpdate;
+import co.pyl.coby.board.command.BoardDelete;
+import co.pyl.coby.board.command.BoardInsert;
+import co.pyl.coby.board.command.BoardList;
+import co.pyl.coby.board.command.BoardSelect;
+import co.pyl.coby.board.command.BoardUpdate;
+import co.pyl.coby.board.command.CmtDelete;
 import co.pyl.coby.command.Home;
 import co.pyl.coby.common.Command;
 
@@ -34,6 +35,7 @@ public class FrontController extends HttpServlet {
 		map.put("/boardInsert.do", new BoardInsert());
 		map.put("/boardUpdate.do", new BoardUpdate());
 		map.put("/boardDelete.do", new BoardDelete());
+		map.put("/cmtDelete.do", new CmtDelete());
 	}
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

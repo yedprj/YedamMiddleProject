@@ -11,7 +11,7 @@ public class Home implements Command {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
-		session.setAttribute("id", "user1");
+		session.setAttribute("id", "user2");
 		
 		return "main/home";
 	}

@@ -1,4 +1,4 @@
-package co.pyl.coby.cmt.vo;
+package co.pyl.coby.board.vo;
 
 import java.util.Date;
 

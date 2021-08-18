@@ -18,9 +18,9 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public BoardVO boardSelect(BoardVO vo) {
+	public List<BoardVO> boardSelect(String n) {
 		// TODO 게시글 상세보기
-		return sqlSession.selectOne("boardSelect",vo);
+		return sqlSession.selectList("boardSelect",n);
 	}
 
 	@Override
@@ -45,6 +45,24 @@ public class BoardServiceImpl implements BoardService {
 	public int boardHit(BoardVO vo) {
 		// TODO Auto-generated method stub
 		return sqlSession.update("boardHit",vo);
+	}
+
+	@Override
+	public int cmtInsert(BoardVO vo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int cmtUpdate(BoardVO vo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int cmtDelete(BoardVO vo) {
+		// TODO Auto-generated method stub
+		return sqlSession.delete("cmtDelete", vo);
 	}
 	
 	

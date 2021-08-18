@@ -9,7 +9,7 @@
 	</select>
 	
 	<select id="boardSelect" resultType="co.pyl.coby.board.vo.BoardVO">
-		select a.*,b.user_id,b.cmt_content, b.cmt_date from cb_board a left outer join cb_cmt b
+		select a.*,b.cmt_writer,b.cmt_content, b.cmt_date,b.cmt_no from cb_board a left outer join cb_cmt b
 		on (a.board_id = b.board_id) where a.board_id = #{boardId}
 	</select>
 	
@@ -28,4 +28,8 @@
 	<update id="boardHit" parameterType="co.pyl.coby.board.vo.BoardVO" >
 		update cb_board set board_hit = board_hit + 1 where board_id = #{boardId}
 	</update>
+	
+	<delete id="cmtDelete" parameterType="co.pyl.coby.board.vo.CmtVO">
+		delete from cb_cmt where cmt_no = #{cmtNo}
+	</delete>
 </mapper>

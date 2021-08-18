@@ -1,4 +1,4 @@
-package co.pyl.coby.board;
+package co.pyl.coby.board.command;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

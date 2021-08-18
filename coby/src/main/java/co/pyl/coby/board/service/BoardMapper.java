@@ -6,9 +6,13 @@ import co.pyl.coby.board.vo.BoardVO;
 
 public interface BoardMapper {
 	List<BoardVO> boardSelectList();
-	BoardVO boardSelect(BoardVO vo);
+	List<BoardVO> boardSelect(String n);
 	int boardInsert(BoardVO vo);
 	int boardUpdate(BoardVO vo);
 	int boardDelete(BoardVO vo);
 	int boardHit(BoardVO vo);
+	
+	int cmtInsert(BoardVO vo);
+	int cmtUpdate(BoardVO vo);
+	int cmtDelete(BoardVO vo);
 }

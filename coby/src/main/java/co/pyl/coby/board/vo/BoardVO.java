@@ -8,7 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 
-public class BoardVO {
+public class BoardVO extends CmtVO{
 	private int boardId;
 	private String boardTitle;
 	private String boardContent;
