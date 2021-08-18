@@ -9,6 +9,7 @@
 <title>로그인</title>
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
 </head>
 <body>
 	<div class="container mt-5">
@@ -52,13 +53,21 @@
 									Remember me</label>
 							</div>
 						</div>
-						<div class="col-12">
-							<input type="submit" class="btn btn-dark form-control"
+						<div class="col-11 d-grid mx-auto">
+							<input type="submit" class="btn btn-dark form-control p-2"
 								value="Login">
 						</div>
 					</form>
+					
 					<hr class="mt-4">
-					<div class="col-12">
+					
+					<div class="col-11 d-grid mx-auto">
+						<input type="button" onclick="location.href=''"
+							style="background-image: url('image/btn_naver2.png'); 
+								   background-repeat: no-repeat; background-position: center"
+							class="btn form-control p-2">
+					</div>
+					<div class="col-12 mt-2">
 						<p class="text-center mb-0">
 							Have not account yet? <a href="signUpForm.do">Signup</a>
 						</p>
