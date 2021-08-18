@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import co.pyl.coby.command.Home;
 import co.pyl.coby.common.Command;
 import co.pyl.coby.mypage.command.MyPage;
+import co.pyl.coby.mypage.command.Practice;
 import co.pyl.coby.mypage.command.UpdateUserForm;
 import co.pyl.coby.mypage.command.WishList;
 import co.pyl.coby.mypage.command.deleteUserForm;

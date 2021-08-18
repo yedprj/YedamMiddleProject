@@ -64,7 +64,8 @@
 			let div_row = $('<div />').addClass("row");
 			let div_sm4_2 = $('<div />').addClass("col-sm-4 align-self-center");
 			let input = $('<input>').addClass("form-check-input").attr('type', 'checkbox').attr('id', data.wNo); 
-			let label = 
+			let div_sm8 = $('<div />').addClass("col-sm-8");
+			let img = $('<img />').addClass("rounded img-fluid").attr('src', data.prPhoto1)
 			
 		}
 		

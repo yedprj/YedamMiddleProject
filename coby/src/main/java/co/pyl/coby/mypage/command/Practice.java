@@ -1,4 +1,4 @@
-package co.pyl.coby.web;
+package co.pyl.coby.mypage.command;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
