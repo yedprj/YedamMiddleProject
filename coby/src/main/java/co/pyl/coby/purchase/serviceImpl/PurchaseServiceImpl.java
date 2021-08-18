@@ -25,4 +25,9 @@ public class PurchaseServiceImpl implements PurchaseService {
 		return map.purchaseSelect();
 	}
 
+	@Override
+	public int purchaseInsert(PurchaseVO vo) {
+		return map.purchaseInsert(vo);
+	}
+
 }

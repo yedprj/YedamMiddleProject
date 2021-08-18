@@ -9,5 +9,6 @@ public interface PurchaseService {
   List<PurchaseVO> purchaseSelectList();
   //공동구매 목록 중 선택해서 상세보기
   List<PurchaseVO> purchaseSelect();
-  
+  //공동구매 등록 하기
+  int purchaseInsert(PurchaseVO vo);
 }

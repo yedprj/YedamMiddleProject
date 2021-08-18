@@ -12,8 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import co.pyl.coby.command.Home;
 import co.pyl.coby.common.Command;
-import co.pyl.coby.purchase.command.purchaseList;
-import co.pyl.coby.web.purchase.command.purchaseForm;
+import co.pyl.coby.purchase.command.PurchaseForm;
+import co.pyl.coby.purchase.command.PurchaseInsert;
+import co.pyl.coby.purchase.command.PurchaseList;
 
 
 public class FrontController extends HttpServlet {
@@ -28,8 +29,9 @@ public class FrontController extends HttpServlet {
 		map.put("/home.do", new Home());
 		
 		//공동구매
-		map.put("/purchaseList.do", new purchaseList()); //공동구매글 리스트 보기
-		map.put("/purchaseForm.do", new purchaseForm()); //공동구매글 작성 폼 으로 가기
+		map.put("/purchaseList.do", new PurchaseList()); //공동구매글 리스트 보기
+		map.put("/purchaseForm.do", new PurchaseForm()); //공동구매글 작성 폼 으로 가기
+		map.put("/purchaseInsert.do", new PurchaseInsert()); //공동구매글 등록 하기
 	}
 
 

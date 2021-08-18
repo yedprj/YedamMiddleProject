@@ -11,4 +11,10 @@
 
   </select>
   
+  <insert id="purchaseInsert" parameterType="PurchaseVO">
+   INSERT INTO cb_purchase VALUES (
+     pr_seq.nextval, #{prCategory}, #{prTitle}, #{prMin}, #{prMax}, #{prStartdate}, #{prEnddate}, #{prPrice},
+     #{prPhoto1}, #{prPhoto2}, #{prPhoto3}, #{prContent}, #{prPeople}, #{userId}
+   )
+  </insert>
 </mapper>

@@ -7,7 +7,7 @@ import co.pyl.coby.common.Command;
 import co.pyl.coby.purchase.service.PurchaseService;
 import co.pyl.coby.purchase.serviceImpl.PurchaseServiceImpl;
 
-public class purchaseList implements Command {
+public class PurchaseList implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
