@@ -3,15 +3,15 @@
 <mapper namespace="co.pyl.coby.purchase.service.PurchaseMapper">
   <!-- SQL 적용 해주는 곳 -->
 
-  <select id="purchaseSelectList" resultType="co.pyl.coby.purchase.vo.PurchaseVO">
+  <select id="purchaseSelectList" resultType="PurchaseVO">
     SELECT * FROM cb_purchase
   </select>
   
-  <select id="purchaseSelect" resultType="co.pyl.coby.purchase.vo.PurchaseVO">
+  <select id="purchaseSelect" resultType="PurchaseVO">
 
   </select>
   
-  <insert id="purchaseInsert" parameterType="PurchaseVO">
+  <insert id="purchaseInsert">
    INSERT INTO cb_purchase VALUES (
      pr_seq.nextval, #{prCategory}, #{prTitle}, #{prMin}, #{prMax}, #{prStartdate}, #{prEnddate}, #{prPrice},
      #{prPhoto1}, #{prPhoto2}, #{prPhoto3}, #{prContent}, #{prPeople}, #{userId}

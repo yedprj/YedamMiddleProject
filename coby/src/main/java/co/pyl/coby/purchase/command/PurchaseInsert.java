@@ -1,5 +1,7 @@
 package co.pyl.coby.purchase.command;
 
+import java.sql.Date;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -20,8 +22,8 @@ public class PurchaseInsert implements Command {
 		vo.setPrTitle(request.getParameter("prTitle"));
 		vo.setPrMin(Integer.valueOf(request.getParameter("prMin")));
 		vo.setPrMax(Integer.valueOf(request.getParameter("prMax")));
-		vo.setPrStartdate(request.getParameter("prStartDate"));
-		vo.setPrEnddate(request.getParameter("prEndDate"));
+		vo.setPrStartdate(Date.valueOf(request.getParameter("prStartDate")));
+		vo.setPrEnddate(Date.valueOf(request.getParameter("prEndDate")));
 		
 		
 		
