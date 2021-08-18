@@ -15,4 +15,13 @@ public class UserVO {
 	private String userProfile;
 	private String userAuthor;
 	private char userState;
+	
+	@Override
+	public String toString() {
+		return "UserVO [userId=" + userId + ", userPw=" + userPw + ", userName=" + userName + ", userNickname="
+				+ userNickname + ", userEmail=" + userEmail + ", userPhone=" + userPhone + ", userProfile="
+				+ userProfile + ", userAuthor=" + userAuthor + ", userState=" + userState + "]";
+	}
+	
+	
 }
