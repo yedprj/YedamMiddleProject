@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import co.pyl.coby.board.service.BoardService;
 import co.pyl.coby.board.vo.BoardVO;
+import co.pyl.coby.board.vo.CmtVO;
 import co.pyl.coby.common.DataSource;
 
 public class BoardServiceImpl implements BoardService {
@@ -63,6 +64,12 @@ public class BoardServiceImpl implements BoardService {
 	public int cmtDelete(BoardVO vo) {
 		// TODO Auto-generated method stub
 		return sqlSession.delete("cmtDelete", vo);
+	}
+
+	@Override
+	public int cmtDelete(CmtVO vo) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 	

@@ -4,12 +4,13 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
+import co.pyl.coby.common.DataSource;
 import co.pyl.coby.notice.service.NoticeService;
 import co.pyl.coby.notice.vo.NoticeVO;
 
 public class NoticeServiceImpl implements NoticeService {
 	
-	private SqlSession sqlSession = DAO.getInstance().openSession();
+	private SqlSession sqlSession = DataSource.getInstance().openSession();
 		
 	@Override
 	public List<NoticeVO> boardSelectList() {

@@ -6,7 +6,7 @@ ${id}
 		class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
 		<span class="link-dark fs-4">공동구매</span>
 		<div class="col-md-3 text-end">
-			<button type="button" class="btn btn-outline-primary me-2 btn-lg">등록</button>
+			<button type="button" class="btn btn-outline-primary me-2 col-6">등록</button>
 		</div>
 	</div>
 
