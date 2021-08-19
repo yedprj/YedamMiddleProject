@@ -28,8 +28,8 @@
 			<c:if test="${not empty user.userId  }">
 			
 				<div class="dropdown">	
-					<a href="#" class="nav-link px-3 link-dark fs-5" id="userDropdown"
-	                 data-bs-toggle="dropdown" aria-expanded="false">
+					<a href="#" class="nav-link px-3 link-dark fs-5 dropdown" id="userDropdown"
+	                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 	                	 <span>${user.userNickname }</span>
 	                 	 <img class="" src="">
 	                 </a>
