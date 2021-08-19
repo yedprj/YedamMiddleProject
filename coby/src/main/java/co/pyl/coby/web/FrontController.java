@@ -29,14 +29,16 @@ import co.pyl.coby.common.Command;
 
 import co.pyl.coby.mypage.command.MyPage;
 import co.pyl.coby.mypage.command.Practice;
+import co.pyl.coby.mypage.command.UpdateUser;
 import co.pyl.coby.mypage.command.UpdateUserForm;
 import co.pyl.coby.mypage.command.WishList;
+import co.pyl.coby.mypage.command.WishListDelete;
 import co.pyl.coby.mypage.command.deleteUserForm;
 import co.pyl.coby.notice.command.NoticeSelectList;
 import co.pyl.coby.purchase.command.PurchaseForm;
 import co.pyl.coby.purchase.command.PurchaseInsert;
 import co.pyl.coby.purchase.command.PurchaseList;
-
+import co.pyl.coby.purchase.command.PurchaseSelect;
 import co.pyl.coby.login.command.LoginForm;
 import co.pyl.coby.login.command.SignUpForm;
 
@@ -76,17 +78,20 @@ public class FrontController extends HttpServlet {
 		//공지사항
 		map.put("/noticeSelectList.do", new NoticeSelectList()); //공지사항 리스트
 
-		// 메인페이지 관련
+		// 마이페이지 관련
 		map.put("/myPage.do", new MyPage());
 		map.put("/wishList.do", new WishList());
 		map.put("/updateUserForm.do", new UpdateUserForm());
 		map.put("/deleteUserForm.do", new deleteUserForm());
 		map.put("/practice.do", new Practice());
+		map.put("/wishListDelete.do", new WishListDelete());
+		map.put("/updateUser.do", new UpdateUser());
 
 		// 공동구매
-		map.put("/purchaseList.do", new PurchaseList()); // 공동구매글 리스트 보기
-		map.put("/purchaseForm.do", new PurchaseForm()); // 공동구매글 작성 폼 으로 가기
-		map.put("/purchaseInsert.do", new PurchaseInsert()); // 공동구매글 등록 하기
+		map.put("/purchaseList.do", new PurchaseList()); // 공동구매 리스트 보기
+		map.put("/purchaseSelect.do", new PurchaseSelect()); //공동구매 상세보기
+		map.put("/purchaseForm.do", new PurchaseForm()); // 공동구매 작성 폼 으로 가기
+		map.put("/purchaseInsert.do", new PurchaseInsert()); // 공동구매 등록 하기
 	}
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)
