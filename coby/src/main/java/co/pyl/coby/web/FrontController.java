@@ -34,7 +34,7 @@ import co.pyl.coby.mypage.command.deleteUserForm;
 import co.pyl.coby.purchase.command.PurchaseForm;
 import co.pyl.coby.purchase.command.PurchaseInsert;
 import co.pyl.coby.purchase.command.PurchaseList;
-
+import co.pyl.coby.purchase.command.PurchaseSelect;
 import co.pyl.coby.login.command.LoginForm;
 import co.pyl.coby.login.command.SignUpForm;
 
@@ -77,9 +77,10 @@ public class FrontController extends HttpServlet {
 		map.put("/updateUser.do", new UpdateUser());
 
 		// 공동구매
-		map.put("/purchaseList.do", new PurchaseList()); // 공동구매글 리스트 보기
-		map.put("/purchaseForm.do", new PurchaseForm()); // 공동구매글 작성 폼 으로 가기
-		map.put("/purchaseInsert.do", new PurchaseInsert()); // 공동구매글 등록 하기
+		map.put("/purchaseList.do", new PurchaseList()); // 공동구매 리스트 보기
+		map.put("/purchaseSelect.do", new PurchaseSelect()); //공동구매 상세보기
+		map.put("/purchaseForm.do", new PurchaseForm()); // 공동구매 작성 폼 으로 가기
+		map.put("/purchaseInsert.do", new PurchaseInsert()); // 공동구매 등록 하기
 	}
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)
