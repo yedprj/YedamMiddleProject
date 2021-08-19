@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -30,8 +31,11 @@ public class WishListServlet extends HttpServlet {
 		WishListService dao = new WishListServiceImpl();
 
 		UserVO vo = new UserVO();
-		// 이 부분은 세션으로 세팅하든지 해야한다
-		vo.setUserId("user1");
+		
+		HttpSession session = request.getSession();
+		String userId = (String) session.getAttribute("userId");
+		vo.setUserId(userId);
+		
 
 		List<Map<String, String>> list = dao.selectWishList(vo);
 		Gson gson = new GsonBuilder().create();

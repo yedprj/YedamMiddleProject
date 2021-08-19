@@ -17,6 +17,26 @@ public class PurchaseVO {
 	private String prContent;
 	private String prPeople;
 	private String userId;
+	
+	private String userNickname;
+	private int wNo;
+	
+
+	public String getUserNickname() {
+		return userNickname;
+	}
+
+	public void setUserNickname(String userNickname) {
+		this.userNickname = userNickname;
+	}
+
+	public int getwNo() {
+		return wNo;
+	}
+
+	public void setwNo(int wNo) {
+		this.wNo = wNo;
+	}
 
 	@Override
 	public String toString() {

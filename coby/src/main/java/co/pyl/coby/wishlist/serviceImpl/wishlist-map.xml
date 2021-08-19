@@ -1,27 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="co.pyl.coby.wishlist.service.WishListMapper">
-	<resultMap type="HashMap" id="joinWishList">
-		<id column="user_id" property="userId" />
-		<id column="w_no" property="wNo" />
-		<id column="pr_title" property="prTitle" />
-		<id column="pr_writer" property="prWriter" />
-		<id column="pr_price" property="prPrice" />
-		<id column="user_nickname" property="userNickname" />
-		<id column="pr_no" property="prNo" />
-		<id column="pr_photo1" property="prPhoto1" />
-	</resultMap>
 
-
-	<select id="selectWishList" resultMap="joinWishList"
+	<select id="selectWishList"
+		resultType="co.pyl.coby.purchase.vo.PurchaseVO"
 		parameterType="co.pyl.coby.user.vo.UserVO">
-		select a.user_id, a.w_no, b.pr_no, b.pr_title, b.user_id AS pr_writer, b.pr_price,
+		select a.user_id, a.w_no, b.pr_no, b.pr_title, b.user_id
+		AS pr_writer, b.pr_price,
 		b.pr_photo1, c.user_nickname
-		from cb_wish a join cb_purchase b
+		from cb_wish a
+		join cb_purchase b
 		on a.pr_no = b.pr_no
 		join cb_user c
-		on b.user_id=c.user_id
+		on
+		b.user_id=c.user_id
 		where a.user_id=#{userId}
 	</select>
+
+	<delete id="deleteWishList"
+		parameterType="co.pyl.coby.wishlist.vo.WishListVO">
+		delete from cb_wish
+		where w_no=#{wNo} and user_id=#{userId}
+	</delete>
 
 </mapper>

@@ -24,8 +24,12 @@ public class PurchaseInsert implements Command {
 		vo.setPrMax(Integer.valueOf(request.getParameter("prMax")));
 		vo.setPrStartdate(Date.valueOf(request.getParameter("prStartDate")));
 		vo.setPrEnddate(Date.valueOf(request.getParameter("prEndDate")));
+		vo.setPrPrice(Integer.valueOf(request.getParameter("prPrice")));
+		//--사진 입력 넣어야함
+		vo.setPrContent(request.getParameter("prContent"));
+		//--세션에서 작성자 아이디 받아 와야함
 		
-		
+		dao.purchaseInsert(vo);
 		
 		return ""; // 공동구매 등록한 상세글 보기로 가야함
 	}
