@@ -38,12 +38,13 @@
 						<c:if test="${user.userAuthor eq 'ADMIN'}">
 							<a class="dropdown-item" href="#">관리자</a>
 						</c:if>
-						<a class="dropdown-item" href="#">개인정보</a>
+						<a class="dropdown-item" href="myPage.do">마이페이지</a>
 						<div class="dropdown-divider"></div>
 						<a class="dropdown-item" href="logout.do">로그아웃</a>
 					</div>
 				</div>
 			</c:if>
 		</div>
+
 	</header>
 </div>

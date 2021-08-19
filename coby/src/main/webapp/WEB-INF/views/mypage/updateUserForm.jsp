@@ -27,6 +27,61 @@
 			$(".file-upload").click();
 		});
 	});
+	
+	function confirm() {
+		
+		if (frm.userNickname.value == "") {
+ 			alert("닉네임을 입력해주세요.");
+ 			frm.userNickname.focus();
+ 			return false;
+ 		} else if (frm.userEmail.value == "") {
+ 			alert("이메일을 입력해주세요.");
+ 			frm.userEmail.focus();
+ 			return false;
+ 		} else if (frm.userPw.value == "") {
+ 			alert("비밀번호를 입력해주세요.");
+ 			frm.userPw.focus();
+ 			return false;
+ 		} else if (frm.userPwConfirm.value == "") {
+ 			alert("비밀번호를 한번 더 입력해주세요.");
+ 			frm.userPwConfirm.focus();
+ 			return false;
+ 		} else if (frm.userPwConfirm.value != frm.userPwConfirm.value) {
+ 			alert("비밀번호를 확인하세요.");
+ 			frm.userPw.focus();
+ 			return false;
+		} else  {
+			return chkPw();
+		}
+		
+		
+	}
+ 		
+	function chkPw(){
+		
+			let upw = $(userPw).val();
+		 
+		    if(!/^[a-zA-Z0-9]{8,20}$/.test(upw)){
+		        alert("비밀번호는 숫자와 영문자 조합으로 8~20자리를 사용해야 합니다.");
+		        return false;
+		    }
+		    var chk_num = upw.search(/[0-9]/g);
+		    var chk_eng = upw.search(/[a-z]/ig);
+		    if(chk_num<0 || chk_eng<0){
+		        alert("비밀번호는 숫자와 영문자를 혼용하여야 합니다.");
+		        return false;
+		    }
+		    if(/(\w)\1\1\1/.test(upw)){
+		        alert("비밀번호에 같은 문자를 4번 이상 사용하실 수 없습니다.");
+		        return false;
+		    }
+		    return true;
+
+
+		}
+	
+	
+	
 </script>
 <style>
 .profile {
@@ -99,117 +154,103 @@ img {
 		class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
 		<span class="link-dark fs-4">정보 수정</span>
 	</div>
+	<form id="frm" name="frm" method="POST" enctype="multipart/form-data"
+		onsubmit="return confirm();" action="updateUser.do">
+		<div class="row">
+			<div class="col-sm-8">
+				<div class="h-100 p-5 border border-dark rounded-3">
 
-	<div class="row">
-		<div class="col-sm-8">
-			<div class="h-100 p-5 border border-dark rounded-3">
-
-				<dl class="row align-self-center">
-
-					<dt class="col-sm-3">이름</dt>
-					<dd class="col-sm-9">
-						<dl class="row">
-							<dd class="col-sm-6">
-								<input class="form-control form-control-sm" type="text"
-									name="userName" id="userName" value="이름" disabled readonly>
-							</dd>
-							<dd class="col-sm-6"></dd>
-						</dl>
-					</dd>
-
-					<dt class="col-sm-3">닉네임</dt>
-					<dd class="col-sm-9">
-						<div class=" col-xs-3">
+					<div class="row pb-2 mb-2">
+						<label for="userName"
+							class="col-sm-3 col-form-label align-self-center">이름</label>
+						<div class="col-sm-3">
 							<input class="form-control form-control-sm" type="text"
-								name="userNickName" id="userNickName" value="닉네임">
+								name="userName" id="userName" value="${user.userName }" disabled
+								readonly>
 						</div>
-					</dd>
-					<dt class="col-sm-3">이메일</dt>
-					<dd class="col-sm-9">
-						<dl class="row">
-							<dd class="col-sm-6">
-								<input class="form-control form-control-sm" type="email"
-									name="userEmail" id="userEmail" value="이메일">
-							</dd>
-							<dd class="col-sm-6"></dd>
-						</dl>
-					</dd>
+					</div>
 
-					<dt class="col-sm-3">휴대폰 번호</dt>
-					<dd class="col-sm-9">
-						<dl class="row">
-							<dd class="col-sm-6">
-								<input class="form-control form-control-sm" type="text"
-									name="userPhone" id="userPhone" value="010-2525-2525" disabled
-									readonly>
-							</dd>
-							<dd class="col-sm-6"></dd>
-						</dl>
-					</dd>
+					<div class="row pb-2 mb-2">
+						<label for="userNickname"
+							class="col-sm-3 col-form-label align-self-center">닉네임</label>
+						<div class="col-sm-3">
+							<input class="form-control form-control-sm" type="text"
+								name="userNickname" id="userNickname"
+								value="${user.userNickname }">
+						</div>
+					</div>
 
-					<dt class="col-sm-3">비밀번호</dt>
-					<dd class="col-sm-9">
-						<dl class="row">
-							<dd class="col-sm-6">
-								<input class="form-control form-control-sm" type="password"
-									value="" name="userPw" id="userPw" placeholder="비밀번호를 입력해주세요">
-							</dd>
-							<dd class="col-sm-6"></dd>
-						</dl>
-					</dd>
+					<div class="row pb-2 mb-2">
+						<label for="userEmail"
+							class="col-sm-3 col-form-label align-self-center">이메일</label>
+						<div class="col-sm-4">
+							<input class="form-control form-control-sm" type="email"
+								name="userEmail" id="userEmail" value="${user.userEmail }">
+						</div>
+					</div>
 
-					<dt class="col-sm-3">비밀번호 확인</dt>
-					<dd class="col-sm-9">
-						<dl class="row">
-							<dd class="col-sm-6">
-								<input class="form-control form-control-sm" type="password"
-									value="" name="userPwConfirm" id="userPwConfirm"
-									placeholder="비밀번호 확인을 위해 입력해주세요">
-							</dd>
-							<dd class="col-sm-6"></dd>
-						</dl>
-					</dd>
+					<div class="row pb-2 mb-2">
+						<label for="userPhone" class="col-sm-3 col-form-label">휴대폰
+							번호</label>
+						<div class="col-sm-3">
+							<input class="form-control form-control-sm" type="text"
+								name="userPhone" id="userPhone" value="${user.userPhone }"
+								disabled readonly>
+						</div>
+					</div>
 
-					<dt class="col-sm-3">프로필 사진</dt>
-					<dd class="col-sm-9">
+					<div class="row pb-2 mb-2">
+						<label for="userPw" class="col-sm-3 col-form-label">비밀번호</label>
+						<div class="col-sm-3">
+							<input class="form-control form-control-sm" type="password"
+								value="" name="userPw" id="userPw" placeholder="비밀번호">
+						</div>
+						<div class="col align-self-center text-info">*영문자+숫자 8~20자리</div>
+					</div>
 
-						<div>
-							<div class="circle text-center">
-								<!-- User Profile Image -->
-								<img class="profile-pic" src="image/miffy.jpg">
+					<div class="row pb-2 mb-2">
+						<label for="userPwConfirm" class="col-sm-3 col-form-label">비밀번호
+							확인</label>
+						<div class="col-sm-3">
+							<input class="form-control form-control-sm" type="password"
+								value="" name="userPwConfirm" id="userPwConfirm"
+								placeholder="비밀번호 확인">
+						</div>
+					</div>
 
-								<!-- Default Image -->
-								<i class="fa fa-user fa-5x"></i>
-							</div>
-							<div class="p-image d-flex">
-
-								<div class="camera">
-									<i class="fa fa-camera upload-button" id="camera"><span
-										style="font-size: 1.0em;">프로필 변경</span></i>
+					<div class="row pb-3 mb-3">
+						<label for="" class="col-sm-3 col-form-label">프로필 사진</label>
+						<div class="col">
+							<div>
+								<div class="circle text-center">
+									<!-- User Profile Image -->
+									<img class="profile-pic" src="${user.userProfile }">
 
 								</div>
-								<input class="file-upload" type="file" accept="image/*" />
+								<div class="p-image d-flex">
+
+									<div class="camera">
+										<i class="fa fa-camera upload-button" id="camera"><span
+											style="font-size: 1.0em;">프로필 변경</span></i>
+
+									</div>
+									<input class="file-upload" type="file" accept="image/*" />
+								</div>
 							</div>
 						</div>
+					</div>
 
+					<div class="col text-center">
+						<input class="btn btn-outline-dark" type="submit"
+							value="수정">
+						<button class="btn btn-outline-dark" type="button"
+							onclick="location.href ='myPage.do'">취소</button>
+					</div>
 
-
-					</dd>
-				</dl>
-
-				<div class="col text-center">
-					<button class="btn btn-outline-dark" type="button"
-						onclick="location.href ='updateUser.do'">수정</button>
-					<button class="btn btn-outline-dark" type="button"
-						onclick="location.href ='myPage.do'">취소</button>
 				</div>
-
 			</div>
 		</div>
-	</div>
 
-
-
-
+	</form>
 
 </div>

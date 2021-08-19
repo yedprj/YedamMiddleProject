@@ -8,7 +8,7 @@ import lombok.Setter;
 public class WishListVO {
 	private int wNo;
 	private int prNo;
-	private int userId;
+	private String userId;
 	
 	@Override
 	public String toString() {

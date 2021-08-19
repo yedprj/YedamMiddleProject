@@ -25,8 +25,10 @@ import co.pyl.coby.common.Command;
 
 import co.pyl.coby.mypage.command.MyPage;
 import co.pyl.coby.mypage.command.Practice;
+import co.pyl.coby.mypage.command.UpdateUser;
 import co.pyl.coby.mypage.command.UpdateUserForm;
 import co.pyl.coby.mypage.command.WishList;
+import co.pyl.coby.mypage.command.WishListDelete;
 import co.pyl.coby.mypage.command.deleteUserForm;
 
 import co.pyl.coby.purchase.command.PurchaseForm;
@@ -65,12 +67,14 @@ public class FrontController extends HttpServlet {
 		map.put("/boardDelete.do", new BoardDelete());
 		map.put("/cmtDelete.do", new CmtDelete());
 
-		// 메인페이지 관련
+		// 마이페이지 관련
 		map.put("/myPage.do", new MyPage());
 		map.put("/wishList.do", new WishList());
 		map.put("/updateUserForm.do", new UpdateUserForm());
 		map.put("/deleteUserForm.do", new deleteUserForm());
 		map.put("/practice.do", new Practice());
+		map.put("/wishListDelete.do", new WishListDelete());
+		map.put("/updateUser.do", new UpdateUser());
 
 		// 공동구매
 		map.put("/purchaseList.do", new PurchaseList()); // 공동구매글 리스트 보기
