@@ -17,6 +17,5 @@
 	<tiles:insertAttribute name="body"/>
 	<tiles:insertAttribute name="footer"/>
 	
-	<script src="js/bootstrap.bundle.js"></script>
 </body>
 </html>

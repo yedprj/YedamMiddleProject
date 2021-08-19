@@ -4,39 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>공동구매 리스트</title>
+<title>공동구매 폼</title>
 <script src="https://use.fontawesome.com/8c8d6bcd7e.js"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script>
-	function previewImages() {
 
-		var $preview = $('#preview').empty();
-		if (this.files)
-			$.each(this.files, readAndPreview);
-
-		function readAndPreview(i, file) {
-
-			if (!/\.(jpe?g|png|gif)$/i.test(file.name)) {
-				return alert(file.name + " is not an image");
-			} // else...
-
-			var reader = new FileReader();
-
-			$(reader).on("load", function() {
-				$preview.append($("<img/>", {
-					src : this.result,
-					height : 100
-				}));
-			});
-
-			reader.readAsDataURL(file);
-
-		}
-
-	}
-
-	$('#file-input').on("change", previewImages);
 </script>
 </head>
 <body>
@@ -118,7 +90,9 @@
 							등록</label>
 						<div class="col-sm-7">
 							<input class="file-upload" id="file-input" type="file" multiple>
-							<div id="preview"></div>
+							<div id="preview">
+							  <img id="img" />
+							</div>
 							<div class="col align-self-center text-info">*사진은 3개까지만 등록
 								가능합니다.</div>
 						</div>
@@ -145,5 +119,39 @@
 </body>
 	<script>
 		document.getElementById('prStartDate').value= new Date().toISOString().substring(0, 10); //현재 날짜 가져오기
+	</script>
+	<script>
+	function readInputFile(e){
+	    var sel_files = [];
+	    
+	    sel_files = [];
+	    $('#preview').empty();
+	    
+	    var files = e.target.files;
+	    var fileArr = Array.prototype.slice.call(files);
+	    var index = 0;
+	    
+	    fileArr.forEach(function(f){
+	    	if(!f.type.match("image/.*")){
+	        	alert("이미지 확장자만 업로드 가능합니다.");
+	            return;
+	        };
+	        if(files.length < 3){
+	        	sel_files.push(f);
+	            var reader = new FileReader();
+	            reader.onload = function(e){
+	            	var html = `<a id=img_id_${index}><img src=${e.target.result} data-file=${f.name} /></a>`;
+	                $('preview').append(html);
+	                index++;
+	            };
+	            reader.readAsDataURL(f);
+	        }
+	    })
+	    if(files.length > 3){
+	    	alert("최대 3장까지 업로드 할 수 있습니다.");
+	    }
+	}
+
+	$('#file-input').on('change',readInputFile);
 	</script>
 </html>

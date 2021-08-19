@@ -6,6 +6,13 @@
 <head>
 <meta charset="UTF-8">
 <title>공동구매 리스트</title>
+    <script>
+        //글 상세보기 위한 함수
+        function getRecord(n){
+	        frm.prNo.value = n;
+	        frm.submit();
+        }
+    </script>
 </head>
 <body>
 	<div class="container">
@@ -30,8 +37,9 @@
 									<div class="card-body">
 										<h4 class="card-title">${item.prTitle }</h4>
 										<p class="card-text">${item.prContent }:
-											${item.prStartdate }</p>
-										<a class="btn btn-primary">Button</a>
+											                 ${item.prStartdate }</p>
+										
+										<a class="btn btn-primary" onclick="getRecord(${item.prNo })">상세보기</a>
 									</div>
 								</div>
 							</div>
@@ -56,6 +64,12 @@
 			</div>
 		</c:forEach>
 
+	</div>
+	
+	<div>
+		<form id="frm" name="frm" action="purchaseSelect.do" method="post">
+			<input type="hidden" id="prNo" name="prNo">
+		</form>
 	</div>
 </body>
 </html>
