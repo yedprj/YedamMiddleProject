@@ -37,6 +37,7 @@
 		<!-- <mapper resource="co/pyl/coby/user/serviceImpl/user-map.xml"/> -->
 		<mapper resource="co/pyl/coby/wishlist/serviceImpl/wishlist-map.xml"/>
 	    <!-- 공동구매 관련 매퍼 -->
+	    <mapper resource="co/pyl/coby/notice/serviceImpl/notice-map.xml"/>
 		<mapper resource="co/pyl/coby/purchase/serviceImpl/purchase-map.xml"/>
 		<mapper resource="co/pyl/coby/board/serviceImpl/board-map.xml" />
 		<mapper resource="co/pyl/coby/user/serviceImpl/user-map.xml"/>

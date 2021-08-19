@@ -4,7 +4,7 @@ import java.util.List;
 
 import co.pyl.coby.notice.vo.NoticeVO;
 
-public interface NoticeService {
+public interface NoticeMapper {
 	
 	List<NoticeVO> noticeSelectList();
 	NoticeVO noticeSelect(NoticeVO vo);

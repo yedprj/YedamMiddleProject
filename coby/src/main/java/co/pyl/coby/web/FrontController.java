@@ -12,10 +12,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import co.pyl.coby.board.command.BoardDelete;
 import co.pyl.coby.board.command.BoardInsert;
+import co.pyl.coby.board.command.BoardInsertForm;
 import co.pyl.coby.board.command.BoardList;
 import co.pyl.coby.board.command.BoardSelect;
 import co.pyl.coby.board.command.BoardUpdate;
+import co.pyl.coby.board.command.BoardUpdateForm;
 import co.pyl.coby.board.command.CmtDelete;
+import co.pyl.coby.board.command.CmtInsert;
+import co.pyl.coby.board.command.CmtUpdate;
 import co.pyl.coby.command.Home;
 import co.pyl.coby.command.IdCheck;
 import co.pyl.coby.command.Login;
@@ -28,7 +32,7 @@ import co.pyl.coby.mypage.command.Practice;
 import co.pyl.coby.mypage.command.UpdateUserForm;
 import co.pyl.coby.mypage.command.WishList;
 import co.pyl.coby.mypage.command.deleteUserForm;
-
+import co.pyl.coby.notice.command.NoticeSelectList;
 import co.pyl.coby.purchase.command.PurchaseForm;
 import co.pyl.coby.purchase.command.PurchaseInsert;
 import co.pyl.coby.purchase.command.PurchaseList;
@@ -58,12 +62,19 @@ public class FrontController extends HttpServlet {
 		map.put("/signUp.do", new SignUp()); // 회원가입
 		map.put("/idCheck.do", new IdCheck()); // 아이디 중복 체크
 
-		map.put("/boardList.do", new BoardList());
-		map.put("/boardSelect.do", new BoardSelect());
-		map.put("/boardInsert.do", new BoardInsert());
-		map.put("/boardUpdate.do", new BoardUpdate());
-		map.put("/boardDelete.do", new BoardDelete());
-		map.put("/cmtDelete.do", new CmtDelete());
+		map.put("/boardList.do", new BoardList()); //게시글 리스트
+		map.put("/boardSelect.do", new BoardSelect()); //게시글 상세보기
+		map.put("/boardInsert.do", new BoardInsert()); //게시글 입력
+		map.put("/boardInsertForm.do", new BoardInsertForm()); //게시글 입력양식 이동
+		map.put("/boardUpdate.do", new BoardUpdate()); //게시글 수정
+		map.put("/boardUpdateForm.do", new BoardUpdateForm()); //게시글 수정양식
+		map.put("/boardDelete.do", new BoardDelete()); //게시글 삭제
+		map.put("/cmtDelete.do", new CmtDelete()); //댓글 삭제
+		map.put("/cmtUpdate.do", new CmtUpdate()); //댓글 수정
+		map.put("/cmtInsert.do", new CmtInsert()); //댓글 입력
+		
+		//공지사항
+		map.put("/noticeSelectList.do", new NoticeSelectList()); //공지사항 리스트
 
 		// 메인페이지 관련
 		map.put("/myPage.do", new MyPage());

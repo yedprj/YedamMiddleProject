@@ -7,10 +7,10 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class CmtVO {
+public class CmtsVO {
+	private int cmtsNo;
+	private String cmtsContent;
+	private Date cmtsDate;
 	private int cmtNo;
-	private String cmtContent;
-	private Date cmtDate;
-	private int boardId;
-	private String cmtWriter;
+	private String userId;
 }

@@ -1,17 +1,16 @@
-package co.pyl.coby.command;
+package co.pyl.coby.board.command;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import co.pyl.coby.common.Command;
 
-public class Home implements Command {
+public class CmtsList implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
-		
-		return "main/home";
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

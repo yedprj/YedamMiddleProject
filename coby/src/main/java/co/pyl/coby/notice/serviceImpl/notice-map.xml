@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="co.pyl.coby.notice.service.NoticeMapper">
+	
+	<!-- 공지사항 목록 -->
+	<select id="noticeSelectList" resultType="co.pyl.coby.notice.vo.NoticeVO">
+		select * from cb_notice 
+	</select>
+	
+	<!-- 공지사항 상세보기 -->
+	<select id="noticeSelect" resultType="co.pyl.coby.notice.vo.NoticeVO">
+		select * from cb_notice where n_no = #{noticeNo}
+	</select>
+	
+	<!-- 공지사항 입력 -->
+	<insert id="noticeInsert" parameterType="co.pyl.coby.notice.vo.NoticeVO">
+		insert into cb_notice(n_no,n_content,n_title) values(N_SEQ.nextval,#{noticeContent},#{noticeTitle})
+	</insert>
+	
+	<!-- 공지사항 수정 -->
+	<update id="noticeUpdate" parameterType="co.pyl.coby.notice.vo.NoticeVO">
+		update cb_notice set n_content = #{noticeContent} where n_no=#{noticeNo}
+	</update>
+	
+	<!-- 공지사항 삭제 -->
+	<delete id="noticeDelete" parameterType="co.pyl.coby.notice.vo.NoticeVO">
+		delete from cb_notice where n_no = #{noticeNo}
+	</delete>
+	
+</mapper>

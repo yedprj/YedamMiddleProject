@@ -1,5 +1,6 @@
-package co.pyl.coby.board.command;
+package co.pyl.coby.notice.command;
 
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -9,21 +10,26 @@ import co.pyl.coby.board.serviceImpl.BoardServiceImpl;
 import co.pyl.coby.board.vo.BoardVO;
 import co.pyl.coby.common.Command;
 
-public class BoardDelete implements Command {
+public class NoticeSelect implements Command {
 
 	@Override
+	//게시글 상세보기
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
-		// TODO 게시글 삭제
-		HttpSession session = request.getSession();
 		BoardService dao = new BoardServiceImpl();
 		BoardVO vo = new BoardVO();
+		HttpSession session = request.getSession();
 		
-		vo.setUserId(request.getParameter("userId"));
-		vo.setBoardId(Integer.valueOf(request.getParameter("boardId")));
-					
-		dao.boardDelete(vo);
+		vo.setUserId((String) session.getAttribute("userId"));
 		
-		return "boardList.do";
+		String board = request.getParameter("boardId");
+		vo.setBoardId(Integer.valueOf(board));
+		List<BoardVO> list = dao.boardSelect(board);
+		
+		dao.boardHit(vo);
+		request.setAttribute("board", list);
+		
+		return "board/boardSelect";
 	}
+	
 
 }

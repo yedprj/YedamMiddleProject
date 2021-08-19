@@ -48,22 +48,23 @@ public class BoardServiceImpl implements BoardService {
 		return sqlSession.update("boardHit",vo);
 	}
 
-	@Override
-	public int cmtInsert(BoardVO vo) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int cmtUpdate(BoardVO vo) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 	@Override
 	public int cmtDelete(CmtVO vo) {
 		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.delete("cmtDelete", vo);
+	}
+
+	@Override
+	public int cmtInsert(CmtVO vo) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("cmtInsert",vo);
+	}
+
+	@Override
+	public int cmtUpdate(CmtVO vo) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("cmtUpdate", vo);
 	}
 	
 	

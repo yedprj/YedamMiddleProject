@@ -1,4 +1,4 @@
-package co.pyl.coby.board.command;
+package co.pyl.coby.notice.command;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -9,7 +9,7 @@ import co.pyl.coby.board.serviceImpl.BoardServiceImpl;
 import co.pyl.coby.board.vo.BoardVO;
 import co.pyl.coby.common.Command;
 
-public class BoardDelete implements Command {
+public class NoticeDelete implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {

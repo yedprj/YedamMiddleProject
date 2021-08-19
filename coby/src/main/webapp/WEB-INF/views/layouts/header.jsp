@@ -15,7 +15,7 @@
 
 			<li><a href="purchaseList.do" class="nav-link px-4 link-dark fs-4">공동구매</a></li>
 			<li><a href="boardList.do" class="nav-link px-4 link-dark fs-4">커뮤니티</a></li>
-			<li><a href="#" class="nav-link px-4 link-dark fs-4">공지사항</a></li>
+			<li><a href="noticeSelectList.do" class="nav-link px-4 link-dark fs-4">공지사항</a></li>
 			<li><a href="#" class="nav-link px-4 link-dark fs-4">고객센터</a></li>
 			
 		</ul>

@@ -4,17 +4,20 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="co.pyl.coby.board.service.BoardMapper">
+	
+	<!-- 게시판 목록 -->
 	<select id="boardSelectList" resultType="co.pyl.coby.board.vo.BoardVO">
 		select * from cb_board 
 	</select>
 	
+	<!--  -->
 	<select id="boardSelect" resultType="co.pyl.coby.board.vo.BoardVO">
 		select a.*,b.cmt_writer,b.cmt_content, b.cmt_date,b.cmt_no from cb_board a left outer join cb_cmt b
 		on (a.board_id = b.board_id) where a.board_id = #{boardId}
 	</select>
 	
 	<insert id="boardInsert" parameterType="co.pyl.coby.board.vo.BoardVO">
-		insert into cb_board(board_id,board_title,board_content,board_date,user_id) values(#{boardId},#{boardTitle},#{boardContent},#{boardDate},#{userId})
+		insert into cb_board(board_id,board_title,board_content,user_id) values(BD_SEQ.nextval,#{boardTitle},#{boardContent},#{userId})
 	</insert>
 	
 	<update id="boardUpdate" parameterType="co.pyl.coby.board.vo.BoardVO">
@@ -22,14 +25,25 @@
 	</update>
 	
 	<delete id="boardDelete" parameterType="co.pyl.coby.board.vo.BoardVO">
-		delete from cb_board where board_id = #{boardId}
+		delete from cb_board where board_id = #{boardId} and user_id = #{userId}
 	</delete>
 	
 	<update id="boardHit" parameterType="co.pyl.coby.board.vo.BoardVO" >
 		update cb_board set board_hit = board_hit + 1 where board_id = #{boardId}
 	</update>
 	
+	<!-- 댓글 입력 -->
+	<insert id="cmtInsert" parameterType="co.pyl.coby.board.vo.CmtVO">
+		insert into cb_cmt(cmt_no, cmt_content, board_id, cmt_writer) values(CMT_SEQ.nextval, #{cmtContent}, #{boardId}, #{cmtWriter}) 
+	</insert>
+	
+	<!-- 댓글 수정 -->
+	<update id="cmtUpdate" parameterType="co.pyl.coby.board.vo.CmtVO">
+		update cb_cmt set cmt_content = #{cmtContent} where cmt_no = #{cmtNo} and board_id = #{boardId}	
+	</update>
+	
+	<!-- 댓글 삭제 -->
 	<delete id="cmtDelete" parameterType="co.pyl.coby.board.vo.CmtVO">
-		delete from cb_cmt where cmt_no = #{cmtNo}
+		delete from cb_cmt where cmt_no = #{cmtNo} and board_id = #{boardId}
 	</delete>
 </mapper>

@@ -17,22 +17,14 @@ public class CmtDelete implements Command {
 		BoardService dao = new BoardServiceImpl();
 		CmtVO vo = new BoardVO();
 		vo.setCmtNo(Integer.valueOf(request.getParameter("cmtNo")));
+		vo.setBoardId(Integer.valueOf(request.getParameter("boardId")));
+		System.out.println("cmtNo");
+		System.out.println("boardId");
+		dao.cmtDelete(vo);
 		
-		int result = dao.cmtDelete(vo);
+		request.setAttribute("boardId", vo.getBoardId());
 		
-		String page = "";
-		String message = "";
-		if(result != 0) {
-			message = "성공적으로 댓글을 삭제했습니다.";
-			request.setAttribute("message", message);
-			page = "boardSelect.do";
-		} else {
-			message = "댓글 삭제를 실패했습니다.";
-			request.setAttribute("message", message);
-			page = "boardSelect.do";
-		}
-		
-		return page;
+		return "boardSelect.do";
 	}
 
 }
