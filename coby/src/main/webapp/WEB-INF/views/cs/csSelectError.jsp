@@ -2,16 +2,7 @@
 	pageEncoding="EUC-KR"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<!-- 게시글 상세보기 -->
-<!-- <script>
-	function deleteComment() {
-		let confirms = confirm("댓글을 삭제하시겠습니까?")
-		if (confirms) {
-			alert("삭제되었습니다.")
-			$("#frm").submit();
-		}
-	}
-</script> -->
+
 
 
 

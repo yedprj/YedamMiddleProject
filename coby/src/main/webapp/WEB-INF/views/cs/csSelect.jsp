@@ -2,19 +2,6 @@
 	pageEncoding="EUC-KR"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<!-- 게시글 상세보기 -->
-<!-- <script>
-	function deleteComment() {
-		let confirms = confirm("댓글을 삭제하시겠습니까?")
-		if (confirms) {
-			alert("삭제되었습니다.")
-			$("#frm").submit();
-		}
-	}
-</script> -->
-
-
-
 <!-- 공지사항 -->
  <div class="container">
 	<div class="row">
@@ -23,37 +10,37 @@
 			<thead>
 				<tr>
 					<th colspan="3"
-						style="background-color: #eeeeee; text-align: center;">게시판</th>
+						style="background-color: #eeeeee; text-align: center;">고객센터</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
-					<td>${list.ntTitle}</td>
+					<td>${list[0].csTitle}</td>
 				</tr>
 				<tr>
-					<td>${list.ntDate}</td>
+					<td>${list[0].csDate}</td>
 				</tr>
 				<tr>
-					<td>${list.ntContent}</td>
+					<td>${list[0].csContent}</td>
 				</tr>
 			</tbody>
 		</table>
 
 	</div>
-	 <c:if test="${userId eq 'admin'}">
-		<form action="noticeDelete.do" method="post">
-			<input type="hidden" id="ntNo" name="ntNo" value="${list.ntNo}"> 
+	 <%-- <c:if test="${userId eq list.csWriter}">
+		<form action="csDelete.do" method="post">
+			<input type="hidden" id="csNo" name="csNo" value="${list.csNo}"> 
 			<button type="submit" class="btn btn-danger" style="display: inline">글삭제</button>
 		</form>
 		<form action="noticeUpdateForm.do" method="post">
-			<input type="hidden" id="ntNo" name="ntNo" value="${list.ntNo }"> 
-			<input type="hidden" id="ntTitle" name="ntTitle" value="${list.ntTitle }">
+			<input type="hidden" id="ntNo" name="ntNo" value="${list.csNo }"> 
+			<input type="hidden" id="ntTitle" name="ntTitle" value="${list.csTitle }">
 			<textarea class="form-control" rows="10" id="ntContent"
-				name="ntContent" style="display: none">${list.ntContent}</textarea>
+				name="ntContent" style="display: none">${list.csContent}</textarea>
 			<button type="submit" class="btn btn-danger" style="display: inline">글수정</button>
 		</form>
-	</c:if> 
-	<button type="button" onclick="location.href='noticeList.do'"
+	</c:if>  --%>
+	<button type="button" onclick="location.href='csList.do'"
 		class="btn btn-primary">목록</button> 
 </div> 
 

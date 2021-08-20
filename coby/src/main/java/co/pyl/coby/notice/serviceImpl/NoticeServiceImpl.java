@@ -1,6 +1,7 @@
 package co.pyl.coby.notice.serviceImpl;
 
 import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 
 import co.pyl.coby.common.DataSource;
@@ -8,13 +9,12 @@ import co.pyl.coby.notice.service.NoticeService;
 import co.pyl.coby.notice.vo.NoticeVO;
 
 public class NoticeServiceImpl implements NoticeService {
-	
-	private SqlSession sqlSession = DataSource.getInstance().openSession(true); //true를 해줘야 commit이 진행됨
-		
+	private SqlSession sqlSession = DataSource.getInstance().openSession(true); //true를 넣어줘야 커밋이된다.
+
 	@Override
-	public List<NoticeVO> noticeSelectList() {
+	public List<NoticeVO> noticeList() {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList("noticeSelectList");
+		return sqlSession.selectList("noticeList");
 	}
 
 	@Override

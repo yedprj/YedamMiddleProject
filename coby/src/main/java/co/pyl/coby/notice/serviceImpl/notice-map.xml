@@ -6,28 +6,28 @@
 <mapper namespace="co.pyl.coby.notice.service.NoticeMapper">
 	
 	<!-- 공지사항 목록 -->
-	<select id="noticeSelectList" resultType="co.pyl.coby.notice.vo.NoticeVO">
+	<select id="noticeList" resultType="co.pyl.coby.notice.vo.NoticeVO">
 		select * from cb_notice 
 	</select>
 	
-	<!-- 공지사항 상세보기 -->
+	<!-- 공지사항 세부보기  -->
 	<select id="noticeSelect" resultType="co.pyl.coby.notice.vo.NoticeVO">
-		select * from cb_notice where n_no = #{noticeNo}
+		select * from cb_notice where nt_no = #{ntNo}
 	</select>
 	
-	<!-- 공지사항 입력 -->
+	<!-- 공지사항 작성 -->
 	<insert id="noticeInsert" parameterType="co.pyl.coby.notice.vo.NoticeVO">
-		insert into cb_notice(n_no,n_content,n_title) values(N_SEQ.nextval,#{noticeContent},#{noticeTitle})
+		insert into cb_notice(nt_no,nt_title,nt_content) values(N_SEQ.nextval,#{ntTitle},#{ntContent})
 	</insert>
 	
 	<!-- 공지사항 수정 -->
 	<update id="noticeUpdate" parameterType="co.pyl.coby.notice.vo.NoticeVO">
-		update cb_notice set n_content = #{noticeContent} where n_no=#{noticeNo}
+		update cb_notice set nt_content = #{ntContent} where nt_No=#{ntNo}
 	</update>
 	
 	<!-- 공지사항 삭제 -->
 	<delete id="noticeDelete" parameterType="co.pyl.coby.notice.vo.NoticeVO">
-		delete from cb_notice where n_no = #{noticeNo}
+		delete from cb_notice where nt_no = #{ntNo} 
 	</delete>
 	
 </mapper>

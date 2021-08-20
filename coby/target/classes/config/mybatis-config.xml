@@ -41,6 +41,7 @@
 		<mapper resource="co/pyl/coby/purchase/serviceImpl/purchase-map.xml"/>
 		<mapper resource="co/pyl/coby/board/serviceImpl/board-map.xml" />
 		<mapper resource="co/pyl/coby/user/serviceImpl/user-map.xml"/>
+		<mapper resource="co/pyl/coby/cs/serviceImpl/cs-map.xml"/>
 	</mappers>
 
 </configuration>

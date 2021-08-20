@@ -1,34 +1,26 @@
 package co.pyl.coby.notice.command;
 
-import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import co.pyl.coby.board.service.BoardService;
-import co.pyl.coby.board.serviceImpl.BoardServiceImpl;
-import co.pyl.coby.board.vo.BoardVO;
 import co.pyl.coby.common.Command;
+import co.pyl.coby.notice.service.NoticeService;
+import co.pyl.coby.notice.serviceImpl.NoticeServiceImpl;
+import co.pyl.coby.notice.vo.NoticeVO;
 
 public class NoticeSelect implements Command {
 
 	@Override
-	//게시글 상세보기
+	//공지사항
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
-		BoardService dao = new BoardServiceImpl();
-		BoardVO vo = new BoardVO();
-		HttpSession session = request.getSession();
+		NoticeService dao = new NoticeServiceImpl();
+		NoticeVO vo = new NoticeVO();
+		vo.setNtNo(Integer.valueOf(request.getParameter("ntNo")));
+		vo = dao.noticeSelect(vo);
+		request.setAttribute("list", vo);
+		return "notice/noticeSelect";
 		
-		vo.setUserId((String) session.getAttribute("userId"));
-		
-		String board = request.getParameter("boardId");
-		vo.setBoardId(Integer.valueOf(board));
-		List<BoardVO> list = dao.boardSelect(board);
-		
-		dao.boardHit(vo);
-		request.setAttribute("board", list);
-		
-		return "board/boardSelect";
 	}
 	
 
