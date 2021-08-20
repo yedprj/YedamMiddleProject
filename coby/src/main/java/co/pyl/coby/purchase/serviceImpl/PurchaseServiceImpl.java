@@ -11,7 +11,7 @@ import co.pyl.coby.purchase.vo.PurchaseVO;
 
 public class PurchaseServiceImpl implements PurchaseService {
 	//Mybatis를 통해 데이터베이스를 연결
-	private SqlSession sqlSession = DataSource.getInstance().openSession();
+	private SqlSession sqlSession = DataSource.getInstance().openSession(true);
     //Mapper Interface 사용
 	private PurchaseMapper map =sqlSession.getMapper(PurchaseMapper.class);
     
@@ -27,7 +27,8 @@ public class PurchaseServiceImpl implements PurchaseService {
 
 	@Override
 	public int purchaseInsert(PurchaseVO vo) {
-		return map.purchaseInsert(vo);
+		map.purchaseInsert(vo);
+		return vo.getPrNo();
 	}
 
 }

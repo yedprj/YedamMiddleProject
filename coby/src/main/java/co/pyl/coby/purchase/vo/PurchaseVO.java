@@ -1,6 +1,6 @@
 package co.pyl.coby.purchase.vo;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class PurchaseVO {
 	private int prNo;
@@ -13,7 +13,7 @@ public class PurchaseVO {
 	private int prPrice;
 	private String prPhoto1;
 	private String prPhoto2;
-	private String prPhtro3;
+	private String prPhoto3;
 	private String prContent;
 	private String prPeople;
 	private String userId;
@@ -38,13 +38,6 @@ public class PurchaseVO {
 		this.wNo = wNo;
 	}
 
-	@Override
-	public String toString() {
-		return "PurchaseVO [prNo=" + prNo + ", prCategory=" + prCategory + ", prTitle=" + prTitle + ", prMin=" + prMin
-				+ ", prMax=" + prMax + ", prStartdate=" + prStartdate + ", prEnddate=" + prEnddate + ", prPrice="
-				+ prPrice + ", prPhoto1=" + prPhoto1 + ", prPhoto2=" + prPhoto2 + ", prPhtro3=" + prPhtro3
-				+ ", prContent=" + prContent + ", prPeople=" + prPeople + ", userId=" + userId + "]";
-	}
 
 	public int getPrNo() {
 		return prNo;
@@ -126,12 +119,12 @@ public class PurchaseVO {
 		this.prPhoto2 = prPhoto2;
 	}
 
-	public String getPrPhtro3() {
-		return prPhtro3;
+	public String getPrPhoto3() {
+		return prPhoto3;
 	}
 
-	public void setPrPhtro3(String prPhtro3) {
-		this.prPhtro3 = prPhtro3;
+	public void setPrPhoto3(String prPhoto3) {
+		this.prPhoto3 = prPhoto3;
 	}
 
 	public String getPrContent() {
