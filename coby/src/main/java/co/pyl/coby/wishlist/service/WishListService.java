@@ -11,5 +11,5 @@ public interface WishListService {
 	
 	public int deleteWishList(WishListVO vo);
 	
-	
+	public int updateUser(UserVO vo);
 }

@@ -10,4 +10,6 @@ public interface WishListMapper {
 	public List<Map<String, String>> selectWishList(UserVO vo);
 	
 	public int deleteWishList(WishListVO vo);
+	
+	public int updateUser(UserVO vo);
 }

@@ -38,7 +38,6 @@ import co.pyl.coby.mypage.command.Practice;
 import co.pyl.coby.mypage.command.UpdateUser;
 import co.pyl.coby.mypage.command.UpdateUserForm;
 import co.pyl.coby.mypage.command.WishList;
-import co.pyl.coby.mypage.command.WishListDelete;
 import co.pyl.coby.mypage.command.deleteUserForm;
 import co.pyl.coby.notice.command.NoticeDelete;
 import co.pyl.coby.notice.command.NoticeInsert;
@@ -125,7 +124,6 @@ public class FrontController extends HttpServlet {
 		map.put("/updateUserForm.do", new UpdateUserForm());
 		map.put("/deleteUserForm.do", new deleteUserForm());
 		map.put("/practice.do", new Practice());
-		map.put("/wishListDelete.do", new WishListDelete());
 		map.put("/updateUser.do", new UpdateUser());
 
 		// 공동구매
