@@ -1,6 +1,7 @@
 package co.pyl.coby.mypage.command;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,31 +12,41 @@ import co.pyl.coby.wishlist.service.WishListService;
 import co.pyl.coby.wishlist.serviceImpl.WishListServiceImpl;
 import co.pyl.coby.wishlist.vo.WishListVO;
 
-@WebServlet("/WishListDeleteServlet")
-public class WishListDeleteServlet extends HttpServlet {
+
+@WebServlet("/WishListArrayDeleteServlet")
+public class WishListArrayDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public WishListDeleteServlet() {
+
+    public WishListArrayDeleteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
+
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 	}
 
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		WishListService dao = new WishListServiceImpl();
+		String[] arr = request.getParameterValues("arr");
+		
+		String[] newAry = arr[0].replace("[", "").replace("]", "").replace("\"", "").split(",");
+		
+		int sum = 0;
 		
 		WishListVO vo = new WishListVO();
 		
-		vo.setWNo(Integer.parseInt(request.getParameter("id")));
+		WishListService dao = new WishListServiceImpl();
 		
-		System.out.println(Integer.parseInt(request.getParameter("id")));
+		for (String i : newAry) {
+			vo.setWNo(Integer.parseInt(i));
+			int r = dao.deleteWishList(vo);
+			sum += r;
+		}
 		
-		response.getWriter().print(dao.deleteWishList(vo));
-		
-		System.out.println(dao.deleteWishList(vo));
+		response.getWriter().print(sum);
 		
 	}
 

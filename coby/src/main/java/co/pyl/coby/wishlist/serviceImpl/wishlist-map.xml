@@ -20,7 +20,14 @@
 	<delete id="deleteWishList"
 		parameterType="co.pyl.coby.wishlist.vo.WishListVO">
 		delete from cb_wish
-		where w_no=#{wNo} and user_id=#{userId}
+		where w_no=#{wNo}
 	</delete>
+
+	<update id="updateUser" parameterType="UserVO">
+		update cb_user
+		set user_pw=#{userPw}, user_nickname=#{userNickname}, user_email=#{userEmail},
+		user_profile=#{userProfile}
+		where user_id=#{userId}
+	</update>
 
 </mapper>

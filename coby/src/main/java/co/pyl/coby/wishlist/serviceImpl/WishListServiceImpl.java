@@ -12,7 +12,7 @@ import co.pyl.coby.wishlist.service.WishListService;
 import co.pyl.coby.wishlist.vo.WishListVO;
 
 public class WishListServiceImpl implements WishListService {
-	private SqlSession sqlSession = DataSource.getInstance().openSession();
+	private SqlSession sqlSession = DataSource.getInstance().openSession(true);
 	private WishListMapper map = sqlSession.getMapper(WishListMapper.class);
 	
 	
@@ -23,6 +23,12 @@ public class WishListServiceImpl implements WishListService {
 	
 	public int deleteWishList(WishListVO vo) {
 		return map.deleteWishList(vo);
+	}
+
+	@Override
+	public int updateUser(UserVO vo) {
+		// TODO Auto-generated method stub
+		return map.updateUser(vo);
 	}
 
 }
