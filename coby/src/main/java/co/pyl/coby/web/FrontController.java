@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import co.pyl.coby.admin.command.AdminHome;
 import co.pyl.coby.board.command.BoardDelete;
 import co.pyl.coby.board.command.BoardInsert;
 import co.pyl.coby.board.command.BoardInsertForm;
@@ -20,10 +21,14 @@ import co.pyl.coby.board.command.BoardUpdateForm;
 import co.pyl.coby.board.command.CmtDelete;
 import co.pyl.coby.board.command.CmtInsert;
 import co.pyl.coby.board.command.CmtUpdate;
+import co.pyl.coby.command.FindId;
+import co.pyl.coby.command.FindIdForm;
 import co.pyl.coby.command.Home;
 import co.pyl.coby.command.IdCheck;
 import co.pyl.coby.command.Login;
 import co.pyl.coby.command.Logout;
+import co.pyl.coby.command.UpdatePw;
+import co.pyl.coby.command.UpdatePwForm;
 import co.pyl.coby.command.SignUp;
 import co.pyl.coby.common.Command;
 
@@ -63,6 +68,13 @@ public class FrontController extends HttpServlet {
 		map.put("/logout.do", new Logout()); // 로그아웃
 		map.put("/signUp.do", new SignUp()); // 회원가입
 		map.put("/idCheck.do", new IdCheck()); // 아이디 중복 체크
+		map.put("/findIdForm.do", new FindIdForm()); // 아이디 찾기 폼으로
+		map.put("/findId.do", new FindId());	// 아이디 찾기
+		map.put("/updatePwForm.do", new UpdatePwForm());	// 비밀번호 재설정 폼으로
+		map.put("/updatePw.do", new UpdatePw());	// 비밀번호 재설정 
+		
+		//관리자
+		map.put("/adminHome.do", new AdminHome());
 
 		map.put("/boardList.do", new BoardList()); //게시글 리스트
 		map.put("/boardSelect.do", new BoardSelect()); //게시글 상세보기

@@ -153,6 +153,11 @@
 					document.getElementById('pwCheck').classList.remove('valid-feedback');
 					document.getElementById('pwCheck').classList.add('invalid-feedback');
 				}	
+			} else {
+				document.getElementById('userPw').classList.remove('is-invalid');
+				document.getElementById('userPwOk').classList.remove('is-invalid');
+				document.getElementById('userPw').classList.remove('is-valid');
+				document.getElementById('userPwOk').classList.remove('is-valid');
 			}
 		}
 	</script>

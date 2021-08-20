@@ -10,7 +10,7 @@ import co.pyl.coby.user.service.UserService;
 import co.pyl.coby.user.vo.UserVO;
 
 public class UserServiceImpl implements UserService {
-	private SqlSession sqlSession = DataSource.getInstance().openSession();
+	private SqlSession sqlSession = DataSource.getInstance().openSession(true);
 	private UserMapper map = sqlSession.getMapper(UserMapper.class);
 	
 	@Override
@@ -47,6 +47,18 @@ public class UserServiceImpl implements UserService {
 	public int userUpdate(UserVO vo) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public UserVO findUserId(UserVO vo) {
+		// TODO 아이디 찾기
+		return map.findUserId(vo);
+	}
+
+	@Override
+	public int userpwUpdate(UserVO vo) {
+		// TODO 비밀번호 수정
+		return map.userpwUpdate(vo);
 	}
 
 }

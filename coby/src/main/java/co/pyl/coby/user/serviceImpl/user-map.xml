@@ -6,7 +6,17 @@
 	<select id="selectOneUser" resultType="UserVO">
 		select * from cb_user where user_id=#{userId}
 	</select>
-
+	
+	<!-- 아이디 찾기 -->
+	<select id="findUserId" resultType="UserVO">
+		select user_id from cb_user where user_email=#{userEmail}
+	</select>
+	
+	<!-- 비밀번호 수정 -->
+	<update id="userpwUpdate" parameterType="UserVO">
+		update cb_user set user_pw=#{userPw} where user_id=#{userId}
+	</update>
+	
 	<!-- 로그인 쿼리 -->
 	<select id="loginUser" resultType="UserVO" >	
 		select * from cb_user where user_id=#{userId} and user_pw=#{userPw} and user_state='A'		

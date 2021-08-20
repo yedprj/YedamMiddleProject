@@ -20,8 +20,8 @@
 <body>
 	<div class="container mt-5">
 		<div class="row">
-			<div class="col-md-4 offset-md-4 border p-4 shadow bg-light">
-				<div class="login-form bg-light mt-4 p-4">
+			<div class="col-md-4 offset-md-4 border p-3 shadow bg-light">
+				<div class="login-form bg-light mt-4 p-2">
 					<h2>Login</h2>
 					<c:if test="${not empty message }">
 						<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -43,24 +43,35 @@
 							</div>
 						</div>
 					</c:if>
+					
 					<form id="frm" action="login.do" method="post" class="row g-3">
 						<div class="col-12">
 							<label>ID</label> <input type="text" id="userId" name="userId"
 								class="form-control" placeholder="ID를 입력해주세요"
 								required="required">
 						</div>
+						
 						<div class="col-12">
 							<label>Password</label> <input type="password" id="userPw"
 								name="userPw" class="form-control"
 								placeholder="Password를 입력해주세요" required="required">
 						</div>
+						
 						<div class="col-12">
-							<div class="form-check">
-								<input class="form-check-input" type="checkbox" id="rememberMe">
-								<label class="form-check-label" for="rememberMe">
-									Remember me</label>
+							<div class="form-inline row">
+								<div class="col-auto">
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" id="rememberMe">
+										<label class="form-check-label" for="rememberMe">
+											Remember me</label>
+									</div>
+								</div>
+								<div class="col-auto">
+									<a href="findIdForm.do" class="nav-link link-dark">아이디찾기/비밀번호재설정</a>
+								</div>
 							</div>
 						</div>
+						
 						<div class="col-11 d-grid mx-auto">
 							<input type="submit" class="btn btn-dark form-control p-2"
 								value="Login">

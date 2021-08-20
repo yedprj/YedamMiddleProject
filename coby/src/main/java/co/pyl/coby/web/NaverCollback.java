@@ -118,6 +118,9 @@ public class NaverCollback extends HttpServlet {
 		        String email = (String)resObj.get("email");
 		        String name = (String)resObj.get("name");
 		        String nickName = (String)resObj.get("nickname");
+		        String profile = (String)resObj.get("profile_image");		        
+		        String phone = (String)resObj.get("mobile");
+		        
 		        
 		        
 		    } catch (Exception e) {
