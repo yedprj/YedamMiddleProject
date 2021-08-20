@@ -19,6 +19,7 @@
 	 <hr/>
 	 <div class="row pb-3 mb-3">
 	     <h5>${list[0].prTitle }</h5>
+	     <h5>${list[0].prNo }</h5>
 	 </div>
 	 <hr/>
   </div>
