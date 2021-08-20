@@ -17,7 +17,15 @@ public class PurchaseSelect implements Command {
 		PurchaseService dao = new PurchaseServiceImpl();
 		PurchaseVO vo = new PurchaseVO();
 		
-		vo.setPrNo(Integer.valueOf(request.getParameter("prNo")));
+		if (request.getParameter("prNo") == null) {
+			vo.setPrNo((int) request.getAttribute("prNo"));
+			
+		} else {
+			vo.setPrNo(Integer.valueOf(request.getParameter("prNo")));
+			
+		}
+		
+		
 		
 		List<PurchaseVO> list = dao.purchaseSelect(vo);
 		request.setAttribute("list", list);

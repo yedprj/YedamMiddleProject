@@ -1,23 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="co.pyl.coby.purchase.service.PurchaseMapper">
-  <!-- SQL 적용 해주는 곳 -->
-  
-  <!-- 공동구매 글 리스트 보기 -->
-  <select id="purchaseSelectList" resultType="PurchaseVO">
-    SELECT * FROM cb_purchase
-  </select>
-  
-  <!-- 공동구매 글 상세 보기 -->
-  <select id="purchaseSelect" parameterType="PurchaseVO" resultType="PurchaseVO">
-    SELECT * FROM cb_purchase WHERE pr_no= #{prNo}
-  </select>
-  
-  <!-- 공동구매글 작성 -->
-  <insert id="purchaseInsert">
-   INSERT INTO cb_purchase VALUES (
-     pr_seq.nextval, #{prCategory}, #{prTitle}, #{prMin}, #{prMax}, #{prStartdate}, #{prEnddate}, #{prPrice},
-     #{prPhoto1}, #{prPhoto2}, #{prPhoto3}, #{prContent}, #{prPeople}, #{userId}
-   )
-  </insert>
+
+	<!-- SQL 적용 해주는 곳 -->
+
+	<!-- 공동구매 글 리스트 보기 -->
+	<select id="purchaseSelectList" resultType="PurchaseVO">
+		SELECT * FROM cb_purchase ORDER BY pr_No DESC
+	</select>
+
+	<!-- 공동구매 글 상세 보기 -->
+	<select id="purchaseSelect" parameterType="PurchaseVO"
+		resultType="PurchaseVO">
+		SELECT * FROM cb_purchase WHERE pr_no= #{prNo}
+	</select>
+
+	<!-- 공동구매글 작성 -->
+	<insert id="purchaseInsert" parameterType="PurchaseVO">
+	
+		INSERT INTO cb_purchase VALUES (
+		pr_seq.nextval, #{prCategory}, #{prTitle}, #{prMin}, #{prMax}, #{prStartdate},
+		#{prEnddate}, #{prPrice},
+		#{prPhoto1}, #{prPhoto2}, #{prPhtro3}, #{prContent}, 1, #{userId}
+		)
+		<selectKey keyProperty="prNo" resultType="int" order="AFTER">
+			select pr_seq.currval as prNo from dual
+		</selectKey>
+		
+	</insert>
+	
 </mapper>
