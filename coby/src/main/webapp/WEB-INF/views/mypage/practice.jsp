@@ -3,6 +3,13 @@
 <script src="https://use.fontawesome.com/8c8d6bcd7e.js"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<link
+	href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css"
+	rel="stylesheet">
+<script
+	src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+
 <script>
 	
 </script>
@@ -180,7 +187,7 @@
 <div class="container h-100">
 	<div class="row">
 		<div class="pt-3 pb-2 mb-3">
-			<span class="link-dark fs-4">공동구매 등록</span>
+			<span class="link-dark fs-4">글 보기.....?????</span>
 		</div>
 
 		<div class="row">
@@ -188,11 +195,20 @@
 				<div class="h-100 p-4 border border-dark rounded-3">
 
 					<div>
-						<div class="border-bottom">
-							<div class="text-muted">카테고리</div>
-							<div class="h3">제목</div>
+						<div class="border-bottom py-1">
+							<div class="row">
+								<div class="col-sm-9">
+									<div class="text-muted">카테고리</div>
+									<div class="h3">제목</div>
+								</div>
+								<div class="col-sm-3 align-self-center">
+									<input type="checkbox" data-toggle="toggle"
+										data-on="위시리스트 담김" data-off="위시리스트 담기" data-onstyle="dark"
+										data-offstyle="light" data-style="border">
+								</div>
+							</div>
 						</div>
-						<div class="border-bottom">
+						<div class="border-bottom py-1">
 							<div class="d-inline-flex p-1">
 								<small>글 번호</small>
 							</div>
@@ -201,7 +217,7 @@
 							</div>
 						</div>
 
-						<div class="row">
+						<div class="row  py-1">
 							<div class="col-sm-4">
 								<div class="d-inline-flex p-1">
 									<small>모집 일정</small>
@@ -273,7 +289,7 @@
 							<div class="py-3 border-top">내용</div>
 						</div>
 
-						<div class="border-top py-2">
+						<div class="border-top border-bottom py-2">
 							<small class="py-1">참여 현황</small>
 
 
@@ -286,54 +302,58 @@
 
 						</div>
 
-						<div>댓글 n개</div>
-						<div>
+						<div class="border-bottom py-5">목록으로 / 참여신청 버튼</div>
 
-							<div class="area-comentarios">
-							
-								<ul>
-									<li class="unico-comentario normal">
-										<div class="avatar">
-											<img alt="" src="image/user.jpg" class="avatar avatar-60 photo" height="60"
-												width="60">
-										</div>
-										<div class="conteudo">
-											<div class="comment-info">
-												<b>닉네임</b> - 작성날짜
-											</div>
-											<div class="comment-text">
-												<p>댓글내용</p>
-											</div>
+						<div class="py-1">
+							<small class="py-1">댓글 n개</small>
+							<div>
 
-										</div>
-									</li>
+								<div class="area-comentarios">
 
-									<li class="unico-comentario children">
-										<div class="avatar">
-											<img alt="" src="image/user.jpg" class="avatar avatar-60 photo" height="60"
-												width="60">
-										</div>
-										<div class="conteudo">
-											<div class="comment-info">
-												<b>닉네임</b> - 작성날짜
+									<ul>
+										<li class="unico-comentario normal">
+											<div class="avatar">
+												<img alt="" src="image/user.jpg"
+													class="avatar avatar-60 photo" height="60" width="60">
 											</div>
-											<div class="comment-text">
-												<p>
-													글내용 내용 내용 내용 내용 내용 맛있는 불고기버거 맛있는 참치샌드위치<br> 이마트 홈플러스
-													코스트코 엥엥엥엥엥엥엥엥엥엥
-												</p>
+											<div class="conteudo">
+												<div class="comment-info">
+													<b>닉네임</b> - 작성날짜
+												</div>
+												<div class="comment-text">
+													<p>댓글내용</p>
+												</div>
+
 											</div>
-										</div>
-									</li>
-									
-								</ul>
-								
+										</li>
+
+										<li class="unico-comentario children">
+											<div class="avatar">
+												<img alt="" src="image/user.jpg"
+													class="avatar avatar-60 photo" height="60" width="60">
+											</div>
+											<div class="conteudo">
+												<div class="comment-info">
+													<b>닉네임</b> - 작성날짜
+												</div>
+												<div class="comment-text">
+													<p>
+														글내용 내용 내용 내용 내용 내용 맛있는 불고기버거 맛있는 참치샌드위치<br> 이마트 홈플러스
+														코스트코 엥엥엥엥엥엥엥엥엥엥
+													</p>
+												</div>
+											</div>
+										</li>
+
+									</ul>
+
+								</div>
+
+
+
+
+
 							</div>
-
-
-
-
-
 						</div>
 					</div>
 
