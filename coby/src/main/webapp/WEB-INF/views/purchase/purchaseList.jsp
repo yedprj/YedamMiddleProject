@@ -7,18 +7,19 @@
 <meta charset="UTF-8">
 <title>공동구매 리스트</title>
 <script>
-        //글 상세보기 위한 함수
+        //글 상세보기 위한 prNo 가져가기
         function getRecord(n){
 	        frm.prNo.value = n;
 	        frm.submit();
         }
-    </script>
+</script>
 
 <style>
 #purchaseSelect {
 	cursor: pointer;
 }
 </style>
+
 </head>
 <body>
 	<div class="container">

@@ -70,7 +70,7 @@
 					<div class="row pb-3 mb-3 border-bottom">
 						<label for="" class="col-sm-2 col-form-label">진행 기간</label>
 						<div class="col-sm-3">
-							<input type="date" class="form-control" id="prStartDate" name="prStartDate">
+							<input type="date" class="form-control" id="prStartDate" name="prStartDate" readonly>
 						</div>
 						~
 						<div class="col-sm-3">
