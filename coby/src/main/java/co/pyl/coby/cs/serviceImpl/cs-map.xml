@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="co.pyl.coby.cs.service.CsMapper">
+	
+	<!-- 게시판 목록 -->
+	<select id="csList" resultType="co.pyl.coby.cs.vo.CsVO">
+		select * from cb_cs 
+	</select>
+	
+	<select id="csSelect" resultType="co.pyl.coby.cs.vo.CsVO">
+		select a.*,b.cs_cmt_content, b.cs_cmt_date,b.cs_writer from cb_cs a left outer join cb_cs_cmt b
+		on (a.cs_no = b.cs_no) where a.cs_no = #{csNo}
+	</select>
+	
+</mapper>

@@ -4,10 +4,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import co.pyl.coby.board.service.BoardService;
-import co.pyl.coby.board.serviceImpl.BoardServiceImpl;
-import co.pyl.coby.board.vo.BoardVO;
 import co.pyl.coby.common.Command;
+import co.pyl.coby.notice.service.NoticeService;
+import co.pyl.coby.notice.serviceImpl.NoticeServiceImpl;
+import co.pyl.coby.notice.vo.NoticeVO;
 
 public class NoticeInsert implements Command {
 	
@@ -16,15 +16,14 @@ public class NoticeInsert implements Command {
 	//게시글 추가
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
-		BoardService dao = new BoardServiceImpl();
-		BoardVO vo = new BoardVO();
+		NoticeService dao = new NoticeServiceImpl();
+		NoticeVO vo = new NoticeVO();
 		
-		vo.setUserId(request.getParameter("userId"));;
-		vo.setBoardTitle(request.getParameter("boardTitle"));
-		vo.setBoardContent(request.getParameter("boardContent"));
+		vo.setNtTitle(request.getParameter("ntTitle"));
+		vo.setNtContent(request.getParameter("ntContent"));
 		
-		dao.boardInsert(vo);
-		return "boardList.do";
+		dao.noticeInsert(vo);
+		return "noticeList.do";
 	}
 
 }

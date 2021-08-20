@@ -31,7 +31,8 @@ import co.pyl.coby.command.UpdatePw;
 import co.pyl.coby.command.UpdatePwForm;
 import co.pyl.coby.command.SignUp;
 import co.pyl.coby.common.Command;
-
+import co.pyl.coby.cs.command.CsList;
+import co.pyl.coby.cs.command.CsSelect;
 import co.pyl.coby.mypage.command.MyPage;
 import co.pyl.coby.mypage.command.Practice;
 import co.pyl.coby.mypage.command.UpdateUser;
@@ -39,7 +40,13 @@ import co.pyl.coby.mypage.command.UpdateUserForm;
 import co.pyl.coby.mypage.command.WishList;
 import co.pyl.coby.mypage.command.WishListDelete;
 import co.pyl.coby.mypage.command.deleteUserForm;
-import co.pyl.coby.notice.command.NoticeSelectList;
+import co.pyl.coby.notice.command.NoticeDelete;
+import co.pyl.coby.notice.command.NoticeInsert;
+import co.pyl.coby.notice.command.NoticeInsertForm;
+import co.pyl.coby.notice.command.NoticeList;
+import co.pyl.coby.notice.command.NoticeSelect;
+import co.pyl.coby.notice.command.NoticeUpdate;
+import co.pyl.coby.notice.command.NoticeUpdateForm;
 import co.pyl.coby.purchase.command.PurchaseForm;
 import co.pyl.coby.purchase.command.PurchaseInsert;
 import co.pyl.coby.purchase.command.PurchaseList;
@@ -51,7 +58,6 @@ public class FrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private HashMap<String, Command> map = new HashMap<String, Command>();
 
-	
 	public FrontController() {
 		super();
 
@@ -87,9 +93,32 @@ public class FrontController extends HttpServlet {
 		map.put("/cmtUpdate.do", new CmtUpdate()); //댓글 수정
 		map.put("/cmtInsert.do", new CmtInsert()); //댓글 입력
 		
-		//공지사항
-		map.put("/noticeSelectList.do", new NoticeSelectList()); //공지사항 리스트
+		//게시판
+		map.put("/boardList.do", new BoardList()); // 게시글 리스트
+		map.put("/boardSelect.do", new BoardSelect()); // 게시글 상세보기
+		map.put("/boardInsert.do", new BoardInsert()); // 게시글 입력
+		map.put("/boardInsertForm.do", new BoardInsertForm()); // 게시글 입력양식 이동
+		map.put("/boardUpdate.do", new BoardUpdate()); // 게시글 수정
+		map.put("/boardUpdateForm.do", new BoardUpdateForm()); // 게시글 수정양식
+		map.put("/boardDelete.do", new BoardDelete()); // 게시글 삭제
+		map.put("/cmtDelete.do", new CmtDelete()); // 댓글 삭제
+		map.put("/cmtUpdate.do", new CmtUpdate()); // 댓글 수정
+		map.put("/cmtInsert.do", new CmtInsert()); // 댓글 입력
 
+		// 공지사항
+		map.put("/noticeList.do", new NoticeList()); // 공지사항 리스트
+		map.put("/noticeSelect.do", new NoticeSelect()); // 공지사항 상세보기
+		map.put("/noticeDelete.do", new NoticeDelete()); // 공지사항 삭제
+		map.put("/noticeUpdateForm.do", new NoticeUpdateForm()); // 공지사항 수정
+		map.put("/noticeUpdate.do", new NoticeUpdate()); // 공지사항 수정
+		map.put("/noticeInsertForm.do", new NoticeInsertForm()); // 공지사항 입력 양식
+		map.put("/noticeInsert.do", new NoticeInsert()); // 공지사항 입력
+		
+//		//고객센터
+		map.put("/csList.do", new CsList()); //고객센터 게시글 리스트 (관리자권한)
+		map.put("/csSelect.do", new CsSelect());
+		
+		
 		// 마이페이지 관련
 		map.put("/myPage.do", new MyPage());
 		map.put("/wishList.do", new WishList());
@@ -101,7 +130,7 @@ public class FrontController extends HttpServlet {
 
 		// 공동구매
 		map.put("/purchaseList.do", new PurchaseList()); // 공동구매 리스트 보기
-		map.put("/purchaseSelect.do", new PurchaseSelect()); //공동구매 상세보기
+		map.put("/purchaseSelect.do", new PurchaseSelect()); // 공동구매 상세보기
 		map.put("/purchaseForm.do", new PurchaseForm()); // 공동구매 작성 폼 으로 가기
 		map.put("/purchaseInsert.do", new PurchaseInsert()); // 공동구매 등록 하기
 	}

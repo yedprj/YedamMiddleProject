@@ -10,7 +10,6 @@
 		select * from cb_board 
 	</select>
 	
-	<!--  -->
 	<select id="boardSelect" resultType="co.pyl.coby.board.vo.BoardVO">
 		select a.*,b.cmt_writer,b.cmt_content, b.cmt_date,b.cmt_no from cb_board a left outer join cb_cmt b
 		on (a.board_id = b.board_id) where a.board_id = #{boardId}

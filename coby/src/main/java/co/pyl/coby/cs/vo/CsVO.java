@@ -13,5 +13,5 @@ public class CsVO {
 	private String csContent;
 	private Date csDate;
 	private int csCmtnum;
-	private String userId;
+	private String csWriter;
 }
