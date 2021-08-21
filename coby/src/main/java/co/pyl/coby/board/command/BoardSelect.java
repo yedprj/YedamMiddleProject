@@ -17,9 +17,6 @@ public class BoardSelect implements Command {
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		BoardService dao = new BoardServiceImpl();
 		BoardVO vo = new BoardVO();
-		HttpSession session = request.getSession();
-		
-		vo.setUserId((String) session.getAttribute("userId"));
 		
 		String board = request.getParameter("boardId");
 		vo.setBoardId(Integer.valueOf(board));

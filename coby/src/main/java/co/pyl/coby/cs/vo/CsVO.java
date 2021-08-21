@@ -7,7 +7,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class CsVO {
+public class CsVO extends CscmtVO{
 	private int csNo;
 	private String csTitle;
 	private String csContent;

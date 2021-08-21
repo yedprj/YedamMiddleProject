@@ -1,6 +1,5 @@
 package co.pyl.coby.cs.command;
 
-import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -8,24 +7,27 @@ import javax.servlet.http.HttpSession;
 import co.pyl.coby.common.Command;
 import co.pyl.coby.cs.service.CsService;
 import co.pyl.coby.cs.serviceImpl.CsServiceImpl;
-import co.pyl.coby.cs.vo.CsVO;
+import co.pyl.coby.cs.vo.CscmtVO;
 
-public class CsSelect implements Command {
+public class CscmtInsert implements Command {
 
 	@Override
-	//게시글 상세보기
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
+		// TODO 댓글 작성
 		CsService dao = new CsServiceImpl();
-		CsVO vo = new CsVO();
 		HttpSession session = request.getSession();
 		
-		int n = Integer.valueOf(request.getParameter("csNo"));
-		vo.setCsNo(n);
+		int csNo = Integer.valueOf(request.getParameter("csNo"));
+		String cscmtWriter = request.getParameter("userId");
+		String cscmtContent = request.getParameter("cscmtContent");
 		
-		List<CsVO> list = dao.csSelect(vo);
-		request.setAttribute("list", list);
+		CscmtVO vo = new CscmtVO();
+		vo.setCsNo(csNo);
+		vo.setCscmtContent(cscmtContent);
+		vo.setCscmtWriter(cscmtWriter);
 		
-		return "cs/csSelect";
+		dao.cscmtInsert(vo);
+		
+		return "csSelect.do";
 	}
-	
 }
