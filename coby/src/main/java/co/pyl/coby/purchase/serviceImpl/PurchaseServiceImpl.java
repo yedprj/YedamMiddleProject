@@ -37,5 +37,11 @@ public class PurchaseServiceImpl implements PurchaseService {
 		return vo.getPrNo();
 	}
 
+	@Override
+	public int ApplicatePeople(PurchaseVO vo) {
+		// TODO Auto-generated method stub
+		return map.ApplicatePeople(vo);
+	}
+
 
 }

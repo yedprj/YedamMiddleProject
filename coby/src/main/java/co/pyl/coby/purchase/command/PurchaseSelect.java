@@ -28,8 +28,9 @@ public class PurchaseSelect implements Command {
 		
 		
 		List<PurchaseVO> list = dao.purchaseSelect(vo);
+		int people = dao.ApplicatePeople(vo);
 		request.setAttribute("list", list);
-		
+		request.setAttribute("people", people);
 		
 		
 		return "purchase/purchaseSelect";

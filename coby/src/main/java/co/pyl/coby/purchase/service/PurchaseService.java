@@ -17,4 +17,7 @@ public interface PurchaseService {
   
   //공동구매 등록 하기
   int purchaseInsert(PurchaseVO vo);
+  
+  //참여인원수 조회
+  int ApplicatePeople(PurchaseVO vo);
 }

@@ -6,37 +6,50 @@
 
 	<!-- 공동구매 글 리스트 보기 -->
 	<select id="purchaseSelectList" resultType="PurchaseVO">
-		SELECT * FROM cb_purchase ORDER BY pr_No DESC
+		SELECT * FROM
+		cb_purchase ORDER BY pr_No DESC
 	</select>
 
 	<!-- 공동구매 글 상세 보기 -->
-	<select id="purchaseSelect" parameterType="PurchaseVO" resultType="PurchaseVO">
+	<select id="purchaseSelect" parameterType="PurchaseVO"
+		resultType="PurchaseVO">
 		SELECT a.*, b.user_nickname, b.user_profile
-        FROM cb_purchase a join cb_user b
-        ON a.user_id = b.user_id
-        WHERE pr_no= #{prNo}
+		FROM cb_purchase a join cb_user b
+		ON a.user_id = b.user_id
+		WHERE pr_no= #{prNo}
 	</select>
-	
+
 	<!-- 공동구매 글 상세보기에서 댓글 불러오기 -->
-    <select id="purchaseCmtList" parameterType="PrCmtVO" resultType="PrCmtVO">
+	<select id="purchaseCmtList" parameterType="PrCmtVO"
+		resultType="PrCmtVO">
 		SELECT a.*, b.user_nickname, b.user_profile
-        FROM cb_purchase a join cb_user b
-        ON a.user_id = b.user_id
-        WHERE pr_no= #{prNo}
+		FROM cb_purchase a join cb_user b
+		ON a.user_id = b.user_id
+		WHERE pr_no= #{prNo}
 	</select>
 
 	<!-- 공동구매글 작성 -->
 	<insert id="purchaseInsert" parameterType="PurchaseVO">
-	
+
 		INSERT INTO cb_purchase VALUES (
-		pr_seq.nextval, #{prCategory}, #{prTitle}, #{prMin}, #{prMax}, #{prStartdate},
-		#{prEnddate}, #{prPrice},
-		#{prPhoto1}, #{prPhoto2}, #{prPhtro3}, #{prContent}, 1, #{userId}
+		pr_seq.nextval, #{prCategory},
+		#{prTitle}, #{prMin}, #{prMax}, #{prStartdate},
+		#{prEnddate},
+		#{prPrice},
+		#{prPhoto1}, #{prPhoto2}, #{prPhtro3}, #{prContent}, 1,
+		#{userId}
 		)
 		<selectKey keyProperty="prNo" resultType="int" order="AFTER">
-			select pr_seq.currval as prNo from dual
+			select
+			pr_seq.currval as prNo from dual
 		</selectKey>
-		
+
 	</insert>
-	
+
+	<select id="ApplicatePeople" parameterType="PurchaseVO" resultType="_int">
+		select count(*) AS
+		pr_people from cb_applicate
+		where pr_no=#{prNo}
+	</select>
+
 </mapper>

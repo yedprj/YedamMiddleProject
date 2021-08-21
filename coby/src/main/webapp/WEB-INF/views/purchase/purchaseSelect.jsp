@@ -15,8 +15,41 @@
 	rel="stylesheet">
 <script
 	src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 
 <script>
+
+	$(document).ready(function() {
+		//1인 부담금
+		
+		$('#dividedPrice').text(followPrice(originalPrice, people));
+		
+		console.log("파티장이 부담할 값 : " + bossPrice(originalPrice, people));
+		
+	});
+	
+	function bossPrice(price, people) {
+		//가격에서 인원수만큼 나눈 값(소수점 존재)
+		let original = price / people;
+		
+		//버림한 값
+		let floor = Math.floor(original);
+		
+		//버림한 나머지 값 -> 파티장에게 더함
+		let remainder = price - (floor*people);
+		
+		return floor + remainder;
+	}
+	
+	function followPrice(price, people) {
+		//가격에서 인원수만큼 나눈 값(소수점 존재)
+		let original = price / people;
+		
+		//버림한 값
+		let floor = Math.floor(original);
+		
+		return floor;
+	}
 	
 </script>
 
@@ -220,7 +253,8 @@
 							<div class="row">
 								<div class="border-bottom py-1">
 									<div class="col-sm-8">
-										<img src="${list[0].userProfile }" class="image--cover"> <small>${list[0].userNickname }</small>
+										<img src="${list[0].userProfile }" class="image--cover">
+										<small>${list[0].userNickname }</small>
 									</div>
 									<div class="col-sm-4 text-end d-inline-flex p-1">
 										<small class="text-muted">글 번호 : ${list[0].prNo } </small>
@@ -240,11 +274,23 @@
 								</div>
 							</div>
 							<div class="col-sm-8 text-end">
-								<div class="d-inline-flex p-1">
-									<small>구매 비용</small>
+								<div>
+									<div class="d-inline-flex p-1">
+										<small>물건의 총 가격</small>
+									</div>
+									<div class="d-inline-flex p-1">
+										<h4 class="text-info">${list[0].prPrice }</h4>
+									</div>
+									<small>원</small>
 								</div>
-								<div class="d-inline-flex p-1">
-									<h4 class="text-info">${list[0].prPrice }</h4>
+								<div>
+									<div class="d-inline-flex p-1">
+										<small>1인 부담금</small>
+									</div>
+									<div class="d-inline-flex p-1">
+										<h4 class="text-info" id="dividedPrice"></h4>
+									</div>
+									<small>원</small>
 								</div>
 							</div>
 
@@ -312,14 +358,12 @@
 						</div>
 
 						<div class="py-2">
-							<small class="py-1">참여 현황</small>
-
+							<small class="py-1">참여 현황 ( ${people } 명 참여중 )</small>
 
 							<div class="">
 								<img src="image/user.jpg" class="image--cover"> <img
 									src="image/user.jpg" class="image--cover"> <img
-									src="image/user.jpg" class="image--cover"> <small>n명
-									참여중</small>
+									src="image/user.jpg" class="image--cover">
 							</div>
 
 						</div>
