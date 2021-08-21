@@ -1,31 +1,26 @@
 package co.pyl.coby.cs.command;
 
-import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import co.pyl.coby.common.Command;
 import co.pyl.coby.cs.service.CsService;
 import co.pyl.coby.cs.serviceImpl.CsServiceImpl;
 import co.pyl.coby.cs.vo.CsVO;
 
-public class CsSelect implements Command {
+public class CsUpdate implements Command {
 
 	@Override
-	//게시글 상세보기
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
+		// TODO 게시글 수정
 		CsService dao = new CsServiceImpl();
 		CsVO vo = new CsVO();
-		HttpSession session = request.getSession();
 		
-		int n = Integer.valueOf(request.getParameter("csNo"));
-		vo.setCsNo(n);
+		vo.setCsNo(Integer.valueOf(request.getParameter("csNo")));
+		vo.setCsContent(request.getParameter("csContent"));
+		dao.csUpdate(vo);
 		
-		List<CsVO> list = dao.csSelect(vo);
-		request.setAttribute("list", list);
-		
-		return "cs/csSelect";
+		return "csSelect.do";
 	}
-	
+
 }

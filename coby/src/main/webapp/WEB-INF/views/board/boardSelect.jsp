@@ -97,7 +97,7 @@
 		</table>
 		</c:if>
 		
-		<c:if test="${userId != null}">
+		<c:if test="${userId ne null}">
 			<!-- ´ñ±Û Ãß°¡ -->
 			<form id="frm" name="frm" action="cmtInsert.do" method="post">
 				<br> <br>

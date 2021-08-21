@@ -2,6 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="co.pyl.coby.user.service.UserMapper">
 
+	<!-- 전체 조회 -->
+	<select id="selectAllUser" resultType="UserVO">
+		select * from cb_user
+	</select>
+
 	<!-- 한건 조회 -->
 	<select id="selectOneUser" resultType="UserVO">
 		select * from cb_user where user_id=#{userId}

@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import co.pyl.coby.admin.command.AdminAccount;
 import co.pyl.coby.admin.command.AdminHome;
+import co.pyl.coby.admin.command.AdminPayment;
 import co.pyl.coby.board.command.BoardDelete;
 import co.pyl.coby.board.command.BoardInsert;
 import co.pyl.coby.board.command.BoardInsertForm;
@@ -31,8 +33,16 @@ import co.pyl.coby.command.UpdatePw;
 import co.pyl.coby.command.UpdatePwForm;
 import co.pyl.coby.command.SignUp;
 import co.pyl.coby.common.Command;
+import co.pyl.coby.cs.command.CsDelete;
+import co.pyl.coby.cs.command.CsInsert;
+import co.pyl.coby.cs.command.CsInsertForm;
 import co.pyl.coby.cs.command.CsList;
 import co.pyl.coby.cs.command.CsSelect;
+import co.pyl.coby.cs.command.CsUpdate;
+import co.pyl.coby.cs.command.CsUpdateForm;
+import co.pyl.coby.cs.command.CscmtDelete;
+import co.pyl.coby.cs.command.CscmtInsert;
+import co.pyl.coby.cs.command.CscmtUpdate;
 import co.pyl.coby.mypage.command.MyPage;
 import co.pyl.coby.mypage.command.Practice;
 import co.pyl.coby.mypage.command.UpdateUser;
@@ -80,6 +90,8 @@ public class FrontController extends HttpServlet {
 		
 		//관리자
 		map.put("/adminHome.do", new AdminHome());
+		map.put("/adminAccount.do", new AdminAccount());
+		map.put("/adminPayment.do", new AdminPayment());
 
 		map.put("/boardList.do", new BoardList()); //게시글 리스트
 		map.put("/boardSelect.do", new BoardSelect()); //게시글 상세보기
@@ -113,10 +125,17 @@ public class FrontController extends HttpServlet {
 		map.put("/noticeInsertForm.do", new NoticeInsertForm()); // 공지사항 입력 양식
 		map.put("/noticeInsert.do", new NoticeInsert()); // 공지사항 입력
 		
-//		//고객센터
+		//고객센터
 		map.put("/csList.do", new CsList()); //고객센터 게시글 리스트 (관리자권한)
-		map.put("/csSelect.do", new CsSelect());
-		
+		map.put("/csSelect.do", new CsSelect()); //고객센터
+		map.put("/csUpdateForm.do", new CsUpdateForm()); // 고객센터 수정
+		map.put("/csUpdate.do", new CsUpdate()); // 고객센터 수정
+		map.put("/csInsertForm.do", new CsInsertForm()); // 고객센터 입력 양식
+		map.put("/csInsert.do", new CsInsert()); // 고객센터 입력
+		map.put("/csDelete.do", new CsDelete()); // 고객센터 입력
+		map.put("/cscmtInsert.do", new CscmtInsert()); // 댓글 입력
+		map.put("/cscmtUpdate.do", new CscmtUpdate()); // 댓글 수정
+		map.put("/cscmtDelete.do", new CscmtDelete()); // 댓글 삭제
 		
 		// 마이페이지 관련
 		map.put("/myPage.do", new MyPage());
