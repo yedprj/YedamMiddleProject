@@ -17,6 +17,50 @@
 	src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 
 <script>
+	//댓글 가져오기 ajax
+	$(document).ready(function(){
+		
+	$.ajax({
+		url:'PurchaseCmtServlet',
+	    dataType:'json',
+	    data : {prNo : ${list[0].prNo }},
+	    success: function (result) {
+	    	console.log(result)
+	    	for (let i=0; i<result.length; i++) {
+	    		selectCmtList(result[i])
+	    	}
+	    }
+	});
+	console.log("${user.userId }");
+	//댓글 나와라 얍
+	function selectCmtList(data) {
+		let li = $('<li />').addClass("unico-comentario normal");
+		let li2 = $('<li />').addClass("unico-comentario children");
+		let div_avatar = $('<div />').addClass("avatar");
+		let img_avatar = $('<img />').addClass("avatar avatar-60 photo").attr({'height':'60','width':'60','src':data.userProfile});
+		let div_conteudo = $('<div />').addClass("conteudo");
+		let div_info = $('<div />').addClass('comment-info');
+		let div_text = $('<div />').addClass("comment-text");
+		let b = $('<b>'+data.userNickname+'</b>');
+		let p = $('<p />').text(data.prcmtContent);
+		
+		if("${user.userId }"==data.userId){
+		    $('#cmt').append(li2);
+		    $(li2).append(div_avatar);
+		    $(li2).append(div_conteudo);
+		}else{  
+			$('#cmt').append(li);
+			$(li).append(div_avatar);
+			$(li).append(div_conteudo);
+		}
+		$(div_avatar).append(img_avatar);
+		$(div_conteudo).append(div_info);
+		$(div_info).append(b,document.createTextNode(" - "+data.prcmtDate));
+		$(div_conteudo).append(div_text);
+		$(div_text).append(p);
+	}
+	
+	});
 	
 </script>
 
@@ -349,7 +393,7 @@
 								<!-- 댓글 시작 -->
 
 								<div class="area-comentarios">
-									<ul>
+									<ul id="cmt">
 										<li class="unico-comentario normal">
 											<div class="avatar">
 												<img alt="" src="image/user.jpg"
@@ -365,7 +409,7 @@
 
 											</div>
 										</li>
-
+                                
 										<li class="unico-comentario children">
 											<div class="avatar">
 												<img alt="" src="image/user.jpg"
@@ -385,6 +429,8 @@
 										</li>
 									</ul>
 								</div>
+								<!-- 댓글 끝 -->
+								
 							</div>
 						</div>
 					</div>

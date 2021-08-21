@@ -26,7 +26,6 @@ public class PurchaseSelect implements Command {
 		}
 		
 		
-		
 		List<PurchaseVO> list = dao.purchaseSelect(vo);
 		request.setAttribute("list", list);
 		
