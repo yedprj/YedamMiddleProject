@@ -120,7 +120,20 @@
 					data: idData,	// 변수에 담긴 데이터를 전송
 					dataType: 'text',	// text타입으로 전송
 					success: function(data){
-						alert(data);
+						console.log(data);
+						var result = $.trim(data);
+						if(result == "사용할 수 있는 아이디 입니다."){
+							alert(data);
+							$('#userId').removeClass('is-invalid')
+										.addClass('is-valid');
+						} else {
+							alert(data);
+							$('#userId').removeClass('is-valid')
+										.addClass('is-invalid');
+							$('#userId').val('')
+										.focus();
+						}
+						 
 					},
 					error: function(){
 						alert("비교 실패");

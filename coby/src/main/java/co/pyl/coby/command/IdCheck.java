@@ -26,11 +26,11 @@ public class IdCheck implements Command {
 		if(vo != null) {
 			message = "중복되어 사용할 수 없는 아이디 입니다.";
 			request.setAttribute("message", message);
-			page = "login/idCheckMessage.jsp";
+			page = "login/checkMessage.jsp";
 		} else {
 			message = "사용할 수 있는 아이디 입니다.";
 			request.setAttribute("message", message);
-			page = "login/idCheckMessage.jsp";
+			page = "login/checkMessage.jsp";
 		}
 		return page;
 	}
