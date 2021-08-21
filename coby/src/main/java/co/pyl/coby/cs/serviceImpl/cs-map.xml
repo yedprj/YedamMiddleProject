@@ -5,14 +5,45 @@
   
 <mapper namespace="co.pyl.coby.cs.service.CsMapper">
 	
-	<!-- 게시판 목록 -->
+	<!-- 고객센터 게시글 목록 -->
 	<select id="csList" resultType="co.pyl.coby.cs.vo.CsVO">
 		select * from cb_cs 
 	</select>
 	
+	<!-- 고객센터 게시글 상세보기 -->
 	<select id="csSelect" resultType="co.pyl.coby.cs.vo.CsVO">
-		select a.*,b.cs_cmt_content, b.cs_cmt_date,b.cs_writer from cb_cs a left outer join cb_cs_cmt b
+		select a.*,b.cs_cmt_content, b.cs_cmt_date,b.cs_cmt_writer,b.cs_cmt_no from cb_cs a left outer join cb_cs_cmt b
 		on (a.cs_no = b.cs_no) where a.cs_no = #{csNo}
 	</select>
+	
+	<!-- 고객센터 게시글 입력 -->
+	<insert id="csInsert" parameterType="co.pyl.coby.cs.vo.CsVO">
+		insert into cb_cs(cs_no,cs_title,cs_content,cs_writer) values(CS_SEQ.nextval,#{csTitle},#{csContent},#{csWriter})
+	</insert>
+	
+	<!-- 고객센터 게시글 변경 -->
+	<update id="csUpdate" parameterType="co.pyl.coby.cs.vo.CsVO">
+		update cb_cs set cs_content = #{csContent} where cs_no=#{csNo}
+	</update>
+	
+	<!-- 고객센터 게시글 삭제 -->
+	<delete id="csDelete" parameterType="co.pyl.coby.cs.vo.CsVO">
+		delete from cb_cs where cs_no=#{csNo} and cs_writer = #{csWriter}
+	</delete>
+	
+	<!-- 댓글 입력 -->
+	<insert id="cscmtInsert" parameterType="co.pyl.coby.cs.vo.CscmtVO">
+		insert into cb_cs_cmt(cs_cmt_no, cs_cmt_content, cs_no, cs_cmt_writer) values(CS_CMT_SEQ.nextval, #{cscmtContent}, #{csNo}, #{cscmtWriter}) 
+	</insert>
+	
+	<!-- 댓글 수정 -->
+	<update id="cscmtUpdate" parameterType="co.pyl.coby.cs.vo.CscmtVO">
+		update cb_cs_cmt set cs_cmt_content = #{cscmtContent} where cs_cmt_no = #{cscmtNo} and cs_no = #{csNo}	
+	</update>
+	
+	<!-- 댓글 삭제 -->
+	<delete id="cscmtDelete" parameterType="co.pyl.coby.cs.vo.CscmtVO">
+		delete from cb_cs_cmt where cs_cmt_no = #{cscmtNo} and cs_no = #{csNo}
+	</delete>
 	
 </mapper>

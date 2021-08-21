@@ -8,8 +8,8 @@
 			<thead>
 				<tr align="center">
 					<th class="col-lg-1">번호</th>
-					<th class="col-lg-5">제목</th>
-					<th class="col-lg-4">작성일</th>
+					<th class="col-lg-2">제목</th>
+					<th class="col-lg-2">작성일</th>
 					<th class="col-lg-1">댓글수</th>
 					<th class="col-lg-1">조회수</th>
 				</tr>

@@ -7,15 +7,49 @@
 <meta charset="UTF-8">
 <title>공동구매 상세보기</title>
 <script src="https://use.fontawesome.com/8c8d6bcd7e.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
 <link
 	href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css"
 	rel="stylesheet">
 <script
 	src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 
 <script>
+
+	$(document).ready(function() {
+		//1인 부담금
+		
+		$('#dividedPrice').text(followPrice(originalPrice, people));
+		
+		console.log("파티장이 부담할 값 : " + bossPrice(originalPrice, people));
+		
+	});
+	
+	function bossPrice(price, people) {
+		//가격에서 인원수만큼 나눈 값(소수점 존재)
+		let original = price / people;
+		
+		//버림한 값
+		let floor = Math.floor(original);
+		
+		//버림한 나머지 값 -> 파티장에게 더함
+		let remainder = price - (floor*people);
+		
+		return floor + remainder;
+	}
+	
+	function followPrice(price, people) {
+		//가격에서 인원수만큼 나눈 값(소수점 존재)
+		let original = price / people;
+		
+		//버림한 값
+		let floor = Math.floor(original);
+		
+		return floor;
+	}
 	
 </script>
 
@@ -203,7 +237,9 @@
 							<div class="border-bottom py-1">
 								<div class="row">
 									<div class="col-sm-9">
-										<div class="text-muted"><small>${list[0].prCategory }</small></div>
+										<div class="text-muted">
+											<small>${list[0].prCategory }</small>
+										</div>
 
 										<div class="h3">${list[0].prTitle }</div>
 									</div>
@@ -214,148 +250,184 @@
 									</div>
 								</div>
 							</div>
-							<div class="border-bottom py-1">
-								<div class="d-inline">
-								  <img src="image/user.jpg" class="image--cover">
-								    <small>${list[0].userId }</small>
-								<div class="col-sm-12 text-end">
-								  <div class="d-inline-flex p-1 text-muted">
-									  <small>글 번호 : ${list[0].prNo } </small>
-								  </div>
+							<div class="row">
+								<div class="border-bottom py-1">
+									<div class="col-sm-8">
+										<img src="${list[0].userProfile }" class="image--cover">
+										<small>${list[0].userNickname }</small>
+									</div>
+									<div class="col-sm-4 text-end d-inline-flex p-1">
+										<small class="text-muted">글 번호 : ${list[0].prNo } </small>
+									</div>
 								</div>
-								</div>
-								
 							</div>
 
-							<div class="row py-1">
-								<div class="col-sm-4">
-									<div class="d-inline-flex p-1">
-										<small>모집 일정</small>
-									</div>
-									<div class="d-inline-flex p-1 text-muted">
-										<small>${list[0].prStartdate } ~ ${list[0].prEnddate }</small>
-									</div>
-								</div>
-								<div class="col-sm-8 text-end">
-									<div class="d-inline-flex p-1">
-										<small>구매 비용</small>
-									</div>
-									<div class="d-inline-flex p-1">
-										<h4 class="text-info">20,000</h4>
-									</div>
-								</div>
+						</div>
 
-								<div>
-									<div class="border-top"></div>
+						<div class="row py-1">
+							<div class="col-sm-4">
+								<div class="d-inline-flex p-1">
+									<small>모집 일정</small>
 								</div>
-								<div class="row py-3">
-									<div class="card m-2" style="width: 30rem;">
-										<div id="carouselExampleIndicators" class="carousel slide"
-											data-bs-ride="carousel">
-											<div class="carousel-indicators">
-												<button type="button"
-													data-bs-target="#carouselExampleIndicators"
-													data-bs-slide-to="0" class="active" aria-current="true"
-													aria-label="Slide 1"></button>
-												<button type="button"
-													data-bs-target="#carouselExampleIndicators"
-													data-bs-slide-to="1" aria-label="Slide 2"></button>
-												<button type="button"
-													data-bs-target="#carouselExampleIndicators"
-													data-bs-slide-to="2" aria-label="Slide 3"></button>
-											</div>
-											<div class="carousel-inner">
+								<div class="d-inline-flex p-1 text-muted">
+									<small>${list[0].prStartdate } ~ ${list[0].prEnddate }</small>
+								</div>
+							</div>
+							<div class="col-sm-8 text-end">
+								<div>
+									<div class="d-inline-flex p-1">
+										<small>물건의 총 가격</small>
+									</div>
+									<div class="d-inline-flex p-1">
+										<h4 class="text-info">${list[0].prPrice }</h4>
+									</div>
+									<small>원</small>
+								</div>
+								<div>
+									<div class="d-inline-flex p-1">
+										<small>1인 부담금</small>
+									</div>
+									<div class="d-inline-flex p-1">
+										<h4 class="text-info" id="dividedPrice"></h4>
+									</div>
+									<small>원</small>
+								</div>
+							</div>
+
+							<div>
+								<div class="border-top"></div>
+							</div>
+
+							<div class="row py-3">
+								<div class="card m-2" style="width: 30rem;">
+									<div id="carouselExampleIndicators" class="carousel slide"
+										data-bs-ride="carousel">
+										<div class="carousel-indicators">
+											<button type="button"
+												data-bs-target="#carouselExampleIndicators"
+												data-bs-slide-to="0" class="active" aria-current="true"
+												aria-label="Slide 1"></button>
+											<button type="button"
+												data-bs-target="#carouselExampleIndicators"
+												data-bs-slide-to="1" aria-label="Slide 2"></button>
+											<button type="button"
+												data-bs-target="#carouselExampleIndicators"
+												data-bs-slide-to="2" aria-label="Slide 3"></button>
+										</div>
+										<div class="carousel-inner">
+											<c:if test="${not empty list[0].prPhoto1}">
 												<div class="carousel-item active">
-													<img src="image/food1.jpg" class="d-block w-100"
+													<img src="${list[0].prPhoto1 }" class="d-block w-100"
 														alt="src에 prPhoto1">
 												</div>
+											</c:if>
+											<c:if test="${not empty list[0].prPhoto2}">
 												<div class="carousel-item">
-													<img src="image/food2.jpg" class="d-block w-100"
+													<img src="${list[0].prPhoto2 }" class="d-block w-100"
 														alt="src에 prPhoto2">
 												</div>
+											</c:if>
+											<c:if test="${not empty list[0].prPhoto3}">
 												<div class="carousel-item">
-													<img src="image/food3.jpg" class="d-block w-100"
+													<img src="${list[0].prPhoto3 }" class="d-block w-100"
 														alt="src에 prPhoto3">
 												</div>
-											</div>
-											<button class="carousel-control-prev" type="button"
-												data-bs-target="#carouselExampleIndicators"
-												data-bs-slide="prev">
-												<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-												<span class="visually-hidden">Previous</span>
-											</button>
-											<button class="carousel-control-next" type="button"
-												data-bs-target="#carouselExampleIndicators"
-												data-bs-slide="next">
-												<span class="carousel-control-next-icon" aria-hidden="true"></span>
-												<span class="visually-hidden">Next</span>
-											</button>
+											</c:if>
 										</div>
 
+										<button class="carousel-control-prev" type="button"
+											data-bs-target="#carouselExampleIndicators"
+											data-bs-slide="prev">
+											<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+											<span class="visually-hidden">Previous</span>
+										</button>
+										<button class="carousel-control-next" type="button"
+											data-bs-target="#carouselExampleIndicators"
+											data-bs-slide="next">
+											<span class="carousel-control-next-icon" aria-hidden="true"></span>
+											<span class="visually-hidden">Next</span>
+										</button>
 									</div>
+
 								</div>
 							</div>
+						</div>
+						<div>
+							<div class="py-3 border-top">내용</div>
+							<div class="border rounded-3 my-3 p-2">${list[0].prContent }</div>
+						</div>
+
+						<div class="py-2">
+							<small class="py-1">참여 현황 ( ${people } 명 참여중 )</small>
+
+							<div class="">
+								<img src="image/user.jpg" class="image--cover"> <img
+									src="image/user.jpg" class="image--cover"> <img
+									src="image/user.jpg" class="image--cover">
+							</div>
+
+						</div>
+
+						<div class="py-3 text-center">
+							<button type="button" class="btn btn-outline-secondary"
+								onclick="history.back()">목록으로 돌아가기</button>
+							<button id="" type="" class="btn btn-outline-dark">참여신청</button>
+						</div>
+						<!-- 댓글 폼 -->
+						<div class="row py-3">
+							<div class="col-sm-10">
+								<div class="form-floating">
+									<textarea class="form-control" id="comment" name="comment"
+										style="height: 100px"></textarea>
+									<label for="comment">댓글 입력</label>
+								</div>
+							</div>
+							<div class="col-sm-2 align-self-center text-center">
+								<button type="button" class="btn btn-outline-dark btn-lg">등록</button>
+							</div>
+						</div>
+
+						<div class="py-1">
+							<small class="py-1">댓글 n개</small>
 							<div>
-								<div class="py-3 border-top">내용</div>
-							</div>
+								<!-- 댓글 시작 -->
 
-							<div class="border-top border-bottom py-2">
-								<small class="py-1">참여 현황</small>
-
-
-								<div class="">
-									<img src="image/user.jpg" class="image--cover">
-									<img src="image/user.jpg" class="image--cover">
-									<img src="image/user.jpg" class="image--cover">
-									<small>n명 참여중</small>
-								</div>
-
-							</div>
-
-							<div class="border-bottom py-5"> 목록으로 / 참여신청 버튼</div>
-
-							    <div class="py-1">
-								<small class="py-1">댓글 n개</small>
-								<div>
-                                    <!-- 댓글 시작 -->
-                                    
-									<div class="area-comentarios">
-										<ul>
-											<li class="unico-comentario normal">
-												<div class="avatar">
-													<img alt="" src="image/user.jpg"
-														class="avatar avatar-60 photo" height="60" width="60">
+								<div class="area-comentarios">
+									<ul>
+										<li class="unico-comentario normal">
+											<div class="avatar">
+												<img alt="" src="image/user.jpg"
+													class="avatar avatar-60 photo" height="60" width="60">
+											</div>
+											<div class="conteudo">
+												<div class="comment-info">
+													<b>닉네임</b> - 작성날짜
 												</div>
-												<div class="conteudo">
-													<div class="comment-info">
-														<b>닉네임</b> - 작성날짜
-													</div>
-													<div class="comment-text">
-														<p>댓글내용</p>
-													</div>
+												<div class="comment-text">
+													<p>댓글내용</p>
+												</div>
 
-												</div>
-											</li>
+											</div>
+										</li>
 
-											<li class="unico-comentario children">
-												<div class="avatar">
-													<img alt="" src="image/user.jpg"
-														class="avatar avatar-60 photo" height="60" width="60">
+										<li class="unico-comentario children">
+											<div class="avatar">
+												<img alt="" src="image/user.jpg"
+													class="avatar avatar-60 photo" height="60" width="60">
+											</div>
+											<div class="conteudo">
+												<div class="comment-info">
+													<b>닉네임</b> - 작성날짜
 												</div>
-												<div class="conteudo">
-													<div class="comment-info">
-														<b>닉네임</b> - 작성날짜
-													</div>
-													<div class="comment-text">
-														<p>
-															글내용 내용 내용 내용 내용 내용 맛있는 불고기버거 맛있는 참치샌드위치<br> 이마트 홈플러스
-															코스트코 엥엥엥엥엥엥엥엥엥엥
-														</p>
-													</div>
+												<div class="comment-text">
+													<p>
+														글내용 내용 내용 내용 내용 내용 맛있는 불고기버거 맛있는 참치샌드위치<br> 이마트 홈플러스
+														코스트코 엥엥엥엥엥엥엥엥엥엥
+													</p>
 												</div>
-											</li>
-										</ul>
-									</div>
+											</div>
+										</li>
+									</ul>
 								</div>
 							</div>
 						</div>

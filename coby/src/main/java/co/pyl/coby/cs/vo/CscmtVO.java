@@ -11,6 +11,6 @@ public class CscmtVO {
 	private int cscmtNo;
 	private String cscmtContent;
 	private Date cscmtDate;
-	private String userId;
+	private String cscmtWriter;
 	private int csNo;
 }
