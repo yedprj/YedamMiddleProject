@@ -16,18 +16,16 @@ public class CsSelect implements Command {
 	//게시글 상세보기
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		CsService dao = new CsServiceImpl();
+		CsVO vo = new CsVO();
 		HttpSession session = request.getSession();
 		
-		System.out.println(request.getParameter("csNo"));
-		System.out.println(request.getParameter("csWriter"));
-		
 		int n = Integer.valueOf(request.getParameter("csNo"));
+		vo.setCsNo(n);
 		
-		List<CsVO> list = dao.csSelect(n);
+		List<CsVO> list = dao.csSelect(vo);
 		request.setAttribute("list", list);
 		
 		return "cs/csSelect";
 	}
 	
-
 }

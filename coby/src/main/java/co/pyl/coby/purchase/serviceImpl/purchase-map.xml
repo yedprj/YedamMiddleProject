@@ -45,4 +45,11 @@
 		</selectKey>
 	</insert>
 
+
+	<select id="ApplicatePeople" parameterType="PurchaseVO" resultType="_int">
+		select count(*) AS
+		pr_people from cb_applicate
+		where pr_no=#{prNo}
+	</select>
+	
 </mapper>

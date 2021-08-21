@@ -16,7 +16,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<UserVO> selectAllUser() {
 		// TODO Auto-generated method stub
-		return null;
+		return map.selectAllUser();
 	}
 
 	@Override

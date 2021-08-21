@@ -24,11 +24,11 @@ public class UpdatePw implements Command {
 		String page = "";
 		String message = "";
 		if (result != 0) {
-			page = "updatePwForm.do";
+			page = "login/checkMessage.jsp";
 			message = "비밀번호 변경에 성공하셨습니다.";
 			request.setAttribute("message", message);
 		} else {
-			page = "updatePwForm.do";
+			page = "login/checkMessage.jsp";
 			message = "비밀번호 변경에 실패하였습니다.";
 			request.setAttribute("message", message);
 		}

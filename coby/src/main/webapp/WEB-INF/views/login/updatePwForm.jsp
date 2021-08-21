@@ -19,32 +19,30 @@
 				<div class="login-form bg-light mt-4 p-4">
 					<h4 class="mt-3">비밀번호 재설정</h4>
 					<small class="mt-2 mb-3"> 비밀번호를 재설정 해주세요.</small>	
+									
+					<div class="col-12 mt-3">
+						<label>아이디(ID)</label> <input type="text" id="userId"
+							name="userId" class="form-control mt-1"
+							value="${id }" readonly>
+					</div>
+						
+					<div class="col-12 mt-3">
+						<input type="password" class="form-control" id="userPw"
+							name="userPw" placeholder="새 비밀번호 입력"
+							onchange="check_pw()">
+					</div>
 					
-					<form id="frm" action="updatePw.do" method="post">						
-						<div class="col-12 mt-3">
-							<label>아이디(ID)</label> <input type="text" id="userId"
-								name="userId" class="form-control mt-1"
-								value="${id }" readonly>
-						</div>
-							
-						<div class="col-12 mt-3">
-							<input type="password" class="form-control" id="userPw"
-								name="userPw" placeholder="새 비밀번호 입력"
-								onchange="check_pw()">
-						</div>
-						
-						<div class="col-12 mt-3">
-							<input type="password" class="form-control" id="userPwOk"
-								name="userPwOk" placeholder="새 비밀번호 확인"
-								onchange="check_pw2()">
-							<span id="pwCheck" class="jb-xx-small"></span>
-						</div>
-						
-						<div class="col-11 d-grid mx-auto mt-3">
-							<input type="submit" class="btn btn-dark form-control p-2"
-								value="확인">
-						</div>
-					</form>
+					<div class="col-12 mt-3">
+						<input type="password" class="form-control" id="userPwOk"
+							name="userPwOk" placeholder="새 비밀번호 확인"
+							onchange="check_pw2()">
+						<span id="pwCheck" class="jb-xx-small"></span>
+					</div>
+					
+					<div class="col-11 d-grid mx-auto mt-3">
+						<input type="button" id="updatePw" class="btn btn-dark form-control p-2"
+							value="확인">
+					</div>
 				</div>
 			</div>
 		</div>
@@ -87,14 +85,14 @@
 					$('#userPwOk').removeClass('is-invalid')
 								  .addClass('is-valid');
 					$('#pwCheck').removeClass('invalid-feedback')
-								 .addClass('valid-feedback').text('비밀번호가 일치합니다.');
+								 .addClass('valid-feedback').text('입력하신 비밀번호가 일치합니다.');
 				} else {
 					$('#userPw').removeClass('is-valid')
 								.addClass('is-invalid');
 					$('#userPwOk').removeClass('is-valid')
 								 .addClass('is-invalid');
 					$('#pwCheck').removeClass('valid-feedback')
-								.addClass('invalid-feedback').text('비밀번호가 일치하지 않습니다.');
+								.addClass('invalid-feedback').text('입력하신 비밀번호가 일치하지 않습니다.');
 				}
 			} else {
 				$('#userPw').removeClass('is-valid')
@@ -103,6 +101,33 @@
 							  .removeClass('is-invalid');
 			}
 		}
+	</script>
+	
+	<script>
+		$(document).ready(function(){
+			$('#updatePw').on('click', function(){
+				$.ajax({
+					type: 'post',	// POST방식으로 전송
+					url: 'updatePw.do',	// 데이터를 주고 받는 파일 주소
+					data: { userId: $('input[name="userId"]').val(),
+							userPw: $('input[name="userPw"]').val()},	// text타입으로 전송
+					success: function(data){
+						let result = $.trim(data);
+						if(result == "비밀번호 변경에 성공하셨습니다."){
+							alert(data);
+							document.location.href="loginForm.do";
+						} else {
+							alert(data);
+							$('#userPw').val('');
+							$('#userPwOk').val('');
+						}
+					},
+					error: function(){
+						alert("비교 실패");
+					}
+				});
+			});
+		});
 	</script>
 
 </body>

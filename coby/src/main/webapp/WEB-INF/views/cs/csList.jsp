@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 		<div class="container">
-			${userId }
 			<!-- 게시글 리스트 -->
 			<c:if test="${userId ne null}">
 				<div>
@@ -38,9 +37,8 @@
 				</nav>
 
 				<div align="right">
-					<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.."
-						title="Type in a name"> <a class="btn float-right btn-primary" href="noticeInsertForm.do"
-						role="button">글쓰기</a>
+					<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.."	title="Type in a name"> 
+					<a class="btn float-right btn-primary" href="csInsertForm.do" role="button">글쓰기</a>
 				</div>
 				<div>
 					<form id="frm" name="frm" action="csSelect.do" method="get">
@@ -81,9 +79,14 @@
 
 			
 			function check(a,b) {
-				if('${userId}' == ( a || 'admin') {
+				if('${userId}' ==  a ) {
 					alert("same")
 					frm.csWriter.value = a;
+					frm.csNo.value = b;
+					frm.submit();
+				} else if('${userId}' == 'admin'){
+					alert('관리자권한')
+					frm.csWriter.value = 'admin'
 					frm.csNo.value = b;
 					frm.submit();
 				} else{
