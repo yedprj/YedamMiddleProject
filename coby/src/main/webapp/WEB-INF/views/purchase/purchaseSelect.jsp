@@ -19,6 +19,7 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 
 <script>
+
 	//공통
 	const userId = "${user.userId }";
 	const prNo = ${list[0].prNo };
@@ -48,7 +49,68 @@
 
 	}
 
+	$(function() {
+	    $( "#heart" ).click(function() {
+	    	//로그인이 안 되어 있으면
+	    	if (userId === "") {
+				alert("로그인이 필요합니다.");
+				location.href="loginForm.do";
+			//로그인된 상태면 위시리스트 추가
+			} else {
+				let classContains = heart.classList.contains('press');
+				if (!classContains) {
+					$.ajax({
+						url: 'WishListInsert',
+						type: 'POST',
+						data: {prNo : prNo},
+						success: function(result) {
 
+								console.log('insert 성공');
+
+						},
+						error: function() {
+							console.log('ajax 에러');
+						}
+					});
+			
+			      $( "#heart" ).addClass( "press", 1000 );
+			      let wishListMove = confirm('위시리스트에 추가했습니다. 위시리스트로 이동하시겠습니까?');
+			      if (wishListMove) {
+			    	  location.href="wishList.do";
+			      }
+				} else {
+					$.ajax({
+						url: 'WishListDelete',
+						type: 'POST',
+						data: {prNo : prNo},
+						success: function(result) {
+
+								console.log('delete 성공');
+
+
+						},
+						error: function() {
+							console.log('ajax 에러');
+						}
+					});
+					
+					
+					$( "#heart" ).removeClass( "press" );
+					alert('위시리스트에서 제거했습니다.');	
+				}
+	    	
+	    	
+			}
+	    	
+	    	
+	    	
+	    	
+	    	
+	    	
+	    });
+	  });
+	
+	
 	//댓글 가져오기 ajax
 	$(document).ready(function(){
 		
@@ -131,6 +193,32 @@
 </script>
 
 <style>
+#heart {
+	cursor: pointer;
+	padding: 10px 12px 8px;
+	background: #fff;
+	border-radius: 50%;
+	display: inline-block;
+	margin: 0 0 15px;
+	color: #aaa;
+	transition: .2s;
+}
+
+#heart:hover {
+	color: #666;
+}
+
+#heart:before {
+	font-family: fontawesome;
+	content: '\f004';
+	font-style: normal;
+}
+
+#heart.press {
+	animation: size .4s;
+	color: #e23b3b;
+}
+
 .image--cover {
 	width: 50px;
 	height: 50px;
@@ -320,11 +408,11 @@
 
 										<div class="h3">${list[0].prTitle }</div>
 									</div>
-									<div class="col-sm-3 align-self-center">
-										<input type="checkbox" data-toggle="toggle" data-on="위시리스트 담김"
-											data-off="위시리스트 담기" data-onstyle="dark" data-offstyle="light"
-											data-style="border">
+									<!-- 위시리스트 -->
+									<div class="col-sm-3 align-self-bottom" id="heart">
+										<i></i><small>위시리스트 담기</small>
 									</div>
+
 								</div>
 							</div>
 							<div class="row">

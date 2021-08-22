@@ -31,4 +31,16 @@ public class WishListServiceImpl implements WishListService {
 		return map.updateUser(vo);
 	}
 
+	@Override
+	public int insertWishList(WishListVO vo) {
+		// TODO Auto-generated method stub
+		return map.insertWishList(vo);
+	}
+
+	@Override
+	public int deleteWishList2(WishListVO vo) {
+		// TODO Auto-generated method stub
+		return map.deleteWishList2(vo);
+	}
+
 }

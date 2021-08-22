@@ -21,6 +21,7 @@
     	<typeAlias type="co.pyl.coby.purchase.vo.PurchaseVO" alias="PurchaseVO"/>
     	<typeAlias type="co.pyl.coby.purchase.vo.PrCmtVO" alias="PrCmtVO"/>
     	<typeAlias type="co.pyl.coby.applicate.vo.ApplicateVO" alias="ApplicateVO"/>
+    	<typeAlias type="co.pyl.coby.wishlist.vo.WishListVO" alias="WishListVO"/>
     </typeAliases>
 	
 	<environments default="development">
