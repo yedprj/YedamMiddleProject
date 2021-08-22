@@ -249,7 +249,7 @@ img {
 
 							<div class="col text-center">
 								<input class="btn btn-outline-dark" type="submit" value="수정">
-								<button class="btn btn-outline-dark" type="button"
+								<button class="btn btn-outline-secondary" type="button"
 									onclick="location.href ='myPage.do'">취소</button>
 							</div>
 

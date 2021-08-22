@@ -44,6 +44,10 @@ function numberWithCommas(x) {
 				let inputChk = $('<input>').addClass("form-check-input").attr('type', 'checkbox').attr('name', data.wNo).attr('id', 'selectOne'); 
 				let div_sm8 = $('<div />').addClass("col-sm-8");
 				let img = $('<img />').addClass("rounded img-fluid").attr('src', data.prPhoto1).css({'width':'200px', 'height':'200px', 'object-fit':'cover'});
+				$(img).on('click', function() {
+					location.href='purchaseSelect.do?prNo=' + data.prNo;
+				})
+				
 				
 				$(div_sm8).append(img);
 				$(div_sm4_2).append(inputChk);
@@ -55,6 +59,9 @@ function numberWithCommas(x) {
 				let div_row_p3 = $('<div />').addClass("row p-3");
 				let div_sm6 = $('<div />').addClass("col-sm-6 align-self-center");
 				let p1 = $('<p />').addClass('h4').text(data.prTitle);
+				$(p1).on('click', function() {
+					location.href='purchaseSelect.do?prNo=' + data.prNo;
+				})
 				let p2 = $('<p />').addClass('lead text-secondary').text(data.userNickname);
 				let div = $('<div />');
 				let button = $('<button />').addClass('btn btn-outline-dark btn-sm').attr('type', 'button').attr('id', data.wNo);
@@ -218,25 +225,6 @@ function numberWithCommas(x) {
 		<!-- 항목 -->
 		
 		<div id="jquery"></div>
-		
-		
-		<!-- 하단 전체선택 / 삭제 -->
-		<div class="border-bottom mt-3">
-			<div class="row">
-				<div class="col-sm-8">
-					<div class="form-check">
-						<input class="form-check-input" type="checkbox" value=""
-							id="selectAll2"> <label class="form-check-label"
-							for="selectAll"> 전체 선택 </label>
-					</div>
-				</div>
-				<div class="col-sm-4 text-end pb-3">
-					<button type="button" class="btn btn-outline-dark btn-sm">
-						<span class="fw-bold">선택 삭제</span>
-					</button>
-				</div>
-			</div>
-		</div>
 	</div>
 </div>
 

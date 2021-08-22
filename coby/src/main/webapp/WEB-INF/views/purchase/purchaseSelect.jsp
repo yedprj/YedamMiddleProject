@@ -15,12 +15,122 @@
 	rel="stylesheet">
 <script
 	src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 
 <script>
+
+	//공통
+	const userId = "${user.userId }";
+	const prNo = ${list[0].prNo };
+	let originalPrice = ${list[0].prPrice };
+	let people = ${people };
+	let ajaxParamPrNo = prNo;
+	let ajaxParamDividedPrice = followPrice(originalPrice, people);
+	
+	//통화 변경 함수
+	function numberWithCommas(x) {
+	    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	}
+	
+	//참여신청 버튼 눌러서 참여신청 폼으로 가기
+	function applicate() {
+		
+		if (userId === "") {
+			alert("로그인이 필요합니다.");
+			location.href="loginForm.do";
+		} else {
+			frm.frmPrNo.value=ajaxParamPrNo;
+			console.log(ajaxParamPrNo);
+			frm.frmDividedPrice.value=ajaxParamDividedPrice;
+			console.log(ajaxParamDividedPrice);
+			frm.submit();
+		}
+
+	}
+
+	$(function() {
+	    $( "#heart" ).click(function() {
+	    	//로그인이 안 되어 있으면
+	    	if (userId === "") {
+				alert("로그인이 필요합니다.");
+				location.href="loginForm.do";
+			//로그인된 상태면 위시리스트 추가
+			} else {
+				let classContains = heart.classList.contains('press');
+				if (!classContains) {
+					$.ajax({
+						url: 'WishListInsert',
+						type: 'POST',
+						data: {prNo : prNo},
+						success: function(result) {
+
+								console.log('insert 성공');
+
+						},
+						error: function() {
+							console.log('ajax 에러');
+						}
+					});
+			
+			      $( "#heart" ).addClass( "press", 1000 );
+			      let wishListMove = confirm('위시리스트에 추가했습니다. 위시리스트로 이동하시겠습니까?');
+			      if (wishListMove) {
+			    	  location.href="wishList.do";
+			      }
+				} else {
+					$.ajax({
+						url: 'WishListDelete',
+						type: 'POST',
+						data: {prNo : prNo},
+						success: function(result) {
+
+								console.log('delete 성공');
+
+
+						},
+						error: function() {
+							console.log('ajax 에러');
+						}
+					});
+					
+					
+					$( "#heart" ).removeClass( "press" );
+					alert('위시리스트에서 제거했습니다.');	
+				}
+			}
+	    });
+	  });
+	
+	
 	//댓글 가져오기 ajax
 	$(document).ready(function(){
-		
+    
+	//댓글 입력 하기
+    $('#prcmtinsertbtn').on('click', function(){
+    	
+    	if ("${user.userId }" === "") {
+            alert("로그인이 필요합니다.");
+            location.href="loginForm.do";
+        } else {
+        
+    	$.ajax({
+      	  url:'PurchaseCmtInsertServlet',
+      	  dataType: 'json',
+      	  data:{prNo:${list[0].prNo },
+      	        userId:"${user.userId }",
+      	        prcmtContent:$('#prcommentcontent').val(),
+      	       },
+      	  success: function(result){
+      	          console.log(result)
+      	          selectCmtList(result)
+      	  }
+      	})
+      	
+        }		
+    });
+    
+	//댓글 가져오기 ajax
 	$.ajax({
 		url:'PurchaseCmtServlet',
 	    dataType:'json',
@@ -32,11 +142,11 @@
 	    	}
 	    }
 	});
-	console.log("${user.userId }");
-	//댓글 나와라 얍
+	    //댓글 나와라 얍
 	function selectCmtList(data) {
-		let li = $('<li />').addClass("unico-comentario normal");
-		let li2 = $('<li />').addClass("unico-comentario children");
+		//댓글 SELECT
+	    let li = $('<li />').addClass("unico-comentario normal").attr('id','cmt'+data.prcmtNo);
+		let li2 = $('<li />').addClass("unico-comentario children").attr('id','cmt'+data.prcmtNo);
 		let div_avatar = $('<div />').addClass("avatar");
 		let img_avatar = $('<img />').addClass("avatar avatar-60 photo").attr({'height':'60','width':'60','src':data.userProfile});
 		let div_conteudo = $('<div />').addClass("conteudo");
@@ -54,14 +164,48 @@
 			$(li).append(div_avatar);
 			$(li).append(div_conteudo);
 		}
-		$(div_avatar).append(img_avatar);
-		$(div_conteudo).append(div_info);
-		$(div_info).append(b,document.createTextNode(" - "+data.prcmtDate));
-		$(div_conteudo).append(div_text);
-		$(div_text).append(p);
+		    $(div_avatar).append(img_avatar);
+		    $(div_conteudo).append(div_info);
+		    $(div_info).append(b,document.createTextNode(" - "+data.prcmtDate));
+		    $(div_conteudo).append(div_text);
+		    $(div_text).append(p);
+		
+		//댓글 삭제 버튼 추가
+		if("${user.userId }"==data.userId){
+			let div_aa = $('<div />');
+			let span_del =$('<span/>');
+			let button_del =$('<button />').addClass('btn btn-outline-dark btn-sm').attr('type', 'button').attr('id',data.prcmtNo).text('삭제');
+			button_del.on('click', function(){
+				let confirm_val = confirm('정말 삭제 하시겠습니까?')
+				let id = $(this).attr('id');
+				if(confirm_val) {
+					$.ajax({
+						url:"purchaseCmtDeleteServlet",
+						type:"post",
+						data:{id : id},
+						success : function(result) {
+							      if(result == "1"){
+				                  $('#cmt'+id).remove();
+							      }
+						}
+					})
+				}
+			})
+			
+			$(div_text).append(div_aa);
+			$(div_aa).append(span_del);
+			$(span_del).append(button_del);
+			
+		}
+		
 	}
 	
+	
+
+	
 	});
+	
+
 
 	$(document).ready(function() {
 		//1인 부담금
@@ -98,6 +242,32 @@
 </script>
 
 <style>
+#heart {
+	cursor: pointer;
+	padding: 10px 12px 8px;
+	background: #fff;
+	border-radius: 50%;
+	display: inline-block;
+	margin: 0 0 15px;
+	color: #aaa;
+	transition: .2s;
+}
+
+#heart:hover {
+	color: #666;
+}
+
+#heart:before {
+	font-family: fontawesome;
+	content: '\f004';
+	font-style: normal;
+}
+
+#heart.press {
+	animation: size .4s;
+	color: #e23b3b;
+}
+
 .image--cover {
 	width: 50px;
 	height: 50px;
@@ -287,11 +457,11 @@
 
 										<div class="h3">${list[0].prTitle }</div>
 									</div>
-									<div class="col-sm-3 align-self-center">
-										<input type="checkbox" data-toggle="toggle" data-on="위시리스트 담김"
-											data-off="위시리스트 담기" data-onstyle="dark" data-offstyle="light"
-											data-style="border">
+									<!-- 위시리스트 -->
+									<div class="col-sm-3 align-self-bottom" id="heart">
+										<i></i><small>위시리스트 담기</small>
 									</div>
+
 								</div>
 							</div>
 							<div class="row">
@@ -405,35 +575,46 @@
 							<small class="py-1">참여 현황 ( ${people } 명 참여중 )</small>
 
 							<div class="">
-								<img src="image/user.jpg" class="image--cover"> <img
-									src="image/user.jpg" class="image--cover"> <img
-									src="image/user.jpg" class="image--cover">
+								<c:forEach var="applicate" items="${applicateSelect }">
+									<div>
+										<img src="${applicate.userProfile }" class="image--cover">
+										${applicate.userNickname }, ${applicate.apDate } 참여
+									</div>
+								</c:forEach>
 							</div>
 
 						</div>
 
 						<div class="py-3 text-center">
+							<form id="frm" name="frm" method="POST" action="applicateForm.do">
+								<input type="hidden" id="frmPrNo" name="frmPrNo" value="">
+								<input type="hidden" id="frmDividedPrice" name="frmDividedPrice"
+									value="">
+							</form>
 							<button type="button" class="btn btn-outline-secondary"
 								onclick="history.back()">목록으로 돌아가기</button>
-							<button id="" type="" class="btn btn-outline-dark">참여신청</button>
+							<button type="button" class="btn btn-outline-dark"
+								onclick="applicate()">참여신청</button>
 						</div>
 						<!-- 댓글 폼 -->
 						<div class="row py-3">
 							<div class="col-sm-10">
+							  <label for="comment">댓글 입력</label>
 								<div class="form-floating">
-									<textarea class="form-control" id="comment" name="comment"
-										style="height: 100px"></textarea>
-									<label for="comment">댓글 입력</label>
+									<textarea class="form-control" id="prcommentcontent" name="prcommentcontent"
+										      style="height: 100px"></textarea>
 								</div>
 							</div>
 							<div class="col-sm-2 align-self-center text-center">
-								<button type="button" class="btn btn-outline-dark btn-lg">등록</button>
+								<button type="button" class="btn btn-outline-dark btn-lg" id="prcmtinsertbtn" >등록</button>
+								
 							</div>
 						</div>
 
 						<div class="py-1">
 							<small class="py-1">댓글 n개</small>
 							<div>
+								
 								<!-- 댓글 시작 -->
 
 								<div class="area-comentarios">
@@ -453,7 +634,7 @@
 
 											</div>
 										</li>
-                                
+
 										<li class="unico-comentario children">
 											<div class="avatar">
 												<img alt="" src="image/user.jpg"
@@ -468,13 +649,23 @@
 														글내용 내용 내용 내용 내용 내용 맛있는 불고기버거 맛있는 참치샌드위치<br> 이마트 홈플러스
 														코스트코 엥엥엥엥엥엥엥엥엥엥
 													</p>
+													<div class="mt8 over_hide">
+													  <span class="comment-btn-layout">
+													    <a href="javascript:reComment( 80546305, 0 );javascript:update( 80546305, 0 )">
+														<button type="button" class="btn-modify">수정</button></a>
+													   <span id="delButton_80546305">
+													     <a href="del_comment_ok.php?id=freeboard&amp;no=7560260&amp;c_no=80546305" onclick="return confirm('삭제 하시겠습니까?')">
+													     <button type="button" class="btn-delete">삭제</button></a></span>
+														</span>
+													</div>
+
 												</div>
 											</div>
 										</li>
 									</ul>
 								</div>
 								<!-- 댓글 끝 -->
-								
+
 							</div>
 						</div>
 					</div>

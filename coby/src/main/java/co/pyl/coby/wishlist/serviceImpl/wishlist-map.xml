@@ -29,5 +29,15 @@
 		user_profile=#{userProfile}
 		where user_id=#{userId}
 	</update>
+	
+	<insert id="insertWishList" parameterType="WishListVO">
+		insert into cb_wish
+		values(w_seq.nextval, #{prNo}, #{userId})
+	</insert>
+	
+	<delete id="deleteWishList2" parameterType="WishListVO">
+		delete from cb_wish
+		where pr_no=#{prNo}
+	</delete>
 
 </mapper>

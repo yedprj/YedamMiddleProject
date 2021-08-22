@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import co.pyl.coby.admin.command.AdminAccount;
 import co.pyl.coby.admin.command.AdminHome;
 import co.pyl.coby.admin.command.AdminPayment;
+import co.pyl.coby.applicate.command.ApplicateForm;
 import co.pyl.coby.board.command.BoardDelete;
 import co.pyl.coby.board.command.BoardInsert;
 import co.pyl.coby.board.command.BoardInsertForm;
@@ -43,8 +44,8 @@ import co.pyl.coby.cs.command.CsUpdateForm;
 import co.pyl.coby.cs.command.CscmtDelete;
 import co.pyl.coby.cs.command.CscmtInsert;
 import co.pyl.coby.cs.command.CscmtUpdate;
+import co.pyl.coby.mypage.command.ApplicateList;
 import co.pyl.coby.mypage.command.MyPage;
-import co.pyl.coby.mypage.command.Practice;
 import co.pyl.coby.mypage.command.UpdateUser;
 import co.pyl.coby.mypage.command.UpdateUserForm;
 import co.pyl.coby.mypage.command.WishList;
@@ -137,12 +138,13 @@ public class FrontController extends HttpServlet {
 		map.put("/cscmtDelete.do", new CscmtDelete()); // 댓글 삭제
 		
 		// 마이페이지 관련
-		map.put("/myPage.do", new MyPage());
-		map.put("/wishList.do", new WishList());
-		map.put("/updateUserForm.do", new UpdateUserForm());
-		map.put("/deleteUserForm.do", new deleteUserForm());
-		map.put("/practice.do", new Practice());
-		map.put("/updateUser.do", new UpdateUser());
+		map.put("/myPage.do", new MyPage()); //마이페이지 이동
+		map.put("/wishList.do", new WishList()); //위시리스트 보기
+		map.put("/updateUserForm.do", new UpdateUserForm()); //회원정보수정 폼
+		map.put("/updateUser.do", new UpdateUser()); //회원정보수정
+		map.put("/deleteUserForm.do", new deleteUserForm()); //회원탈퇴 폼
+		map.put("/applicateList.do", new ApplicateList()); 
+		map.put("/applicateForm.do", new ApplicateForm());
 
 		// 공동구매
 		map.put("/purchaseList.do", new PurchaseList()); // 공동구매 리스트 보기

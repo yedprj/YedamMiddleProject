@@ -11,5 +11,11 @@ public interface WishListMapper {
 	
 	public int deleteWishList(WishListVO vo);
 	
+	//prNo로 지움
+	public int deleteWishList2(WishListVO vo);
+	
+	public int insertWishList(WishListVO vo);
+	
 	public int updateUser(UserVO vo);
+	
 }
