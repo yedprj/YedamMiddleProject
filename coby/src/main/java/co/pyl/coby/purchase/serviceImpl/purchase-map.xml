@@ -83,4 +83,9 @@
 		cb_applicate values(ap_seq.nextval, #{prNo}, #{userId}, #{apPrice},
 		sysdate, #{apPay})
 	</insert>
+	
+	<!-- 마이페이지에서 참여 현황 삭제 -->
+	<delete id="applicateDelete" parameterType="ApplicateVO">
+		delete from cb_applicate where ap_no = #{apNo}
+	</delete>
 </mapper>

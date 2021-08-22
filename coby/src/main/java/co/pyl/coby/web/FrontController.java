@@ -44,8 +44,8 @@ import co.pyl.coby.cs.command.CsUpdateForm;
 import co.pyl.coby.cs.command.CscmtDelete;
 import co.pyl.coby.cs.command.CscmtInsert;
 import co.pyl.coby.cs.command.CscmtUpdate;
+import co.pyl.coby.mypage.command.ApplicateList;
 import co.pyl.coby.mypage.command.MyPage;
-import co.pyl.coby.mypage.command.Practice;
 import co.pyl.coby.mypage.command.UpdateUser;
 import co.pyl.coby.mypage.command.UpdateUserForm;
 import co.pyl.coby.mypage.command.WishList;
@@ -144,7 +144,7 @@ public class FrontController extends HttpServlet {
 		map.put("/updateUserForm.do", new UpdateUserForm()); //회원정보수정 폼
 		map.put("/updateUser.do", new UpdateUser()); //회원정보수정
 		map.put("/deleteUserForm.do", new deleteUserForm()); //회원탈퇴 폼
-		map.put("/practice.do", new Practice()); 
+		map.put("/applicateList.do", new ApplicateList()); 
 		map.put("/applicateForm.do", new ApplicateForm());
 
 		// 공동구매

@@ -62,5 +62,11 @@ public class PurchaseServiceImpl implements PurchaseService {
 		return map.applicateSelectMypage(vo);
 	}
 
+	@Override
+	public int applicateDelete(ApplicateVO vo) {
+		// TODO Auto-generated method stub
+		return map.applicateDelete(vo);
+	}
+
 
 }

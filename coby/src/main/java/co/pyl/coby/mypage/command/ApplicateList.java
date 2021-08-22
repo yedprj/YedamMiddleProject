@@ -19,9 +19,11 @@ public class ApplicateList implements Command {
 		
 		String userId = (String) session.getAttribute("userId");
 
+		String page = "";
 		
 		if (userId == null) {
 			request.setAttribute("message", "로그인이 필요합니다.");
+			page = "mypage/fail";
 		} else {
 			ApplicateVO vo = new ApplicateVO();
 			
@@ -31,9 +33,10 @@ public class ApplicateList implements Command {
 			List<ApplicateVO> list = dao.applicateSelectMypage(vo);
 			
 			request.setAttribute("list", list);
+			page = "mypage/applicateList";
 		}
 		
-		return "mypage/applicateList";
+		return page;
 	}
 
 }

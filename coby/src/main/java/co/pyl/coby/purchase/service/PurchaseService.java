@@ -30,4 +30,7 @@ public interface PurchaseService {
   
   //참여현황 조회(마이페이지)
   List<ApplicateVO> applicateSelectMypage(ApplicateVO vo);
+  
+  //참여현황 삭제(마이페이지)
+  int applicateDelete(ApplicateVO vo);
 }
