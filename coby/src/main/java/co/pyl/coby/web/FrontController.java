@@ -89,7 +89,6 @@ public class FrontController extends HttpServlet {
 		map.put("/updatePw.do", new UpdatePw());	// 비밀번호 재설정 
 		
 		//관리자
-		map.put("/adminHome.do", new AdminHome());
 		map.put("/adminAccount.do", new AdminAccount());
 		map.put("/adminPayment.do", new AdminPayment());
 

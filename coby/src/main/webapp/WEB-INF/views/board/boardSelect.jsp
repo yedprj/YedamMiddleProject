@@ -3,30 +3,23 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!-- 게시글 상세보기 -->
-<script>
-	function deleteComment() {
-		let confirms = confirm("댓글을 삭제하시겠습니까?")
-		if (confirms) {
-			alert("삭제되었습니다.")
-			$("#frm").submit();
-		}
-	}
-</script>
+
 <!-- 게시판 -->
 <div class="container">
+	<div>
+		<br/>
+		<h3>게시판</h3>
+	</div>
 	<div class="row">
 		<table class="table table-striped"
 			style="text-align: center; border: 1px solid #dddddd">
 			<thead>
 				<tr>
 					<th colspan="3"
-						style="background-color: #eeeeee; text-align: center;">게시판</th>
+						style="background-color: #eeeeee; text-align: center;">${board[0].boardTitle}</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td>${board[0].boardTitle}</td>
-				</tr>
 				<tr>
 					<td>${board[0].userId}</td>
 				</tr>
@@ -38,65 +31,71 @@
 				</tr>
 			</tbody>
 		</table>
-		
-		<c:if test="${cmt.cmtContent ne null}">
-		<!-- 댓글 기능 -->
-		<!-- 댓글 불러오기 -->
-		<table class="table table-striped"
-			style="text-align: center; border: 1px solid #dddddd">
-			<tbody>
-				<c:forEach var="cmt" items="${board}">
-					<tr>
-						<td>${cmt.cmtWriter}${cmt.cmtDate}<br /> ${cmt.cmtContent} 
-						<c:if test="${userId eq cmt.cmtWriter and cmt.cmtContent ne null }">
+
+		<div>
+			<h3>댓글</h3>
+		</div>
+
+		<c:if test="${board[0].cmtContent ne null}">
+			<!-- 댓글 기능 -->
+			<!-- 댓글 불러오기 -->
+			<table class="table table-striped"
+				style=" border: 1px solid #dddddd">
+				<tbody>
+					<c:forEach var="cmt" items="${board}">
+						<tr>
+							<td>${cmt.cmtWriter}${cmt.cmtDate}<br /> ${cmt.cmtContent}
+								<c:if
+									test="${userId eq cmt.cmtWriter and cmt.cmtContent ne null }">
 									<!-- 댓글 삭제 -->
 									<form id="frm" name="frm" action="cmtDelete.do" method="post">
 										<input type="hidden" id="boardId" name="boardId"
-											value="${cmt.boardId}"> <input type="text" id="cmtNo"
-											name="cmtNo" value="${cmt.cmtNo}">
-										<button class="btn btn-danger btn-sm" type="submit"
-											onclick="cmtDelete()">댓글 삭제</button>
+											value="${cmt.boardId}"> <input type="hidden"
+											id="cmtNo" name="cmtNo" value="${cmt.cmtNo}">
+										<button class="btn btn-danger btn-sm" type="submit">댓글
+											삭제</button>
 									</form>
-								
-								<!-- Button trigger modal -->
-								<button type="button" class="btn btn-primary"
-									data-bs-toggle="modal" data-bs-target="#exampleModal">
-									수정</button>
 
-								<!-- Modal -->
-								<div class="modal fade" id="exampleModal" tabindex="-1"
-									aria-labelledby="exampleModalLabel" aria-hidden="true">
-									<div class="modal-dialog">
-										<div class="modal-content">
-											<div class="modal-header">
-												<h5 class="modal-title" id="exampleModalLabel">댓글 수정</h5>
-												<button type="button" class="btn-close"
-													data-bs-dismiss="modal" aria-label="Close"></button>
+									<!-- Button trigger modal -->
+									<button type="button" class="btn btn-primary"
+										data-bs-toggle="modal" data-bs-target="#exampleModal">
+										수정</button>
+
+									<!-- Modal -->
+									<div class="modal fade" id="exampleModal" tabindex="-1"
+										aria-labelledby="exampleModalLabel" aria-hidden="true">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h5 class="modal-title" id="exampleModalLabel">댓글 수정</h5>
+													<button type="button" class="btn-close"
+														data-bs-dismiss="modal" aria-label="Close"></button>
+												</div>
+												<form id="frm" name="frm" action="cmtUpdate.do"
+													method="post">
+													<div class="modal-body">
+														<textarea id="cmtContent" name="cmtContent">${cmt.cmtContent}</textarea>
+														<input type="hidden" id="boardId" name="boardId"
+															value="${cmt.boardId}"> <input type="hidden"
+															id="cmtNo" name="cmtNo" value="${cmt.cmtNo}">
+													</div>
+													<div class="modal-footer">
+														<button type="button" class="btn btn-secondary"
+															data-bs-dismiss="modal">취소</button>
+														<button type="submit" class="btn btn-primary">수정</button>
+													</div>
+												</form>
 											</div>
-											<form id="frm" name="frm" action="cmtUpdate.do" method="post">
-												<div class="modal-body">
-													<textarea id="cmtContent" name="cmtContent">${cmt.cmtContent}</textarea>
-													<input type="hidden" id="boardId" name="boardId"
-														value="${cmt.boardId}"> <input type="hidden"
-														id="cmtNo" name="cmtNo" value="${cmt.cmtNo}">
-												</div>
-												<div class="modal-footer">
-													<button type="button" class="btn btn-secondary"
-														data-bs-dismiss="modal">취소</button>
-													<button type="submit" class="btn btn-primary">수정</button>
-												</div>
-											</form>
 										</div>
 									</div>
-								</div>
-							</c:if>
-						</td>
-					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
+								</c:if>
+							</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
 		</c:if>
-		
+
 		<c:if test="${userId ne null}">
 			<!-- 댓글 추가 -->
 			<form id="frm" name="frm" action="cmtInsert.do" method="post">
@@ -125,8 +124,8 @@
 	<c:if test="${userId eq board[0].userId}">
 		<form action="boardDelete.do" method="post">
 			<input type="hidden" id="boardId" name="boardId"
-				value="${board[0].boardId }"> <input type="hidden" id="userId"
-				name="userId" value="${userId}">
+				value="${board[0].boardId }"> <input type="hidden"
+				id="userId" name="userId" value="${userId}">
 			<button type="submit" class="btn btn-danger" style="display: inline">글삭제</button>
 		</form>
 		<form action="boardUpdateForm.do" method="post">

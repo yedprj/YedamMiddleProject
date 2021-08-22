@@ -16,9 +16,9 @@ public class BoardList implements Command {
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		// TODO 게시판 리스트 불러오기
 		BoardService boardDao = new BoardServiceImpl();
-		List<BoardVO> list = boardDao.boardSelectList();
+		List<BoardVO> list = boardDao.boardList();
 		request.setAttribute("board", list);
-		return "board/boardSelectList";
+		return "board/boardList";
 	}
 
 }

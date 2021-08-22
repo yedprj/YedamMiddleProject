@@ -33,5 +33,9 @@
 		values (#{userId},#{userPw},#{userName},#{userNickname},#{userEmail},#{userPhone},#{userProfile},'USER','A')
 	</insert>
 	
+	<update id="userDelete" parameterType="UserVO">
+		update cb_user set user_state='N' where user_id=#{userId}
+	</update>
+	
 	
 </mapper>

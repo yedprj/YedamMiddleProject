@@ -5,7 +5,7 @@ import co.pyl.coby.board.vo.BoardVO;
 import co.pyl.coby.board.vo.CmtVO;
 
 public interface BoardService {
-	List<BoardVO> boardSelectList(); //게시글 리스트
+	List<BoardVO> boardList(); //게시글 리스트
 	List<BoardVO> boardSelect(String n); //게시글 상세보기
 	int boardInsert(BoardVO vo); //게시글 입력
 	int boardUpdate(BoardVO vo); //게시글 수정

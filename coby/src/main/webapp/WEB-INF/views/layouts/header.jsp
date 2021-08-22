@@ -73,7 +73,7 @@
 								
 								<div class="dropdown-menu" aria-labelledby="userDropdown">
 									<c:if test="${user.userAuthor eq 'ADMIN'}">
-										<a class="dropdown-item" href="adminHome.do">관리자</a>
+										<a class="dropdown-item" href="adminAccount.do">관리자</a>
 									</c:if>
 									<a class="dropdown-item" href="myPage.do">마이페이지</a>
 									<div class="dropdown-divider"></div>

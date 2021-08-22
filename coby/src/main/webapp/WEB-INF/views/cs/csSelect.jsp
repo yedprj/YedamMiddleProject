@@ -26,10 +26,12 @@
 		</table>
 
 	</div>
+	
+	<c:if test="${list[0].cscmtContent ne null}">
 	<!-- ´ñ±Û ±â´É -->
 	<!-- ´ñ±Û ºÒ·¯¿À±â -->
 	<table class="table table-striped"
-		style="text-align: center; border: 1px solid #dddddd">
+		style="border: 1px solid #dddddd">
 		<tbody>
 			<c:forEach var="cscmt" items="${list}">
 				<tr>
@@ -81,6 +83,7 @@
 			</c:forEach>
 		</tbody>
 	</table>
+	</c:if>
 
 	<c:if test="${userId != null}">
 		<!-- ´ñ±Û Ãß°¡ -->

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>	
 <!DOCTYPE html>
 <html>
 
@@ -13,6 +14,14 @@
 	<script src="js/bootstrap.bundle.js"></script>
 	<script src="js/scripts.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script type="text/javascript">
+	
+		function send(n){
+			frm.prNo.value = n
+			frm.submit();
+		}	
+	
+	</script>
 
 </head>
 
@@ -27,30 +36,34 @@
 
 			<!-- body  -->
 			<div class="container">
-
 				<table border="1">
 					<thead>
 						<tr>
-							<th>아이디</th>
-							<th>이름</th>
-							<th>Email</th>
-							<th>Phone</th>
-							<th>권한</th>
+							<th>주문번호</th>
+							<th>종류</th>
+							<th>제목</th>
+							<th>주문자</th>
+							<th>시작일</th>
+							<th>종료일</th>
+							<th>총가격</th>
+							<th>참여인원</th>
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach var="list" items="${list}">
+						<c:forEach var="pr" items="${list}">
 							<tr>
-								<th>${list.userId}</th>
-								<td>${list.userName}</td>
-								<td>${list.userEmail}</td>
-								<td>${list.userPhone}</td>
-								<td>${list.userAuthor}</td>
+								<th>${pr.prNo}</th>
+								<td>${pr.prCategory}</td>
+								<td>${pr.prTitle}</td>
+								<td>${pr.userId}</td>
+								<td>${pr.prStartdate}</td>
+								<td>${pr.prEnddate}</td>
+								<td>${pr.prPrice}</td>
+								<td>${pr.prPeople}</td>
 							</tr>
 						</c:forEach>
 					</tbody>
 				</table>
-
 			</div>
 		</div>
 	</div>
