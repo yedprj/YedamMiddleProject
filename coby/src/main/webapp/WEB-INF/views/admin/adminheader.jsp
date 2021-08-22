@@ -6,19 +6,18 @@
 	<div class="container-fluid">
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav ms-auto mt-2 mt-lg-0">
-				<li class="nav-item active"><a class="nav-link" href="#!">Home</a></li>
-				<li class="nav-item"><a class="nav-link" href="#!">Link</a></li>
-				<li class="nav-item dropdown"><a
+				<li class="nav-item active"><a
 					class="nav-link dropdown-toggle" id="navbarDropdown" href="#"
 					role="button" data-bs-toggle="dropdown" aria-haspopup="true"
-					aria-expanded="false">Dropdown</a>
+					aria-expanded="false">Menu</a>
 					<div class="dropdown-menu dropdown-menu-end"
 						aria-labelledby="navbarDropdown">
-						<a class="dropdown-item" href="#!">Action</a> <a
-							class="dropdown-item" href="#!">Another action</a>
-						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="#!">Something else here</a>
-					</div></li>
+						<a class="dropdown-item" href="home.do">홈</a> 
+						<a class="dropdown-item" href="boardList.do">게시판</a> 
+						<a class="dropdown-item" href="noticeList.do">공지사항</a>
+						<a class="dropdown-item" href="csList.do">고객센터</a>
+					</div>
+				</li>
 			</ul>
 		</div>
 	</div>

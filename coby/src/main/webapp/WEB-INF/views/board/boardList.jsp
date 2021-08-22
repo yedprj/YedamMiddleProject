@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+	pageEncoding="EUC-KR"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 	<section class="bg-success py-5">
         <div class="container">
@@ -15,19 +15,19 @@
     <section class="container py-5">
         <div class="row text-center pt-5 pb-3">
             <div class="col-lg-6 m-auto">
-                <h2 class="h2">ììœ  ê²Œì‹œíŒ</h2>
+                <h2 class="h2">°Ô½Ã±Û »ó¼¼º¸±â</h2>
             </div>
         </div>
         <div class="row">
-        	<!-- ê²Œì‹œê¸€ ë¦¬ìŠ¤íŠ¸ -->
+        	<!-- °Ô½Ã±Û ¸®½ºÆ® -->
 			<table class="table table-hover" id="myTable">
 				<thead class="table-light">
 					<tr align="center">
-						<th class="col-lg-1">ë²ˆí˜¸</th>
-						<th class="col-lg-2">ì œëª©</th>
-						<th class="col-lg-2">ì‘ì„±ì¼</th>
-						<th class="col-lg-1">ëŒ“ê¸€ìˆ˜</th>
-						<th class="col-lg-1">ì¡°íšŒìˆ˜</th>
+						<th class="col-lg-1">¹øÈ£</th>
+						<th class="col-lg-2">Á¦¸ñ</th>
+						<th class="col-lg-2">ÀÛ¼ºÀÏ</th>
+						<th class="col-lg-1">´ñ±Û¼ö</th>
+						<th class="col-lg-1">Á¶È¸¼ö</th>
 					</tr>
 				</thead>
 				<tbody align="center">
@@ -45,7 +45,7 @@
 			<div class="row">
 				<ul class="pagination pagination-lg justify-content-center">
 					<li class="page-item">
-						<a class="page-link rounded-0 shadow-sm border-top-0 border-left-0 text-dark" href="#">â—€</a>
+						<a class="page-link rounded-0 shadow-sm border-top-0 border-left-0 text-dark" href="#">¢¸</a>
 					</li>
 					<li class="page-item">
 						<a class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" href="#">1</a>
@@ -57,7 +57,7 @@
 						<a class="page-link rounded-0 shadow-sm border-top-0 border-left-0 text-dark" href="#">3</a>	
 					</li>
 					<li class="page-item">
-						<a class="page-link rounded-0 shadow-sm border-top-0 border-left-0 text-dark" href="#">â–¶</a>
+						<a class="page-link rounded-0 shadow-sm border-top-0 border-left-0 text-dark" href="#">¢º</a>
 					</li>
 				</ul>
 			</div>
@@ -69,7 +69,7 @@
 					</div>
 					 
 					<div class="col-12">
-						<a class="btn btn-success fx-2" href="boardInsertForm.do" role="button">ê¸€ì“°ê¸°</a>
+						<a class="btn btn-success fx-2" href="boardInsertForm.do" role="button">°Ô½Ã±Û ¾²±â</a>
 					</div>
 				</div>
 			</div>			
@@ -84,7 +84,7 @@
     <!-- End Section -->
     	
 	<script>
-		// ê²Œì‹œê¸€ ì œëª© ê²€ìƒ‰ê¸°ëŠ¥
+		// °Ô½Ã±Û Á¦¸ñ °Ë»ö±â´É
 		function myFunction() {
 			var input, filter, table, tr, td, i, txtValue;
 			input = document.getElementById("myInput");

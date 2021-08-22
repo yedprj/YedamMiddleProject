@@ -23,8 +23,16 @@ public class PurchaseVO {
 	
 	private String userProfile;
 	
+	private int dividedPrice;
 	
-	
+
+	public int getDividedPrice() {
+		return dividedPrice;
+	}
+
+	public void setDividedPrice(int dividedPrice) {
+		this.dividedPrice = dividedPrice;
+	}
 
 	public String getUserProfile() {
 		return userProfile;

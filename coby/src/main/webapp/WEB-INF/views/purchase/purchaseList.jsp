@@ -12,6 +12,15 @@
 	        frm.prNo.value = n;
 	        frm.submit();
         }
+        //로그인한 사람만 글 작성하렴
+        function aa(){
+        	if ("${user.userId }" === "") {
+                alert("로그인이 필요합니다.");
+                location.href="loginForm.do";
+             } else {
+            	location.href='purchaseForm.do';
+             }
+        }
 </script>
 
 <style>
@@ -28,7 +37,7 @@
 			<span class="link-dark fs-4">공동구매</span>
 			<div class="col-md-3 text-end">
 				<button type="button" class="btn btn-outline-primary me-2 btn-sm"
-					onclick="location.href='purchaseForm.do'">공동구매 만들기</button>
+					onclick="aa()">공동구매 만들기</button>
 			</div>
 		</div>
 
@@ -38,7 +47,7 @@
 					<div class="card h-100">
 						<div id="purchaseSelect" onclick="getRecord(${item.prNo })">
 							<img class="card-img-top"
-								src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(60).jpg"
+								src="${item.prPhoto1 }"
 								alt="Card image cap">
 							<div class="card-body">
 								<h5 class="card-title">${item.prTitle }</h5>

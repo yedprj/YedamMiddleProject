@@ -10,7 +10,7 @@ public interface UserService {
 	UserVO loginUser(UserVO vo);
 	UserVO findUserId(UserVO vo);
 	int userInsert(UserVO vo);
-	int userDelect(UserVO vo);
+	int userDelete(UserVO vo);
 	int userUpdate(UserVO vo);
 	int userpwUpdate(UserVO vo);
 }

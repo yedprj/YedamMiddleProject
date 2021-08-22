@@ -38,9 +38,9 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public int userDelect(UserVO vo) {
+	public int userDelete(UserVO vo) {
 		// TODO Auto-generated method stub
-		return 0;
+		return map.userDelete(vo);
 	}
 
 	@Override

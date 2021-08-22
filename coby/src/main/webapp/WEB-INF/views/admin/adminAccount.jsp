@@ -46,6 +46,7 @@
 								<td>${list.userEmail}</td>
 								<td>${list.userPhone}</td>
 								<td>${list.userAuthor}</td>
+								<td><button >삭제</button></td>
 							</tr>
 						</c:forEach>
 					</tbody>

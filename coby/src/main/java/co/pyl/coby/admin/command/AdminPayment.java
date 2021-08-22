@@ -8,19 +8,17 @@ import javax.servlet.http.HttpServletResponse;
 import co.pyl.coby.common.Command;
 import co.pyl.coby.purchase.service.PurchaseService;
 import co.pyl.coby.purchase.serviceImpl.PurchaseServiceImpl;
-import co.pyl.coby.user.service.UserService;
-import co.pyl.coby.user.serviceImpl.UserServiceImpl;
-import co.pyl.coby.user.vo.UserVO;
+import co.pyl.coby.purchase.vo.PurchaseVO;
 
 public class AdminPayment implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
-//		PurchaseService dao = new PurchaseServiceImpl();
-//		List<UserVO> list = dao.selectAllUser();
-//		request.setAttribute("list", list);
-		return "admin/adminAccount.jsp";
+		PurchaseService dao = new PurchaseServiceImpl();
+		List<PurchaseVO> list = dao.purchaseSelectList();
+		request.setAttribute("list", list);
+		return "admin/adminPayment.jsp"; 
 	}
 
 }
