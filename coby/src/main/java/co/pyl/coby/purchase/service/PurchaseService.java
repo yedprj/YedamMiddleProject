@@ -2,6 +2,7 @@ package co.pyl.coby.purchase.service;
 
 import java.util.List;
 
+import co.pyl.coby.applicate.vo.ApplicateVO;
 import co.pyl.coby.purchase.vo.PrCmtVO;
 import co.pyl.coby.purchase.vo.PurchaseVO;
 
@@ -28,4 +29,16 @@ public interface PurchaseService {
   
   //참여인원수 조회
   int ApplicatePeople(PurchaseVO vo);
+  
+  //참여현황 조회
+  List<ApplicateVO> applicateSelect(ApplicateVO vo);
+  
+  //참여현황 추가
+  int applicateInsert(ApplicateVO vo);
+  
+  //참여현황 조회(마이페이지)
+  List<ApplicateVO> applicateSelectMypage(ApplicateVO vo);
+  
+  //참여현황 삭제(마이페이지)
+  int applicateDelete(ApplicateVO vo);
 }

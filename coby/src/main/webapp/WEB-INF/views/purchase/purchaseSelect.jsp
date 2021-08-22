@@ -19,7 +19,91 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 
 <script>
-    
+
+	//공통
+	const userId = "${user.userId }";
+	const prNo = ${list[0].prNo };
+	let originalPrice = ${list[0].prPrice };
+	let people = ${people };
+	let ajaxParamPrNo = prNo;
+	let ajaxParamDividedPrice = followPrice(originalPrice, people);
+	
+	//통화 변경 함수
+	function numberWithCommas(x) {
+	    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	}
+	
+	//참여신청 버튼 눌러서 참여신청 폼으로 가기
+	function applicate() {
+		
+		if (userId === "") {
+			alert("로그인이 필요합니다.");
+			location.href="loginForm.do";
+		} else {
+			frm.frmPrNo.value=ajaxParamPrNo;
+			console.log(ajaxParamPrNo);
+			frm.frmDividedPrice.value=ajaxParamDividedPrice;
+			console.log(ajaxParamDividedPrice);
+			frm.submit();
+		}
+
+	}
+
+	$(function() {
+	    $( "#heart" ).click(function() {
+	    	//로그인이 안 되어 있으면
+	    	if (userId === "") {
+				alert("로그인이 필요합니다.");
+				location.href="loginForm.do";
+			//로그인된 상태면 위시리스트 추가
+			} else {
+				let classContains = heart.classList.contains('press');
+				if (!classContains) {
+					$.ajax({
+						url: 'WishListInsert',
+						type: 'POST',
+						data: {prNo : prNo},
+						success: function(result) {
+
+								console.log('insert 성공');
+
+						},
+						error: function() {
+							console.log('ajax 에러');
+						}
+					});
+			
+			      $( "#heart" ).addClass( "press", 1000 );
+			      let wishListMove = confirm('위시리스트에 추가했습니다. 위시리스트로 이동하시겠습니까?');
+			      if (wishListMove) {
+			    	  location.href="wishList.do";
+			      }
+				} else {
+					$.ajax({
+						url: 'WishListDelete',
+						type: 'POST',
+						data: {prNo : prNo},
+						success: function(result) {
+
+								console.log('delete 성공');
+
+
+						},
+						error: function() {
+							console.log('ajax 에러');
+						}
+					});
+					
+					
+					$( "#heart" ).removeClass( "press" );
+					alert('위시리스트에서 제거했습니다.');	
+				}
+			}
+	    });
+	  });
+	
+	
+	//댓글 가져오기 ajax
 	$(document).ready(function(){
     
 	//댓글 입력 하기
@@ -120,6 +204,8 @@
 
 	
 	});
+	
+
 
 	$(document).ready(function() {
 		//1인 부담금
@@ -156,6 +242,32 @@
 </script>
 
 <style>
+#heart {
+	cursor: pointer;
+	padding: 10px 12px 8px;
+	background: #fff;
+	border-radius: 50%;
+	display: inline-block;
+	margin: 0 0 15px;
+	color: #aaa;
+	transition: .2s;
+}
+
+#heart:hover {
+	color: #666;
+}
+
+#heart:before {
+	font-family: fontawesome;
+	content: '\f004';
+	font-style: normal;
+}
+
+#heart.press {
+	animation: size .4s;
+	color: #e23b3b;
+}
+
 .image--cover {
 	width: 50px;
 	height: 50px;
@@ -345,11 +457,11 @@
 
 										<div class="h3">${list[0].prTitle }</div>
 									</div>
-									<div class="col-sm-3 align-self-center">
-										<input type="checkbox" data-toggle="toggle" data-on="위시리스트 담김"
-											data-off="위시리스트 담기" data-onstyle="dark" data-offstyle="light"
-											data-style="border">
+									<!-- 위시리스트 -->
+									<div class="col-sm-3 align-self-bottom" id="heart">
+										<i></i><small>위시리스트 담기</small>
 									</div>
+
 								</div>
 							</div>
 							<div class="row">
@@ -463,17 +575,26 @@
 							<small class="py-1">참여 현황 ( ${people } 명 참여중 )</small>
 
 							<div class="">
-								<img src="image/user.jpg" class="image--cover"> <img
-									src="image/user.jpg" class="image--cover"> <img
-									src="image/user.jpg" class="image--cover">
+								<c:forEach var="applicate" items="${applicateSelect }">
+									<div>
+										<img src="${applicate.userProfile }" class="image--cover">
+										${applicate.userNickname }, ${applicate.apDate } 참여
+									</div>
+								</c:forEach>
 							</div>
 
 						</div>
 
 						<div class="py-3 text-center">
+							<form id="frm" name="frm" method="POST" action="applicateForm.do">
+								<input type="hidden" id="frmPrNo" name="frmPrNo" value="">
+								<input type="hidden" id="frmDividedPrice" name="frmDividedPrice"
+									value="">
+							</form>
 							<button type="button" class="btn btn-outline-secondary"
 								onclick="history.back()">목록으로 돌아가기</button>
-							<button id="" type="" class="btn btn-outline-dark">참여신청</button>
+							<button type="button" class="btn btn-outline-dark"
+								onclick="applicate()">참여신청</button>
 						</div>
 						<!-- 댓글 폼 -->
 						<div class="row py-3">

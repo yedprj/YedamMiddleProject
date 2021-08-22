@@ -9,7 +9,13 @@ import co.pyl.coby.wishlist.vo.WishListVO;
 public interface WishListService {
 	public List<Map<String, String>> selectWishList(UserVO vo);
 	
+	//wNo로 지움
 	public int deleteWishList(WishListVO vo);
+	
+	//prNo로 지움
+	public int deleteWishList2(WishListVO vo);
+	
+	public int insertWishList(WishListVO vo);
 	
 	public int updateUser(UserVO vo);
 }
