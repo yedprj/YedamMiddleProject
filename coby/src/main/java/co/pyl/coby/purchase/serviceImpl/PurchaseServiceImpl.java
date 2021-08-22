@@ -30,6 +30,21 @@ public class PurchaseServiceImpl implements PurchaseService {
 	public List<PrCmtVO> purchaseCmtList(PrCmtVO vo) {
 		return map.purchaseCmtList(vo);
 	}
+
+	@Override
+	public int purchaseCmtInsert(PrCmtVO vo) {
+		map.purchaseCmtInsert(vo);
+		return vo.getPrcmtNo();
+	}
+	@Override
+	public PrCmtVO purchaseCmtSelect(int prcmtNo) {
+		return map.purchaseCmtSelect(prcmtNo);
+	}
+	
+	@Override
+	public int purchaseCmtDelete(PrCmtVO vo) {
+		return map.purchaseCmtDelete(vo);
+	}
 	
 	@Override
 	public int purchaseInsert(PurchaseVO vo) {
@@ -42,6 +57,8 @@ public class PurchaseServiceImpl implements PurchaseService {
 		// TODO Auto-generated method stub
 		return map.ApplicatePeople(vo);
 	}
+
+
 
 
 }

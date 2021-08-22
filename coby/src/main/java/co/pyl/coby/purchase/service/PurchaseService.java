@@ -15,6 +15,14 @@ public interface PurchaseService {
   //공동구매 상세보기 에서 댓글 불러오기 AJAX
   List<PrCmtVO> purchaseCmtList(PrCmtVO vo);
   
+  //공동구매 상세보기에서 댓글 입력하기 AJAX
+  int purchaseCmtInsert(PrCmtVO vo);
+  //공동구매 댓글 입력한거 하나 가져오기
+  PrCmtVO purchaseCmtSelect(int prcmtNo);
+  
+  //공동구매 상세보기에서 댓글 삭제하기 AJAX
+  int purchaseCmtDelete(PrCmtVO vo);
+  
   //공동구매 등록 하기
   int purchaseInsert(PurchaseVO vo);
   

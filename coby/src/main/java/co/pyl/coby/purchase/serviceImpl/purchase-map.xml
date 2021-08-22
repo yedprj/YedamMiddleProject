@@ -22,13 +22,36 @@
 	<!-- 공동구매 글 상세보기에서 댓글 불러오기 -->
 	<select id="purchaseCmtList" parameterType="PrCmtVO"
 		resultType="PrCmtVO">
-		select b.*, c.user_nickname, c.user_profile
-		from cb_prcmt b join cb_user c
+		SELECT b.*, c.user_nickname, c.user_profile
+		FROM cb_prcmt b join cb_user c
 		on b.user_id = c.user_id
 		where b.pr_no = #{prNo}
 		order by prcmt_date
 	</select>
-
+	
+	<!-- 공동구매 글 상세보기에서 댓글 입력하기 -->
+	<insert id='purchaseCmtInsert' parameterType="PrCmtVO">
+	  INSERT INTO cb_prcmt 
+	  VALUES(pr_cmt_seq.nextval,#{prcmtContent},sysdate,#{prNo},#{userId})
+	  	<selectKey keyProperty="prcmtNo" resultType="int" order="AFTER">
+			SELECT
+			pr_cmt_seq.currval as prcmtNo FROM dual
+		</selectKey>
+	</insert>
+	<!-- 공동구매 댓글 입력후 그거 바로 가져오기 -->
+	<select id="purchaseCmtSelect" parameterType="int" resultType="PrCmtVO">
+	  SELECT b.*, c.user_nickname, c.user_profile
+	  FROM cb_prcmt b JOIN cb_user c
+	  on b.user_id = c.user_id
+	  WHERE prCmt_No = #{prCmtNo}
+	</select>
+	
+	<!-- 공동구매 글 상세보기에서 댓글 삭제하기 -->
+	<delete id="purchaseCmtDelete" parameterType="PrCmtVO">
+	  DELETE FROM cb_prcmt
+	  WHERE prcmt_no = #{prcmtNo}
+	</delete>
+	
 	<!-- 공동구매글 작성 -->
 	<insert id="purchaseInsert" parameterType="PurchaseVO">
 		INSERT INTO cb_purchase VALUES (
