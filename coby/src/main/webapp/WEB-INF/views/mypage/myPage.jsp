@@ -19,7 +19,7 @@
 					</dd>
 				</dl>
 				<div class="col text-end">
-					<button class="btn btn-outline-secondary" type="button" onclick = "location.href ='updateUserForm.do'">정보
+					<button class="btn btn-outline-dark" type="button" onclick = "location.href ='updateUserForm.do'">정보
 						수정</button>
 					<button class="btn btn-outline-secondary" type="button" onclick = "location.href ='deleteUserForm.do'">회원
 						탈퇴</button>

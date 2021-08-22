@@ -15,9 +15,40 @@
 	rel="stylesheet">
 <script
 	src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 
 <script>
+	//공통
+	const userId = "${user.userId }";
+	const prNo = ${list[0].prNo };
+	let originalPrice = ${list[0].prPrice };
+	let people = ${people };
+	let ajaxParamPrNo = prNo;
+	let ajaxParamDividedPrice = followPrice(originalPrice, people);
+	
+	//통화 변경 함수
+	function numberWithCommas(x) {
+	    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	}
+	
+	//참여신청 버튼 눌러서 참여신청 폼으로 가기
+	function applicate() {
+		
+		if (userId === "") {
+			alert("로그인이 필요합니다.");
+			location.href="loginForm.do";
+		} else {
+			frm.frmPrNo.value=ajaxParamPrNo;
+			console.log(ajaxParamPrNo);
+			frm.frmDividedPrice.value=ajaxParamDividedPrice;
+			console.log(ajaxParamDividedPrice);
+			frm.submit();
+		}
+
+	}
+
+
 	//댓글 가져오기 ajax
 	$(document).ready(function(){
 		
@@ -62,6 +93,8 @@
 	}
 	
 	});
+	
+
 
 	$(document).ready(function() {
 		//1인 부담금
@@ -405,17 +438,26 @@
 							<small class="py-1">참여 현황 ( ${people } 명 참여중 )</small>
 
 							<div class="">
-								<img src="image/user.jpg" class="image--cover"> <img
-									src="image/user.jpg" class="image--cover"> <img
-									src="image/user.jpg" class="image--cover">
+								<c:forEach var="applicate" items="${applicateSelect }">
+									<div>
+										<img src="${applicate.userProfile }" class="image--cover">
+										${applicate.userNickname }, ${applicate.apDate } 참여
+									</div>
+								</c:forEach>
 							</div>
 
 						</div>
 
 						<div class="py-3 text-center">
+							<form id="frm" name="frm" method="POST" action="applicateForm.do">
+								<input type="hidden" id="frmPrNo" name="frmPrNo" value="">
+								<input type="hidden" id="frmDividedPrice" name="frmDividedPrice"
+									value="">
+							</form>
 							<button type="button" class="btn btn-outline-secondary"
 								onclick="history.back()">목록으로 돌아가기</button>
-							<button id="" type="" class="btn btn-outline-dark">참여신청</button>
+							<button type="button" class="btn btn-outline-dark"
+								onclick="applicate()">참여신청</button>
 						</div>
 						<!-- 댓글 폼 -->
 						<div class="row py-3">
@@ -453,7 +495,7 @@
 
 											</div>
 										</li>
-                                
+
 										<li class="unico-comentario children">
 											<div class="avatar">
 												<img alt="" src="image/user.jpg"
@@ -474,7 +516,7 @@
 									</ul>
 								</div>
 								<!-- 댓글 끝 -->
-								
+
 							</div>
 						</div>
 					</div>

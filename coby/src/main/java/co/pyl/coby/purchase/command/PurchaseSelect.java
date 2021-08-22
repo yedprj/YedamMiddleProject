@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import co.pyl.coby.applicate.vo.ApplicateVO;
 import co.pyl.coby.common.Command;
 import co.pyl.coby.purchase.service.PurchaseService;
 import co.pyl.coby.purchase.serviceImpl.PurchaseServiceImpl;
@@ -28,8 +29,12 @@ public class PurchaseSelect implements Command {
 		
 		List<PurchaseVO> list = dao.purchaseSelect(vo);
 		int people = dao.ApplicatePeople(vo);
+		ApplicateVO apvo = new ApplicateVO();
+		apvo.setPrNo(Integer.valueOf(request.getParameter("prNo")));
+		
 		request.setAttribute("list", list);
 		request.setAttribute("people", people);
+		request.setAttribute("applicateSelect", dao.applicateSelect(apvo));
 		
 		
 		return "purchase/purchaseSelect";

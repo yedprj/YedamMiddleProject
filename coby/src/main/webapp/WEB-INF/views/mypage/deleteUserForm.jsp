@@ -31,7 +31,7 @@
 				<div class="col text-center mt-3">
 					<button class="btn btn-outline-danger" type="button"
 						onclick="location.href ='deleteUser.do'">탈퇴</button>
-					<button class="btn btn-outline-dark" type="button"
+					<button class="btn btn-outline-secondary" type="button"
 						onclick="location.href ='myPage.do'">취소</button>
 				</div>
 

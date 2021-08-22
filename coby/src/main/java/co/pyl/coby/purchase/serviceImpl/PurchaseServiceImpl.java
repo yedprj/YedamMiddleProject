@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
+import co.pyl.coby.applicate.vo.ApplicateVO;
 import co.pyl.coby.common.DataSource;
 import co.pyl.coby.purchase.service.PurchaseMapper;
 import co.pyl.coby.purchase.service.PurchaseService;
@@ -41,6 +42,24 @@ public class PurchaseServiceImpl implements PurchaseService {
 	public int ApplicatePeople(PurchaseVO vo) {
 		// TODO Auto-generated method stub
 		return map.ApplicatePeople(vo);
+	}
+
+	@Override
+	public List<ApplicateVO> applicateSelect(ApplicateVO vo) {
+		// TODO Auto-generated method stub
+		return map.applicateSelect(vo);
+	}
+
+	@Override
+	public int applicateInsert(ApplicateVO vo) {
+		// TODO Auto-generated method stub
+		return map.applicateInsert(vo);
+	}
+
+	@Override
+	public List<ApplicateVO> applicateSelectMypage(ApplicateVO vo) {
+		// TODO Auto-generated method stub
+		return map.applicateSelectMypage(vo);
 	}
 
 

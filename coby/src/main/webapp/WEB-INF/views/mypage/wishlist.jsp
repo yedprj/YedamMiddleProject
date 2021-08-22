@@ -218,25 +218,6 @@ function numberWithCommas(x) {
 		<!-- 항목 -->
 		
 		<div id="jquery"></div>
-		
-		
-		<!-- 하단 전체선택 / 삭제 -->
-		<div class="border-bottom mt-3">
-			<div class="row">
-				<div class="col-sm-8">
-					<div class="form-check">
-						<input class="form-check-input" type="checkbox" value=""
-							id="selectAll2"> <label class="form-check-label"
-							for="selectAll"> 전체 선택 </label>
-					</div>
-				</div>
-				<div class="col-sm-4 text-end pb-3">
-					<button type="button" class="btn btn-outline-dark btn-sm">
-						<span class="fw-bold">선택 삭제</span>
-					</button>
-				</div>
-			</div>
-		</div>
 	</div>
 </div>
 
