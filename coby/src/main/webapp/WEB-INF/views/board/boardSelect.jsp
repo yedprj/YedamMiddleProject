@@ -1,146 +1,180 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<!-- °Ô½Ã±Û »ó¼¼º¸±â -->
+<!-- ê²Œì‹œê¸€ ìƒì„¸ë³´ê¸° -->
 <script>
 	function deleteComment() {
-		let confirms = confirm("´ñ±ÛÀ» »èÁ¦ÇÏ½Ã°Ú½À´Ï±î?")
+		let confirms = alert("ëŒ“ê¸€ì„ ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?")
 		if (confirms) {
-			alert("»èÁ¦µÇ¾ú½À´Ï´Ù.")
+			alert("ì‚­ì œë˜ì—ˆìŠµë‹ˆë‹¤.")
 			$("#frm").submit();
 		}
 	}
 </script>
-<!-- °Ô½ÃÆÇ -->
-<div class="container">
-	<div class="row">
-		<table class="table table-striped"
-			style="text-align: center; border: 1px solid #dddddd">
-			<thead>
-				<tr>
-					<th colspan="3"
-						style="background-color: #eeeeee; text-align: center;">°Ô½ÃÆÇ</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>${board[0].boardTitle}</td>
-				</tr>
-				<tr>
-					<td>${board[0].userId}</td>
-				</tr>
-				<tr>
-					<td>${board[0].boardDate}</td>
-				</tr>
-				<tr>
-					<td>${board[0].boardContent}</td>
-				</tr>
-			</tbody>
-		</table>
-		
-		<c:if test="${cmt.cmtContent ne null}">
-		<!-- ´ñ±Û ±â´É -->
-		<!-- ´ñ±Û ºÒ·¯¿À±â -->
-		<table class="table table-striped"
-			style="text-align: center; border: 1px solid #dddddd">
-			<tbody>
-				<c:forEach var="cmt" items="${board}">
-					<tr>
-						<td>${cmt.cmtWriter}${cmt.cmtDate}<br /> ${cmt.cmtContent} 
-						<c:if test="${userId eq cmt.cmtWriter and cmt.cmtContent ne null }">
-									<!-- ´ñ±Û »èÁ¦ -->
-									<form id="frm" name="frm" action="cmtDelete.do" method="post">
-										<input type="hidden" id="boardId" name="boardId"
-											value="${cmt.boardId}"> <input type="text" id="cmtNo"
-											name="cmtNo" value="${cmt.cmtNo}">
-										<button class="btn btn-danger btn-sm" type="submit"
-											onclick="cmtDelete()">´ñ±Û »èÁ¦</button>
-									</form>
-								
-								<!-- Button trigger modal -->
-								<button type="button" class="btn btn-primary"
-									data-bs-toggle="modal" data-bs-target="#exampleModal">
-									¼öÁ¤</button>
 
-								<!-- Modal -->
-								<div class="modal fade" id="exampleModal" tabindex="-1"
-									aria-labelledby="exampleModalLabel" aria-hidden="true">
-									<div class="modal-dialog">
-										<div class="modal-content">
-											<div class="modal-header">
-												<h5 class="modal-title" id="exampleModalLabel">´ñ±Û ¼öÁ¤</h5>
-												<button type="button" class="btn-close"
-													data-bs-dismiss="modal" aria-label="Close"></button>
+<!-- Start Section -->
+<section class="container py-5">
+       <div class="row text-center pt-5 pb-3 mb-3">
+           <div class="col-lg-6 m-auto">
+               <h2 class="h2">ê²Œì‹œíŒ ìƒì„¸ë³´ê¸°</h2>
+           </div>
+       </div>
+	<!-- ê²Œì‹œíŒ -->
+		<div class="row">
+			<table class="board_view">
+			        <colgroup>
+			            <col width="15%">
+			            <col width="35%">
+			            <col width="15%">
+			            <col width="*">
+			        </colgroup>
+	         
+		        <tbody>
+		            <tr>
+		                <th>ì œëª©</th>
+		                <td>${board[0].boardTitle}</td>
+		                <th>ì¡°íšŒìˆ˜</th>
+		                <td></td>
+		            </tr>
+		            <tr>
+		                <th>ì‘ì„±ì</th>
+		                <td>${board[0].userId}</td>
+		                <th>ì‘ì„±ì‹œê°„</th>
+		                <td>${board[0].boardDate}</td>
+		            </tr>
+		            <tr>
+		                <th>ë‚´ìš©</th>
+		                <td colspan="3">
+		                    ${board[0].boardContent}
+		                </td>
+		            </tr>
+		        </tbody>
+	    	</table>
+	    	
+	    	<!-- ê¸€ ìˆ˜ì • ì‚­ì œ ë²„íŠ¼ -->
+	    	<div class="d-flex justify-content-end mt-2">
+		    	<c:if test="${userId eq board[0].userId}">
+					<form action="boardDelete.do" method="post">
+						<input type="hidden" id="boardId" name="boardId"
+							value="${board[0].boardId }"> <input type="hidden" id="userId"
+							name="userId" value="${userId}">
+						<button type="submit" class="btn btn-outline-danger px-4 py-2 me-md-2" style="display: inline">ê¸€ì‚­ì œ</button>
+					</form>
+					
+					<form action="boardUpdateForm.do" method="post">
+						<input type="hidden" id="boardId" name="boardId"
+							value="${board[0].boardId }"> <input type="hidden"
+							id="boardTitle" name="boardTitle" value="${board[0].boardTitle }">
+						<textarea class="form-control" rows="10" id="boardContent"
+							name="boardContent" style="display: none">${board[0].boardContent}</textarea>
+						<button type="submit" class="btn btn-outline-success px-4 py-2" style="display: inline">ê¸€ìˆ˜ì •</button>
+					</form>
+				</c:if>
+			</div>
+			
+			<!-- ëŒ“ê¸€ -->
+			<c:if test="${board[0].cmtContent ne null}">
+			<!-- ëŒ“ê¸€ ê¸°ëŠ¥ -->
+			<!-- ëŒ“ê¸€ ë¶ˆëŸ¬ì˜¤ê¸° -->
+			<table class="board_view mt-5">
+				<colgroup>
+	                <col width="15%">
+	                <col width="85%">
+	            </colgroup>
+				<tbody>
+					<tr>
+						<th>ëŒ“ê¸€</th>
+						<td></td>
+					</tr>
+					<c:forEach var="cmt" items="${board}">
+						<tr>
+							<td style="background:#f7f7f7;color:#3b3a3a;">${cmt.cmtWriter}
+								<p style="font-size: 8px;" >${cmt.cmtDate}</p>
+							</td>
+							<td>${cmt.cmtContent}
+							<c:if test="${userId eq cmt.cmtWriter and cmt.cmtContent ne null }">
+								<!-- ëŒ“ê¸€ ì‚­ì œ -->
+								<form id="frm" name="frm" action="cmtDelete.do" method="post">
+									<input type="hidden" id="boardId" name="boardId"
+										value="${cmt.boardId}"> <input type="hidden" id="cmtNo"
+										name="cmtNo" value="${cmt.cmtNo}">
+									
+									<div class="d-flex justify-content-end">
+										<button class="btn btn-outline-danger mx-2" type="submit"
+											onclick="deleteComment()">ëŒ“ê¸€ ì‚­ì œ</button>
+											
+										<!-- Button trigger modal -->
+										<button type="button" class="btn btn-outline-success px-4"
+											data-bs-toggle="modal" data-bs-target="#exampleModal">
+										ìˆ˜ì •</button>
+									</div>
+								</form>
+	
+									<!-- Modal -->
+									<div class="modal fade" id="exampleModal" tabindex="-1"
+										aria-labelledby="exampleModalLabel" aria-hidden="true">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h5 class="modal-title" id="exampleModalLabel">ëŒ“ê¸€ ìˆ˜ì •</h5>
+													<button type="button" class="btn-close"
+														data-bs-dismiss="modal" aria-label="Close"></button>
+												</div>
+												<form id="frm" name="frm" action="cmtUpdate.do" method="post">
+													<div class="modal-body">
+														<textarea id="cmtContent" cols="50" name="cmtContent">${cmt.cmtContent}</textarea>
+														<input type="hidden" id="boardId" name="boardId"
+															value="${cmt.boardId}"> <input type="hidden"
+															id="cmtNo" name="cmtNo" value="${cmt.cmtNo}">
+													</div>
+													<div class="modal-footer">
+														<button type="button" class="btn btn-secondary"
+															data-bs-dismiss="modal">ì·¨ì†Œ</button>
+														<button type="submit" class="btn btn-primary">ìˆ˜ì •</button>
+													</div>
+												</form>
 											</div>
-											<form id="frm" name="frm" action="cmtUpdate.do" method="post">
-												<div class="modal-body">
-													<textarea id="cmtContent" name="cmtContent">${cmt.cmtContent}</textarea>
-													<input type="hidden" id="boardId" name="boardId"
-														value="${cmt.boardId}"> <input type="hidden"
-														id="cmtNo" name="cmtNo" value="${cmt.cmtNo}">
-												</div>
-												<div class="modal-footer">
-													<button type="button" class="btn btn-secondary"
-														data-bs-dismiss="modal">Ãë¼Ò</button>
-													<button type="submit" class="btn btn-primary">¼öÁ¤</button>
-												</div>
-											</form>
 										</div>
 									</div>
-								</div>
-							</c:if>
-						</td>
-					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
-		</c:if>
-		
-		<c:if test="${userId ne null}">
-			<!-- ´ñ±Û Ãß°¡ -->
-			<form id="frm" name="frm" action="cmtInsert.do" method="post">
-				<br> <br>
-				<div>
+								</c:if>
+							</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+			</c:if>
+			
+			<c:if test="${userId ne null}">
+				<!-- ëŒ“ê¸€ ì¶”ê°€ -->
+				<form id="frm" name="frm" action="cmtInsert.do" method="post">
+					<br> <br>
 					<div>
-						<span><strong>Comments</strong></span> <span id="cCnt"></span>
+						<div>
+							<span><strong>Comments</strong></span> <span id="cCnt"></span>
+						</div>
+						<div>
+							<table class="table">
+								<tr>
+									<td>
+										<textarea style="width: 1100px" rows="3" cols="30"
+												id="cmtContent" name="cmtContent" placeholder="ëŒ“ê¸€ì„ ì…ë ¥í•˜ì„¸ìš”"></textarea><br> 
+										<input type="hidden" id="boardId" name="boardId"
+											value="${board[0].boardId}"> <input type="hidden"
+											id="userId" name="userId" value="${userId}">
+									</td>
+								</tr>
+							</table>
+							<input class="btn btn-success me-md-2" type="submit"
+								value="ëŒ“ê¸€ ì‘ì„±">
+							<button type="button" onclick="location.href='boardList.do'"
+									class="btn btn-success px-4 py-2">ëª©ë¡</button>
+						</div>
 					</div>
-					<div>
-						<table class="table">
-							<tr>
-								<td><textarea style="width: 1100px" rows="3" cols="30"
-										id="cmtContent" name="cmtContent" placeholder="´ñ±ÛÀ» ÀÔ·ÂÇÏ¼¼¿ä">
-								</textarea> <br> <input type="hidden" id="boardId" name="boardId"
-									value="${board[0].boardId}"> <input type="hidden"
-									id="userId" name="userId" value="${userId}"></td>
-							</tr>
-						</table>
-						<input class="btn btn-outline-primary me-md-2" type="submit"
-							value="´ñ±Û ÀÛ¼º">
-					</div>
-				</div>
-			</form>
-		</c:if>
-	</div>
-	<c:if test="${userId eq board[0].userId}">
-		<form action="boardDelete.do" method="post">
-			<input type="hidden" id="boardId" name="boardId"
-				value="${board[0].boardId }"> <input type="hidden" id="userId"
-				name="userId" value="${userId}">
-			<button type="submit" class="btn btn-danger" style="display: inline">±Û»èÁ¦</button>
-		</form>
-		<form action="boardUpdateForm.do" method="post">
-			<input type="hidden" id="boardId" name="boardId"
-				value="${board[0].boardId }"> <input type="hidden"
-				id="boardTitle" name="boardTitle" value="${board[0].boardTitle }">
-			<textarea class="form-control" rows="10" id="boardContent"
-				name="boardContent" style="display: none">${board[0].boardContent}</textarea>
-			<button type="submit" class="btn btn-danger" style="display: inline">±Û¼öÁ¤</button>
-		</form>
-	</c:if>
-	<button type="button" onclick="location.href='boardList.do'"
-		class="btn btn-primary">¸ñ·Ï</button>
-</div>
+				</form>
+			</c:if>
+		</div>
+</section>
 
 
 

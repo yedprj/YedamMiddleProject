@@ -13,9 +13,9 @@ public class BoardServiceImpl implements BoardService {
 	private SqlSession sqlSession = DataSource.getInstance().openSession(true); //true를 넣어줘야 커밋이된다.
 	
 	@Override
-	public List<BoardVO> boardSelectList() {
+	public List<BoardVO> boardList() {
 		// TODO 게시글 리스트
-		return sqlSession.selectList("boardSelectList");
+		return sqlSession.selectList("boardList");
 	}
 
 	@Override

@@ -6,7 +6,7 @@
 <mapper namespace="co.pyl.coby.board.service.BoardMapper">
 	
 	<!-- 게시판 목록 -->
-	<select id="boardSelectList" resultType="co.pyl.coby.board.vo.BoardVO">
+	<select id="boardList" resultType="co.pyl.coby.board.vo.BoardVO">
 		select * from cb_board 
 	</select>
 	

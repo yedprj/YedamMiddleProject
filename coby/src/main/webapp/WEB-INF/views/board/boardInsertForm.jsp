@@ -1,15 +1,47 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
-<!-- ∞‘Ω√±€ ¿‘∑¬ æÁΩƒ -->
-<div class="container">
-<form action="boardInsert.do" method="post">
-	<input type="text" id="userId" name="userId" value="${userId }"> 
-	<input type="text" id="boardTitle"  name="boardTitle" class="form-control mt-4 mb-2" placeholder="¡¶∏Ò¿ª ¿‘∑¬«ÿ¡÷ººø‰." required>
-	<div class="form-group">
-		<textarea class="form-control" rows="10" id="boardContent" name="boardContent"
-			placeholder="≥ªøÎ¿ª ¿‘∑¬«ÿ¡÷ººø‰" required></textarea>
-	</div><br/>
-	<button type="submit" class="btn btn-secondary mb-3">±€¿€º∫</button>
-	<input type="button" value="µ⁄∑Œ∞°±‚" onclick="history.back(-1);">
-</form>
-</div>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+
+<!-- Start Section -->
+<section class="container py-5">
+	<div class="row text-center pt-5 pb-3 mb-3">
+	    <div class="col-lg-6 m-auto">
+	        <h2 class="h2">Í≤åÏãúÍ∏Ä ÏûëÏÑ±</h2>
+	    </div>
+	</div>
+	
+	<!-- Í≤åÏãúÍ∏Ä ÏûÖÎ†• ÏñëÏãù -->
+	<form action="boardInsert.do" method="post">
+		<table class="board_view">
+            <colgroup>
+                <col width="15%" >
+                <col width="*" >
+            </colgroup>
+            
+            <tbody>
+            	<tr>
+            		<th scope="row">ÏûëÏÑ±Ïûê</th>
+            		<td>
+            			<input type="text" id="userId" name="userId" value="${userId }"> 
+            		</td>
+            	</tr>
+            	<tr>
+            		<th scope="row">Ï†úÎ™©</th>
+            		<td>
+            			<input type="text" id="boardTitle"  name="boardTitle" class="form-control mt-4 mb-2" placeholder="Ï†úÎ™©ÏùÑ ÏûÖÎ†•Ìï¥Ï£ºÏÑ∏Ïöî." required>
+            		</td>
+            	</tr>
+            	<tr>
+            		<th scope="row">ÎÇ¥Ïö©</th>
+            		<td>
+            			<textarea class="form-control" rows="10" cols="200" id="boardContent" name="boardContent"
+							placeholder="ÎÇ¥Ïö©ÏùÑ ÏûÖÎ†•Ìï¥Ï£ºÏÑ∏Ïöî" required></textarea>
+            		</td>
+            	</tr>
+            </tbody>
+		</table>
+		<div class="col mt-4">
+			<input type="submit" class="btn btn-success px-3 mx-3" value="Í∏ÄÏûëÏÑ±">
+			<input type="button" value="Îí§Î°úÍ∞ÄÍ∏∞" onclick="history.back(-1);" class="btn btn-success">
+		</div>
+	</form>
+</section>

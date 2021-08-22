@@ -1,14 +1,50 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
-<!-- °Ô½Ã±Û ¼öÁ¤ ¾ç½Ä -->
-<div class="container">
-<form action="boardUpdate.do" method="post">
-	<input type="text" id="boardId" name="boardId" value="${board.boardId}" >
-	<input type="text" id="boardTitle"  name="boardTitle" class="form-control mt-4 mb-2" value="${board.boardTitle}" disabled="disabled">
-	<div class="form-group">
-		<textarea class="form-control" rows="10" id="boardContent" name="boardContent">${board.boardContent}</textarea>
-	</div><br/>
-	<button type="submit" class="btn btn-secondary mb-3">¼öÁ¤</button>
-	<input type="button" value="µÚ·Î°¡±â" onclick="history.back(-1);">
-</form>
-</div>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+
+<!-- Start Section -->
+<section class="container py-5">
+	<div class="row text-center pt-5 pb-3 mb-3">
+		<div class="col-lg-6 m-auto">
+			<h2 class="h2">ê²Œì‹œê¸€ ìˆ˜ì •</h2>
+		</div>
+	</div>
+
+	<!-- ê²Œì‹œê¸€ ìˆ˜ì • ì–‘ì‹ -->
+	<form action="boardUpdate.do" method="post">
+		<table class="board_view">
+			<colgroup>
+				<col width="15%">
+				<col width="*">
+			</colgroup>
+
+			<tbody>
+				<tr>
+					<th scope="row">ì‘ì„±ì</th>
+					<td><input type="text" id="userId" name="userId"
+						value="${userId }">
+						<input type="hidden" id="boardId" name="boardId"
+							   value="${board.boardId}">
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">ì œëª©</th>
+					<td><input type="text" id="boardTitle" name="boardTitle"
+						class="form-control mt-4 mb-2" value="${board.boardTitle}" disabled="disabled">
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">ë‚´ìš©</th>
+					<td>
+					<textarea class="form-control" rows="10" cols="200"
+						id="boardContent" name="boardContent">${board.boardContent}</textarea>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="col mt-4">
+			<input type="submit" class="btn btn-success px-3 mx-3" value="ê¸€ ìˆ˜ì •">
+			<input type="button" value="ë’¤ë¡œê°€ê¸°" onclick="history.back(-1);"
+				class="btn btn-success">
+		</div>
+	</form>
+</section>
