@@ -1,5 +1,7 @@
 package co.pyl.coby.mypage.command;
 
+import java.io.File;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -27,6 +29,9 @@ public class UpdateUser implements Command {
 		  HttpSession session = request.getSession();
 		  
 	      String realPath = session.getServletContext().getRealPath("/") + "image\\";
+	      File dir = new File(realPath);
+	      if (!dir.exists()) dir.mkdirs();
+	      
 	      String fileName = null;
 	      String userProfile = null;
 	      

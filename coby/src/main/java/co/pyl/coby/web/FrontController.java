@@ -45,10 +45,12 @@ import co.pyl.coby.cs.command.CscmtDelete;
 import co.pyl.coby.cs.command.CscmtInsert;
 import co.pyl.coby.cs.command.CscmtUpdate;
 import co.pyl.coby.mypage.command.ApplicateList;
+import co.pyl.coby.mypage.command.DeleteUser;
 import co.pyl.coby.mypage.command.MyPage;
 import co.pyl.coby.mypage.command.UpdateUser;
 import co.pyl.coby.mypage.command.UpdateUserForm;
 import co.pyl.coby.mypage.command.WishList;
+import co.pyl.coby.mypage.command.WishListConfirm;
 import co.pyl.coby.mypage.command.deleteUserForm;
 import co.pyl.coby.notice.command.NoticeDelete;
 import co.pyl.coby.notice.command.NoticeInsert;
@@ -60,6 +62,7 @@ import co.pyl.coby.notice.command.NoticeUpdateForm;
 import co.pyl.coby.purchase.command.PurchaseForm;
 import co.pyl.coby.purchase.command.PurchaseInsert;
 import co.pyl.coby.purchase.command.PurchaseList;
+import co.pyl.coby.purchase.command.PurchaseNotApplicate;
 import co.pyl.coby.purchase.command.PurchaseSelect;
 import co.pyl.coby.login.command.LoginForm;
 import co.pyl.coby.login.command.SignUpForm;
@@ -142,15 +145,18 @@ public class FrontController extends HttpServlet {
 		map.put("/wishList.do", new WishList()); //위시리스트 보기
 		map.put("/updateUserForm.do", new UpdateUserForm()); //회원정보수정 폼
 		map.put("/updateUser.do", new UpdateUser()); //회원정보수정
+		map.put("/deleteUser.do", new DeleteUser()); //회원 탈퇴
 		map.put("/deleteUserForm.do", new deleteUserForm()); //회원탈퇴 폼
 		map.put("/applicateList.do", new ApplicateList()); 
 		map.put("/applicateForm.do", new ApplicateForm());
+		map.put("/wishListConfirm.do", new WishListConfirm());
 
 		// 공동구매
 		map.put("/purchaseList.do", new PurchaseList()); // 공동구매 리스트 보기
 		map.put("/purchaseSelect.do", new PurchaseSelect()); // 공동구매 상세보기
 		map.put("/purchaseForm.do", new PurchaseForm()); // 공동구매 작성 폼 으로 가기
 		map.put("/purchaseInsert.do", new PurchaseInsert()); // 공동구매 등록 하기
+		map.put("/purchaseNotApplicate.do", new PurchaseNotApplicate()); //공동구매 글 올린 사람이 참여신청 못하게 확인하기
 	}
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)

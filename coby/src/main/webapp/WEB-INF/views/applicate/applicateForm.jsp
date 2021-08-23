@@ -1,6 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <script>
+
+	let dividedPrice = ${dividedPrice};
+	let bossPrice = ${bossPrice};
+	//나왔따!!!!!!!!!!!!!!!!!이제 이거를 각각 update에 넣으면 된다!!!!!!!!!
+	console.log(dividedPrice, bossPrice);
+	
+
 	//통화 변경 함수
 	function numberWithCommas(x) {
 		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");

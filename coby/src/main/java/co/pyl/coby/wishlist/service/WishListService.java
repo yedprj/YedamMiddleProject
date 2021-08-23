@@ -18,4 +18,7 @@ public interface WishListService {
 	public int insertWishList(WishListVO vo);
 	
 	public int updateUser(UserVO vo);
+	
+	//위시리스트에 이미 있는지 조회
+	public WishListVO wishListConfirm(WishListVO vo);
 }

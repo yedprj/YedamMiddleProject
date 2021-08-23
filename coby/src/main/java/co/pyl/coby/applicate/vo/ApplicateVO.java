@@ -20,4 +20,6 @@ public class ApplicateVO {
 	
 	private String prTitle;
 	
+	private int bossPrice;
+	private int dividedPrice;
 }
