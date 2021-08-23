@@ -28,10 +28,8 @@
 		</div>
 		<div class="col-md-6">
 			<div class="h-100 p-5 bg-light border rounded-3">
-				<h2 onclick="location.href='wishList.do'">위시리스트</h2>
-				<h2 onclick="location.href='applicateList.do'">결제 내역</h2>
-				<h2>내 등록 물품 보기</h2>
-				<h2>내 글/댓글 보기</h2>
+				<h2 onclick="location.href='wishList.do'" style="cursor:pointer">위시리스트</h2>
+				<h2 onclick="location.href='applicateList.do'" style="cursor:pointer">참여 현황</h2>
 			</div>
 		</div>
 	</div>
