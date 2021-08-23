@@ -47,7 +47,7 @@
 
 						</div>
 						<div class="card-footer">
-							<small class="text-muted">${item.prStartdate }</small>
+							<small class="text-muted">${item.prStartdate } ~ ${item.prEnddate }</small>
 						</div>
 					</div>
 				</div>
