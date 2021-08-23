@@ -20,19 +20,21 @@ public class PurchaseSelect implements Command {
 		
 		if (request.getParameter("prNo") == null) {
 			vo.setPrNo((int) request.getAttribute("prNo"));
-			
+			ApplicateVO applicatevo = (ApplicateVO) request.getAttribute("applicatevo");
+			dao.applicateInsert(applicatevo);
 		} else {
 			vo.setPrNo(Integer.valueOf(request.getParameter("prNo")));
 			
 		}
-		
 		
 		List<PurchaseVO> list = dao.purchaseSelect(vo);
 		
 		int people = dao.ApplicatePeople(vo);
 		ApplicateVO apvo = new ApplicateVO();
 		apvo.setPrNo(vo.getPrNo());
-		
+
+		dao.applicateSelect(apvo);
+
 		request.setAttribute("list", list);
 		request.setAttribute("people", people);
 		request.setAttribute("applicateSelect", dao.applicateSelect(apvo));

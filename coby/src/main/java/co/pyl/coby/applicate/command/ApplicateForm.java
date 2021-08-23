@@ -17,6 +17,7 @@ public class ApplicateForm implements Command {
 		
 		int prNo = Integer.parseInt(request.getParameter("frmPrNo"));
 		int dividedPrice = Integer.parseInt(request.getParameter("frmDividedPrice"));
+		int bossPrice = Integer.parseInt(request.getParameter("frmBossPrice"));
 
 		PurchaseService dao = new PurchaseServiceImpl();
 		PurchaseVO vo = new PurchaseVO();
@@ -27,6 +28,7 @@ public class ApplicateForm implements Command {
 		
 		request.setAttribute("list", list);
 		request.setAttribute("dividedPrice", dividedPrice);
+		request.setAttribute("bossPrice", bossPrice);
 		
 		return "applicate/applicateForm";
 	}

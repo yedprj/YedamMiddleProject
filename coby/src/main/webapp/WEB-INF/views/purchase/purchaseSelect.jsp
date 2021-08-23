@@ -27,6 +27,7 @@
 	let people = ${people };
 	let ajaxParamPrNo = prNo;
 	let ajaxParamDividedPrice = followPrice(originalPrice, people);
+	let ajaxParamBossPrice = bossPrice(originalPrice, people);
 	
 	//통화 변경 함수
 	function numberWithCommas(x) {
@@ -35,19 +36,56 @@
 	
 	//참여신청 버튼 눌러서 참여신청 폼으로 가기
 	function applicate() {
-		
 		if (userId === "") {
 			alert("로그인이 필요합니다.");
 			location.href="loginForm.do";
 		} else {
-			frm.frmPrNo.value=ajaxParamPrNo;
-			console.log(ajaxParamPrNo);
-			frm.frmDividedPrice.value=ajaxParamDividedPrice;
-			console.log(ajaxParamDividedPrice);
-			frm.submit();
+			//참여신청에 글쓴사람이 있는지 확인한다.
+			$.ajax({
+				url: 'purchaseNotApplicate.do',
+				type: 'POST',
+				data: {prNo : prNo,
+					userId : userId},
+				success: function(data) {
+					console.log('ajax 성공');
+					console.log('있음?없음? : ' + data);
+					data = $.trim(data);
+					if (data == "있음") {
+						alert("글 작성자는 참여신청을 할 수 없습니다.")
+					} else if (data == "없음") {
+						frm.frmPrNo.value=ajaxParamPrNo;
+						console.log(ajaxParamPrNo);
+						frm.frmDividedPrice.value=ajaxParamDividedPrice;
+						console.log(ajaxParamDividedPrice);
+						frm.frmBossPrice.value=ajaxParamBossPrice;
+						frm.submit();
+					}
+				},
+				error: function() {
+					console.log('ajax 실패');
+				}
+			});
 		}
 
 	}
+	
+	//페이지 로딩시 위시리스트에 글이 이미 있으면 하트는 빨간색
+	$(document).ready(function() {
+		$.ajax({
+			url: 'wishListConfirm.do',
+			data: {prNo : prNo,
+					userId : userId},
+			type: 'POST',
+			success: function(data) {
+				console.log(data);
+				let dataExist = $.trim(data);
+				if (dataExist == "데이터있음") {
+					$( "#heart" ).addClass( "press", 1000 );
+				}
+			}
+	});
+		
+		});
 
 	$(function() {
 	    $( "#heart" ).click(function() {
@@ -57,50 +95,49 @@
 				location.href="loginForm.do";
 			//로그인된 상태면 위시리스트 추가
 			} else {
-				let classContains = heart.classList.contains('press');
-				if (!classContains) {
-					$.ajax({
-						url: 'WishListInsert',
-						type: 'POST',
-						data: {prNo : prNo},
-						success: function(result) {
+				//이미 위시리스트에 있으면 추가하지 않음.
+							let classContains = heart.classList.contains('press');
+							if (!classContains) {
+								$.ajax({
+									url: 'WishListInsert',
+									type: 'POST',
+									data: {prNo : prNo},
+									success: function(result) {
 
-								console.log('insert 성공');
+											console.log('insert 성공');
+											
+									},
+									error: function() {
+										console.log('ajax 에러');
+									}
+								});
+						
+						      $( "#heart" ).addClass( "press", 1000 );
+						      let wishListMove = confirm('위시리스트에 추가했습니다. 위시리스트로 이동하시겠습니까?');
+						      if (wishListMove) {
+						    	  location.href="wishList.do";
+						      }
+							} else {
+								$.ajax({
+									url: 'WishListDelete',
+									type: 'POST',
+									data: {prNo : prNo},
+									success: function(result) {
+										console.log('delete 성공');
+									},
+									error: function() {
+										console.log('ajax 에러');
+									}
+								});
+								
+								
+								$( "#heart" ).removeClass( "press" );
+								alert('위시리스트에서 제거했습니다.');	
+							}		
+					}
 
-						},
-						error: function() {
-							console.log('ajax 에러');
-						}
-					});
-			
-			      $( "#heart" ).addClass( "press", 1000 );
-			      let wishListMove = confirm('위시리스트에 추가했습니다. 위시리스트로 이동하시겠습니까?');
-			      if (wishListMove) {
-			    	  location.href="wishList.do";
-			      }
-				} else {
-					$.ajax({
-						url: 'WishListDelete',
-						type: 'POST',
-						data: {prNo : prNo},
-						success: function(result) {
-
-								console.log('delete 성공');
-
-
-						},
-						error: function() {
-							console.log('ajax 에러');
-						}
-					});
-					
-					
-					$( "#heart" ).removeClass( "press" );
-					alert('위시리스트에서 제거했습니다.');	
-				}
-			}
-	    });
-	  });
+				})
+			});
 	
 	
 	//댓글 가져오기 ajax
@@ -590,6 +627,7 @@
 								<input type="hidden" id="frmPrNo" name="frmPrNo" value="">
 								<input type="hidden" id="frmDividedPrice" name="frmDividedPrice"
 									value="">
+								<input type="hidden" id="frmBossPrice" name="frmBossPrice" value="">
 							</form>
 							
 							<c:if test="${user.userId eq list[0].userId }">
@@ -607,69 +645,28 @@
 						<!-- 댓글 폼 -->
 						<div class="row py-3">
 							<div class="col-sm-10">
-							  <label for="comment">댓글 입력</label>
+								<label for="comment">댓글 입력</label>
 								<div class="form-floating">
-									<textarea class="form-control" id="prcommentcontent" name="prcommentcontent"
-										      style="height: 100px"></textarea>
+									<textarea class="form-control" id="prcommentcontent"
+										name="prcommentcontent" style="height: 100px"></textarea>
 								</div>
 							</div>
 							<div class="col-sm-2 align-self-center text-center">
-								<button type="button" class="btn btn-outline-dark btn-lg" id="prcmtinsertbtn" >등록</button>
-								
+								<button type="button" class="btn btn-outline-dark btn-lg"
+									id="prcmtinsertbtn">등록</button>
+
 							</div>
 						</div>
 
 						<div class="py-1">
-							<small class="py-1">댓글 n개</small>
+							<small class="py-1">댓글</small>
 							<div>
-								
+
 								<!-- 댓글 시작 -->
 
 								<div class="area-comentarios">
 									<ul id="cmt">
-										<li class="unico-comentario normal">
-											<div class="avatar">
-												<img alt="" src="image/user.jpg"
-													class="avatar avatar-60 photo" height="60" width="60">
-											</div>
-											<div class="conteudo">
-												<div class="comment-info">
-													<b>닉네임</b> - 작성날짜
-												</div>
-												<div class="comment-text">
-													<p>댓글내용</p>
-												</div>
-
-											</div>
-										</li>
-
-										<li class="unico-comentario children">
-											<div class="avatar">
-												<img alt="" src="image/user.jpg"
-													class="avatar avatar-60 photo" height="60" width="60">
-											</div>
-											<div class="conteudo">
-												<div class="comment-info">
-													<b>닉네임</b> - 작성날짜
-												</div>
-												<div class="comment-text">
-													<p>
-														글내용 내용 내용 내용 내용 내용 맛있는 불고기버거 맛있는 참치샌드위치<br> 이마트 홈플러스
-														코스트코 엥엥엥엥엥엥엥엥엥엥
-													</p>
-													<div class="mt8 over_hide">
-													  <span class="comment-btn-layout">
-													    <a href="javascript:reComment( 80546305, 0 );javascript:update( 80546305, 0 )">
-														<button type="button" class="btn-modify">수정</button></a>
-													   <span id="delButton_80546305">
-													     <a href="del_comment_ok.php?id=freeboard&amp;no=7560260&amp;c_no=80546305" onclick="return confirm('삭제 하시겠습니까?')">
-													     <button type="button" class="btn-delete">삭제</button></a></span>
-														</span>
-													</div>
-
-												</div>
-											</div>
-										</li>
+										<li class="unico-comentario normal"></li>
 									</ul>
 								</div>
 								<!-- 댓글 끝 -->
