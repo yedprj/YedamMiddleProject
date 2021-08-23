@@ -25,19 +25,28 @@
 
 	<update id="updateUser" parameterType="UserVO">
 		update cb_user
-		set user_pw=#{userPw}, user_nickname=#{userNickname}, user_email=#{userEmail},
+		set
+		user_pw=#{userPw}, user_nickname=#{userNickname},
+		user_email=#{userEmail},
 		user_profile=#{userProfile}
-		where user_id=#{userId}
+		where
+		user_id=#{userId}
 	</update>
-	
+
 	<insert id="insertWishList" parameterType="WishListVO">
 		insert into cb_wish
 		values(w_seq.nextval, #{prNo}, #{userId})
 	</insert>
-	
+
 	<delete id="deleteWishList2" parameterType="WishListVO">
 		delete from cb_wish
 		where pr_no=#{prNo}
 	</delete>
+
+	<select id="wishListConfirm" parameterType="WishListVO"
+		resultType="WishListVO">
+		select w_no from cb_wish
+		where pr_no = #{prNo} and user_id=#{userId}
+	</select>
 
 </mapper>

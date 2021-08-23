@@ -16,4 +16,5 @@ public interface BoardMapper {
 	int cmtInsert(CmtVO vo);
 	int cmtUpdate(CmtVO vo);
 	int cmtDelete(CmtVO vo);
+	int countCmt(int n);
 }

@@ -171,4 +171,15 @@ public class PurchaseVO {
 		this.userId = userId;
 	}
 
+	@Override
+	public String toString() {
+		return "PurchaseVO [prNo=" + prNo + ", prCategory=" + prCategory + ", prTitle=" + prTitle + ", prMin=" + prMin
+				+ ", prMax=" + prMax + ", prStartdate=" + prStartdate + ", prEnddate=" + prEnddate + ", prPrice="
+				+ prPrice + ", prPhoto1=" + prPhoto1 + ", prPhoto2=" + prPhoto2 + ", prPhoto3=" + prPhoto3
+				+ ", prContent=" + prContent + ", prPeople=" + prPeople + ", userId=" + userId + ", userNickname="
+				+ userNickname + ", wNo=" + wNo + ", userProfile=" + userProfile + ", dividedPrice=" + dividedPrice
+				+ "]";
+	}
+	
+	
 }

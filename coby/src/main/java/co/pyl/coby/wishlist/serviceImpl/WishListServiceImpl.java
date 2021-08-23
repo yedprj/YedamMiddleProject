@@ -43,4 +43,10 @@ public class WishListServiceImpl implements WishListService {
 		return map.deleteWishList2(vo);
 	}
 
+	@Override
+	public WishListVO wishListConfirm(WishListVO vo) {
+		// TODO Auto-generated method stub
+		return map.wishListConfirm(vo);
+	}
+
 }

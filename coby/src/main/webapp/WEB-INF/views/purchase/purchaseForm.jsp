@@ -1,12 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+	
 <style>
-.imgs_wrap {
-	min-height: 200px;
-	border: 1px solid #888;
+ #img_wrap {
+	width: 300px;
+	margin-top: 10px;
+}
+#img_wrap #img,#img_wrap #img2,#img_wrap #img3 {
+	max-width: 100%;
 }
 </style>
+
+
 <script src="https://use.fontawesome.com/8c8d6bcd7e.js"></script>
 
 <section class="bg-success py-5">
@@ -99,10 +104,10 @@
 							등록</label>
 						<div class="col-sm-10">
 							  <input class="file-upload" name="prPhoto1" id="file-input" type="file" accept="image/*"><br>
-							  <input class="file-upload" name="prPhoto2" id="file-input" type="file" accept="image/*"><br>
-							  <input class="file-upload" name="prPhoto3" id="file-input" type="file" accept="image/*">
+							  <input class="file-upload" name="prPhoto2" id="file-input2" type="file" accept="image/*"><br>
+							  <input class="file-upload" name="prPhoto3" id="file-input3" type="file" accept="image/*">
 			    			  <div class="col align-self-center text-info">*사진은 3개까지만 등록가능합니다.</div>
-							  <div id="imgs_wrap"></div>
+							  <div id="img_wrap"><img class="ratio ratio-16x9" id="img" /><img class="ratio ratio-16x9" id="img2" /><img class="ratio ratio-16x9" id="img3" /></div>
 						</div>
 					</div>
 
@@ -129,106 +134,76 @@
 <script>
 	document.getElementById('prStartDate').value= new Date().toISOString().substring(0, 10); //현재 날짜 가져오기
 </script>
+
+    
 <script>
-	(upload = function(){
-		$id = function(id){ return document.getElementById(id) }
-		
-		var sel_files = [];
-		var btnChooseID; //파일 선택 버튼
-		var btnSendID; // 전송 버튼
-		var appendZone; // 이미지가 표시될 영역
-		var sendURL;
-		var img_style = 'width:200px;height:150px;margin:4px';
-		var chk_style = 'position:absolute; right:7px;bottom:7px;width:20px;height:20px;opacity:.7';
-		var div_style = 'display:inline-block; position:relative';
-		upload.start = function(chooseID, sendID, apZone, url){
-			btnChooseID = $id(chooseID);
-			btnSendID = $id(sendID);
-			appendZone = $id(apZone);
-			sendURL = url;
-		
-			// file tag로 파일을 선택한 경우
-			btnChooseID.onchange = function(e){
-				var files = e.target.files;
-				var fileArr = Array.prototype.slice.call(files);
-				for(f of fileArr){
-					upload.imageLoader(f);
-				}
-			}
+	var sel_file;
+	 
+    $(document).ready(function() {
+        $("#file-input").on("change", handleImgFileSelect);
+        $("#file-input2").on("change", handleImgFileSelect2);
+        $("#file-input3").on("change", handleImgFileSelect3);
+    }); 
 
-			// drap and drop을 사용한 경우
-			appendZone.addEventListener('dragenter', function(e) {
-				e.preventDefault();
-				e.stopPropagation();
-			}, false)
-			appendZone.addEventListener('dragover', function(e) {
-				e.preventDefault();
-				e.stopPropagation();
-			}, false)
-			appendZone.addEventListener('drop', function(e) {
-				e.stopPropagation();
-				e.preventDefault();
-				var dt = e.dataTransfer;
-				var files = dt.files;
-				for(f of files) upload.imageLoader(f);
-			}, false)
-			
-			
-			// 이미지 로드
-			upload.imageLoader = function(file){
-				sel_files.push(f);
-				
-				var reader = new FileReader();
-				reader.readAsDataURL(f);
-				reader.onload = function(ee){
-					let img = document.createElement('img');
-					img.setAttribute('style', img_style);
-					img.src = ee.target.result;
-					appendZone.append(img_div(img));
-				}
-			}
-			
-			// 파일 전송
-			btnSendID.onclick = function(e){
-				var data = new FormData();
-				var uploadChk= document.getElementsByClassName('upload_chk');
-				
-				for(i=0 ; i<sel_files.length ; i++){
-					if(uploadChk[i].checked){
-						var name = 'image_';
-						data.append(name, sel_files[i]);
-					}
-				}
-				
-				var xhr = new XMLHttpRequest();
-				xhr.open("POST", sendURL);
-				xhr.send(data);
-				xhr.onreadystatechange = function(){
-					if(this.status==200 && this.readyState == 4){
-						console.log("OK.");
-					}
-				}
-				
-			}
-			
-			// 이미지 개당 div 생성
-			img_div = function(img){
-				var div = document.createElement('div');
-				div.setAttribute('style', div_style);
-				var btn = document.createElement('input');
-				btn.setAttribute('type', 'checkbox');
-				btn.setAttribute('class', 'upload_chk');
-				btn.setAttribute('checked', 'checked');
-				btn.setAttribute('style', chk_style);
-				div.appendChild(img);
-				div.appendChild(btn);
-				return div;
-			}
-		}		
 
-	})()
+    function handleImgFileSelect(e) {
+        var files = e.target.files;
+        var filesArr = Array.prototype.slice.call(files);
+
+        filesArr.forEach(function(f) {
+            if(!f.type.match("image.*")) {
+                alert("확장자는 이미지 확장자만 가능합니다.");
+                return;
+            }
+
+            sel_file = f;
+
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $("#img").attr("src", e.target.result);
+            }
+            reader.readAsDataURL(f);
+        });
+    }
+    
+    function handleImgFileSelect2(e) {
+        var files = e.target.files;
+        var filesArr = Array.prototype.slice.call(files);
+
+        filesArr.forEach(function(f) {
+            if(!f.type.match("image.*")) {
+                alert("확장자는 이미지 확장자만 가능합니다.");
+                return;
+            }
+
+            sel_file = f;
+
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $("#img2").attr("src", e.target.result);
+            }
+            reader.readAsDataURL(f);
+        });
+    }
+    
+    function handleImgFileSelect3(e) {
+        var files = e.target.files;
+        var filesArr = Array.prototype.slice.call(files);
+
+        filesArr.forEach(function(f) {
+            if(!f.type.match("image.*")) {
+                alert("확장자는 이미지 확장자만 가능합니다.");
+                return;
+            }
+
+            sel_file = f;
+
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $("#img3").attr("src", e.target.result);
+            }
+            reader.readAsDataURL(f);
+        });
+    }
 </script>
 
-<script>
-	upload.start('file-input', 'submit', 'imgs_wrap', 'file_upload_action.jsp');
-</script>

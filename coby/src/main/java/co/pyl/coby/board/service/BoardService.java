@@ -15,4 +15,5 @@ public interface BoardService {
 	int cmtInsert(CmtVO vo); //댓글입력
 	int cmtUpdate(CmtVO vo); //댓글수정
 	int cmtDelete(CmtVO vo); //댓글삭제
+	int countCmt(int n);
 }

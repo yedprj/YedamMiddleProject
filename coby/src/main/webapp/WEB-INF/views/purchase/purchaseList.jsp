@@ -38,15 +38,17 @@
 							<img class="card-img-top" src="${item.prPhoto1 }"
 								alt="Card image cap">
 						</div>
+
 						<div class="card-body">
 							<h5 class="card-title">${item.prTitle }</h5>
 							<p class="card-text">${item.prPrice }원</p>
 
 							<a class="btn btn-primary" onclick="">상세보기</a>
+
 						</div>
-					</div>
-					<div class="card-footer">
-						<small class="text-muted">${item.prStartdate }</small>
+						<div class="card-footer">
+							<small class="text-muted">${item.prStartdate }</small>
+						</div>
 					</div>
 				</div>
 			</div>
