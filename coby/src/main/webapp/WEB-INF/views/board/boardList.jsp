@@ -15,7 +15,7 @@
     <section class="container py-5">
         <div class="row text-center pt-5 pb-3">
             <div class="col-lg-6 m-auto">
-                <h2 class="h2">게시글 상세보기</h2>
+                <h2 class="h2">커뮤니티</h2>
             </div>
         </div>
         <div class="row">

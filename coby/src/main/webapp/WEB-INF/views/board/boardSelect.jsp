@@ -13,11 +13,21 @@
 	}
 </script>
 
+<section class="bg-success py-5">
+	<div class="container">
+		<div class="row align-items-center py-3">
+			<div class="col-md-8 text-white">
+				<h1>Community</h1>
+			</div>
+		</div>
+	</div>
+</section>
+
 <!-- Start Section -->
 <section class="container py-5">
 	<div class="row text-center pt-5 pb-3 mb-3">
 		<div class="col-lg-6 m-auto">
-			<h2 class="h2">게시판 상세보기</h2>
+			<h2 class="h2">커뮤니티 상세보기</h2>
 		</div>
 	</div>
 	<!-- 게시판 -->

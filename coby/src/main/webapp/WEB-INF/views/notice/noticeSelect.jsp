@@ -13,6 +13,16 @@
 	}
 </script> -->
 
+<section class="bg-success py-5">
+	<div class="container">
+		<div class="row align-items-center py-3">
+			<div class="col-md-8 text-white">
+ 				<h1>Notice</h1>
+			</div>
+		</div>
+	</div>
+</section>
+
 <!-- Start Section -->
 <section class="container py-5">
 	<div class="row text-center pt-5 pb-3 mb-3">
@@ -47,7 +57,7 @@
 	</div>
 	<!-- 공지사항 수정 삭제 버튼 -->
 	<c:if test="${userId eq 'admin'}">
-		<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+		<div class="d-grid gap-2 d-md-flex justify-content-md-end mt-3">
 			<form action="noticeDelete.do" method="post">
 				<input type="hidden" id="ntNo" name="ntNo" value="${list.ntNo}"> 
 				<button type="submit" class="btn btn-outline-danger">공지사항삭제</button>

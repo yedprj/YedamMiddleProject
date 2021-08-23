@@ -1,30 +1,33 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>공동구매 폼</title>
+
 <style>
-.imgs_wrap{
-	min-height:200px;
-	border:1px solid #888;
+.imgs_wrap {
+	min-height: 200px;
+	border: 1px solid #888;
 }
 </style>
 <script src="https://use.fontawesome.com/8c8d6bcd7e.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script>
 
-</script>
-</head>
-<body>
+<section class="bg-success py-5">
 	<div class="container">
-		<div
-			class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
-			<span class="link-dark fs-4">공동구매 등록</span>
+		<div class="row align-items-center py-3">
+			<div class="col-md-8 text-white">
+				<h1>Group Buying</h1>
+			</div>
 		</div>
+	</div>
+</section>
 
-		<div class="row pb-3 mb-3">
+<section class="container py-5">
+	<div class="row text-center pt-5 pb-3 mb-3">
+	    <div class="col-lg-6 m-auto">
+	        <h2 class="h2">공동구매 등록</h2>
+	    </div>
+	</div>
+	
+	<!-- 공동구매 등록 폼 -->
+	<div class="row pb-3 mb-3">
 			<div class="col-sm-9">
 				<form id="frm" name="frm" action="purchaseInsert.do" method="post" enctype="multipart/form-data">
 					<div class="row pb-3 mb-3 border-bottom">
@@ -120,12 +123,13 @@
 				</form>
 			</div>
 		</div>
-	</div>
-</body>
-	<script>
-		document.getElementById('prStartDate').value= new Date().toISOString().substring(0, 10); //현재 날짜 가져오기
-	</script>
-	<script>
+</section>
+
+
+<script>
+	document.getElementById('prStartDate').value= new Date().toISOString().substring(0, 10); //현재 날짜 가져오기
+</script>
+<script>
 	(upload = function(){
 		$id = function(id){ return document.getElementById(id) }
 		
@@ -223,8 +227,8 @@
 		}		
 
 	})()
-	</script>
-	<script>
-	  upload.start('file-input', 'submit', 'imgs_wrap', 'file_upload_action.jsp');
-    </script>
-</html>
+</script>
+
+<script>
+	upload.start('file-input', 'submit', 'imgs_wrap', 'file_upload_action.jsp');
+</script>

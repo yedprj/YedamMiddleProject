@@ -3,14 +3,15 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <section class="bg-success py-5">
-       <div class="container">
-           <div class="row align-items-center py-3">
-               <div class="col-md-8 text-white">
-                   <h1>Notice</h1>
-               </div>
-           </div>
-       </div>
-   </section>
+	<div class="container">
+		<div class="row align-items-center py-3">
+			<div class="col-md-8 text-white">
+ 				<h1>Notice</h1>
+			</div>
+		</div>
+	</div>
+</section>
+
    <!-- Start Section -->
    <section class="container py-5">
        <div class="row text-center pt-5 pb-3">

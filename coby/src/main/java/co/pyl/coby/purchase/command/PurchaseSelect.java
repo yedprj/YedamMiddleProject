@@ -30,7 +30,7 @@ public class PurchaseSelect implements Command {
 		List<PurchaseVO> list = dao.purchaseSelect(vo);
 		int people = dao.ApplicatePeople(vo);
 		ApplicateVO apvo = new ApplicateVO();
-		apvo.setPrNo(Integer.valueOf(request.getParameter("prNo")));
+		apvo.setPrNo(vo.getPrNo());
 		
 		request.setAttribute("list", list);
 		request.setAttribute("people", people);
