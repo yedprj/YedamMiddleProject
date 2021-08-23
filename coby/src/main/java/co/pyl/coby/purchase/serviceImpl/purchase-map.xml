@@ -75,6 +75,13 @@
 		</selectKey>
 	</insert>
 
+    <!-- 공동구매글 수정 -->
+    <update id = "purchaseUpdate" parameterType="PurchaseVO">
+      UPDATE cb_purchase
+      SET pr_price=#{prPrice}, pr_content=#{prContent}
+      WHERE pr_no = #{prNo}
+    </update>
+
 	<select id="ApplicatePeople" parameterType="PurchaseVO"
 		resultType="_int">
 		select count(*) AS

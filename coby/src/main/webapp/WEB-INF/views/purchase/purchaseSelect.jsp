@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<% pageContext.setAttribute("replaceChar", "\n"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -605,7 +607,7 @@
 						</div>
 						<div>
 							<div class="py-3 border-top">내용</div>
-							<div class="border rounded-3 my-3 p-2">${list[0].prContent }</div>
+							<div class="border rounded-3 my-3 p-2">${fn:replace(list[0].prContent, replaceChar, "<br/>") }</div>
 						</div>
 
 						<div class="py-2">

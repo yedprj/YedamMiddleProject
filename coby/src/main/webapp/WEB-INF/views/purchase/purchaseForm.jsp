@@ -132,7 +132,9 @@
 
 
 <script>
-	document.getElementById('prStartDate').value= new Date().toISOString().substring(0, 10); //현재 날짜 가져오기
+    const offset = new Date().getTimezoneOffset() * 60000;
+    const today = new Date(Date.now() - offset);
+	document.getElementById('prStartDate').value= today.toISOString().substring(0, 10); //현재 날짜 가져오기
 </script>
 
     
