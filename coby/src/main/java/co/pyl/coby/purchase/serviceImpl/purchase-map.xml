@@ -24,36 +24,41 @@
 	<select id="purchaseCmtList" parameterType="PrCmtVO"
 		resultType="PrCmtVO">
 		SELECT b.*, c.user_nickname, c.user_profile
-		FROM cb_prcmt b join cb_user c
+		FROM cb_prcmt b
+		join cb_user c
 		on b.user_id = c.user_id
 		where b.pr_no = #{prNo}
 		order by
 		prcmt_date
 	</select>
-	
+
 	<!-- 공동구매 글 상세보기에서 댓글 입력하기 -->
 	<insert id='purchaseCmtInsert' parameterType="PrCmtVO">
-	  INSERT INTO cb_prcmt 
-	  VALUES(pr_cmt_seq.nextval,#{prcmtContent},sysdate,#{prNo},#{userId})
-	  	<selectKey keyProperty="prcmtNo" resultType="int" order="AFTER">
+		INSERT INTO cb_prcmt
+		VALUES(pr_cmt_seq.nextval,#{prcmtContent},sysdate,#{prNo},#{userId})
+		<selectKey keyProperty="prcmtNo" resultType="int"
+			order="AFTER">
 			SELECT
 			pr_cmt_seq.currval as prcmtNo FROM dual
 		</selectKey>
 	</insert>
 	<!-- 공동구매 댓글 입력후 그거 바로 가져오기 -->
-	<select id="purchaseCmtSelect" parameterType="int" resultType="PrCmtVO">
-	  SELECT b.*, c.user_nickname, c.user_profile
-	  FROM cb_prcmt b JOIN cb_user c
-	  on b.user_id = c.user_id
-	  WHERE prCmt_No = #{prCmtNo}
+	<select id="purchaseCmtSelect" parameterType="int"
+		resultType="PrCmtVO">
+		SELECT b.*, c.user_nickname, c.user_profile
+		FROM cb_prcmt b
+		JOIN cb_user c
+		on b.user_id = c.user_id
+		WHERE prCmt_No = #{prCmtNo}
 	</select>
-	
+
 	<!-- 공동구매 글 상세보기에서 댓글 삭제하기 -->
 	<delete id="purchaseCmtDelete" parameterType="PrCmtVO">
-	  DELETE FROM cb_prcmt
-	  WHERE prcmt_no = #{prcmtNo}
+		DELETE FROM
+		cb_prcmt
+		WHERE prcmt_no = #{prcmtNo}
 	</delete>
-	
+
 	<!-- 공동구매글 작성 -->
 	<insert id="purchaseInsert" parameterType="PurchaseVO">
 		INSERT INTO cb_purchase VALUES (
@@ -61,7 +66,7 @@
 		#{prTitle}, #{prMin}, #{prMax}, #{prStartdate},
 		#{prEnddate},
 		#{prPrice},
-		#{prPhoto1}, #{prPhoto2}, #{prPhtro3}, #{prContent}, 1,
+		#{prPhoto1}, #{prPhoto2}, #{prPhoto3}, #{prContent}, 1,
 		#{userId}
 		)
 		<selectKey keyProperty="prNo" resultType="int" order="AFTER">
@@ -69,7 +74,6 @@
 			pr_seq.currval as prNo from dual
 		</selectKey>
 	</insert>
-
 
 	<select id="ApplicatePeople" parameterType="PurchaseVO"
 		resultType="_int">
@@ -94,7 +98,8 @@
 	<select id="applicateSelectMypage" parameterType="ApplicateVO"
 		resultType="ApplicateVO">
 		select a.*, b.pr_title
-		from cb_applicate a join cb_purchase b
+		from cb_applicate a join cb_purchase
+		b
 		on a.pr_no = b.pr_no
 		where a.user_id=#{userId}
 	</select>
@@ -105,9 +110,36 @@
 		cb_applicate values(ap_seq.nextval, #{prNo}, #{userId}, #{apPrice},
 		sysdate, #{apPay})
 	</insert>
+
+	<!-- 참여 현황 추가시, 파티장의 apPrice 업데이트 -->
+	<update id="bossApPriceUpdate" parameterType="applicateVO">
+		update cb_applicate
+		set ap_price = #{bossPrice}
+		where pr_no = #{prNo} and user_id =
+		#{userId}
+	</update>
 	
+	<!-- 참여 현황 추가시, 파티원의 apPrice 업데이트 -->
+	<update id="followApPriceUpdate" parameterType="applicateVO">
+		update
+		cb_applicate
+		set ap_price = #{dividedPrice}
+		where pr_no = #{prNo}
+		and user_id <![CDATA[
+<>
+]]>
+		#{userId}
+	</update>
+
 	<!-- 마이페이지에서 참여 현황 삭제 -->
 	<delete id="applicateDelete" parameterType="ApplicateVO">
-		delete from cb_applicate where ap_no = #{apNo}
+		delete from
+		cb_applicate where ap_no = #{apNo}
 	</delete>
+
+	<select id="purchaseNotApplicate" parameterType="ApplicateVO"
+		resultType="ApplicateVO">
+		select * from cb_applicate where pr_no=#{prNo} and
+		user_id=#{userId}
+	</select>
 </mapper>

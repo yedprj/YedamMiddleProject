@@ -61,4 +61,10 @@ public class UserServiceImpl implements UserService {
 		return map.userpwUpdate(vo);
 	}
 
+	@Override
+	public UserVO comparePassword(UserVO vo) {
+		// TODO Auto-generated method stub
+		return map.comparePassword(vo);
+	}
+
 }

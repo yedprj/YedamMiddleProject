@@ -1,7 +1,48 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <script>
-
+	$(document).ready(function() {
+		$('#delBtn').on('click', function() {
+			let userPw = $('#userPw').val();
+			let userPwConfirm = $('#userPwConfirm').val();
+			if (userPw == "") {
+				alert("비밀번호를 입력하세요.");
+				$('#userPw').focus();
+				return false;
+			} 	else if (userPwConfirm == "") {
+				alert("비밀번호를 입력하세요.");
+				$('#userPwConfirm').focus();
+				return false;
+			} else if (userPw != userPwConfirm) {
+				alert("비밀번호가 일치하지 않습니다.");
+				$('#userPw').focus();
+			} else {
+				$.ajax({
+					url: 'deleteUser.do',
+					type: 'POST',
+					data: 'userPw=' + userPw,
+					dataType: 'text',
+					success: function(data) {
+						result = $.trim(data);
+						if (result == "삭제") {
+							alert("탈퇴되었습니다.");
+							location.href='home.do';
+						} else if (result == "불일치") {
+							alert("비밀번호가 일치하지 않습니다.");
+							userPw = "";
+							userPwConfirm = "";
+						} else  if (result == "세션") {
+							alert("세션이 만료되었습니다. 다시 로그인하세요.");
+							location.href='login.do';
+						}
+					},
+					error: function() {
+						alert('요청에 실패했습니다.');
+					}
+				})
+			}
+		})
+	});
 </script>
 <div class="container">
 	<div
@@ -33,7 +74,7 @@
 					</div>
 
 					<div class="col text-center mt-3">
-						<button class="btn btn-outline-danger" type="button">탈퇴</button>
+						<button class="btn btn-outline-danger" type="button" id="delBtn">탈퇴</button>
 						<button class="btn btn-outline-secondary" type="button"
 							onclick="location.href ='myPage.do'">취소</button>
 					</div>

@@ -13,4 +13,5 @@ public interface UserService {
 	int userDelete(UserVO vo);
 	int userUpdate(UserVO vo);
 	int userpwUpdate(UserVO vo);
+	UserVO comparePassword(UserVO vo);
 }

@@ -37,5 +37,9 @@
 		update cb_user set user_state='N' where user_id=#{userId}
 	</update>
 	
+	<select id="comparePassword" parameterType="UserVO" resultType="UserVO">
+		select user_pw from cb_user where user_id=#{userId}
+	</select>
+	
 	
 </mapper>

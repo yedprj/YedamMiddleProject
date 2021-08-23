@@ -41,4 +41,13 @@ public interface PurchaseService {
   
   //참여현황 삭제(마이페이지)
   int applicateDelete(ApplicateVO vo);
+  
+  //공동구매 글 올린 사람이 참여신청 못하게 확인하기
+  ApplicateVO purchaseNotApplicate(ApplicateVO vo);
+  
+  //참여 현황 추가시, 파티장의 apPrice 업데이트
+  int bossApPriceUpdate(ApplicateVO vo);
+  
+  //참여 현황 추가시, 파티원의 apPrice 업데이트
+  int followApPriceUpdate(ApplicateVO vo);
 }

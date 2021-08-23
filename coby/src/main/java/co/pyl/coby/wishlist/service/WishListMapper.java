@@ -18,4 +18,6 @@ public interface WishListMapper {
 	
 	public int updateUser(UserVO vo);
 	
+	public WishListVO wishListConfirm(WishListVO vo);
+	
 }

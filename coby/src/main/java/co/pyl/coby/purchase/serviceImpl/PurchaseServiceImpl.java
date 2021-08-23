@@ -83,6 +83,24 @@ public class PurchaseServiceImpl implements PurchaseService {
 		return map.applicateDelete(vo);
 	}
 
+	@Override
+	public ApplicateVO purchaseNotApplicate(ApplicateVO vo) {
+		// TODO Auto-generated method stub
+		return map.purchaseNotApplicate(vo);
+	}
+
+	@Override
+	public int bossApPriceUpdate(ApplicateVO vo) {
+		// TODO Auto-generated method stub
+		return map.bossApPriceUpdate(vo);
+	}
+
+	@Override
+	public int followApPriceUpdate(ApplicateVO vo) {
+		// TODO Auto-generated method stub
+		return map.followApPriceUpdate(vo);
+	}
+
 
 
 

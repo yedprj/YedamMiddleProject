@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+import co.pyl.coby.applicate.vo.ApplicateVO;
 import co.pyl.coby.common.Command;
 import co.pyl.coby.purchase.service.PurchaseService;
 import co.pyl.coby.purchase.serviceImpl.PurchaseServiceImpl;
@@ -30,9 +31,9 @@ public class PurchaseInsert implements Command {
 			MultipartRequest multi = new MultipartRequest(request, realPath, 1024 * 1024 * 2, "UTF-8",
 					new DefaultFileRenamePolicy());
 
-			prPhoto1 = "/image/" + multi.getFilesystemName("prPhoto1");
-			prPhoto2 = "/image/" + multi.getFilesystemName("prPhoto2");
-			prPhoto3 = "/image/" + multi.getFilesystemName("prPhoto3");
+			prPhoto1 = "image/" + multi.getFilesystemName("prPhoto1");
+			prPhoto2 = "image/" + multi.getFilesystemName("prPhoto2");
+			prPhoto3 = "image/" + multi.getFilesystemName("prPhoto3");
 
 			PurchaseService dao = new PurchaseServiceImpl();
 			PurchaseVO vo = new PurchaseVO();
@@ -55,9 +56,17 @@ public class PurchaseInsert implements Command {
 			System.out.println(prPhoto3);
 
 			int r = dao.purchaseInsert(vo);
+			
+			ApplicateVO apvo = new ApplicateVO();
+			
+			apvo.setPrNo(r);
+			apvo.setUserId(multi.getParameter("userId"));
+			apvo.setApPrice(Integer.valueOf(multi.getParameter("prPrice")));
+			apvo.setApPay("NAVER PAY");
 
 			if (r != 0) {
 				request.setAttribute("prNo", r);
+				request.setAttribute("applicatevo", apvo);
 				request.setAttribute("message", "글 등록이 완료되었습니다.");
 			} else {
 				request.setAttribute("message", "글 등록에 실패했습니다.");
