@@ -40,14 +40,22 @@
 					</thead>
 					<tbody>
 						<c:forEach var="list" items="${list}">
-							<tr>
-								<th>${list.userId}</th>
-								<td>${list.userName}</td>
-								<td>${list.userEmail}</td>
-								<td>${list.userPhone}</td>
-								<td>${list.userAuthor}</td>
-								<td><button >삭제</button></td>
-							</tr>
+							<c:if test="${list.userState eq 'A'.charAt(0)}">
+								<tr>
+									<th>${list.userId}</th>
+									<td>${list.userName}</td>
+									<td>${list.userEmail}</td>
+									<td>${list.userPhone}</td>
+									<td>${list.userAuthor}</td>
+									<td>
+										<form id="frm" name="frm" action="userDelete.do" method="post">
+											<input type="hidden" id="userId" name="userId"
+												value="${list.userId}">
+											<button class="btn btn-danger btn-sm" type="submit">삭제</button>
+										</form>
+									</td>
+								</tr>
+							</c:if>
 						</c:forEach>
 					</tbody>
 				</table>

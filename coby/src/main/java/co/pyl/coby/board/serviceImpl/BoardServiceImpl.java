@@ -66,6 +66,12 @@ public class BoardServiceImpl implements BoardService {
 		// TODO Auto-generated method stub
 		return sqlSession.update("cmtUpdate", vo);
 	}
+
+	@Override
+	public int countCmt(int n) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("countCmt", n);
+	}
 	
 	
 	

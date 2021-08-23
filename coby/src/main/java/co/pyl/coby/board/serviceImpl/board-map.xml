@@ -45,4 +45,8 @@
 	<delete id="cmtDelete" parameterType="co.pyl.coby.board.vo.CmtVO">
 		delete from cb_cmt where cmt_no = #{cmtNo} and board_id = #{boardId}
 	</delete>
+	
+	<update id="countCmt" parameterType="co.pyl.coby.board.vo.BoardVO">
+		update cb_board set board_cmt_num =  (SELECT COUNT(*) FROM cb_cmt WHERE  board_id= #{boardId} )  where board_id = #{boardId}
+	</update>
 </mapper>
