@@ -36,7 +36,9 @@ public class PurchaseUpdate implements Command {
 					   date+"\n"+"\n"+
 					   basic;
 		}else {
-		    contents = "[가격변경: "+basicprPrice+"원 -> "+prPrice+"원]"+"\n"+"\n"+
+			String a =basicprPrice.replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",");
+			String b =prPrice.replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",");
+		    contents = "[가격변경: "+a+"원 -> "+b+"원]"+"\n"+"\n"+
 		    		   change+"\n"+"\n"+
 					   date+"\n"+"\n"+
 					   basic;
