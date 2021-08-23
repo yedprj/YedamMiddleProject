@@ -6,7 +6,11 @@
 	let bossPrice = ${bossPrice};
 	//나왔따!!!!!!!!!!!!!!!!!이제 이거를 각각 update에 넣으면 된다!!!!!!!!!
 	console.log(dividedPrice, bossPrice);
-	
+	let prNo = ${list[0].prNo };
+	//파티장 id
+	let userId = "${list[0].userId }";
+	console.log(prNo);
+	console.log(userId);
 
 	//통화 변경 함수
 	function numberWithCommas(x) {
@@ -14,18 +18,36 @@
 	}
 
 	$(document).ready(function() {
+		let text = document.createTextNode(numberWithCommas(${dividedPrice }) + "원");
+		console.log(text);
+		$('#price').append(text);
+		
+		
 		$('#applicateBtn').on('click', function() {
 			//true or false
-			let apPayCredit = $('#apPayCredit').is(':checked');
-			let apPayNaver = $('#apPayNaver').is(':checked');
 			let agree = $('#agree').is(':checked');
 
-			if (!(apPayCredit || apPayNaver)) {
-				alert("결제 수단을 선택하세요.");
-			} else if (!agree) {
+			if (!agree) {
 				alert("구매에 동의해주세요.");
 			} else {
-				//결제로 넘어감
+				$.ajax({
+					url: 'applicateInsert.do',
+					type: 'POST',
+					data: {prNo : prNo,
+						dividedPrice : dividedPrice,
+						bossPrice : bossPrice,
+						bossId : userId},
+					success: function(data) {
+						data = $.trim(data);
+						if (data == "참여") {
+							alert('참여신청이 완료되었습니다. 마이페이지의 참여현황에서 결제를 진행해주세요!');
+							location.href="home.do";
+						}
+					},
+					error: function() {
+						console.log('ajax 에러');
+					}
+				})
 			}
 
 		});
@@ -72,21 +94,6 @@
 					</div>
 
 				</div>
-				<div class="mb-3">
-					<div class="h5">결제수단</div>
-					<div class="p-3 border rounded-3">
-						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="radio" name="apPay"
-								id="apPayCredit" value="credit card"> <label
-								class="form-check-label" for="apPayCredit">신용카드</label>
-						</div>
-						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="radio" name="apPay"
-								id="apPayNaver" value="naver pay"> <label
-								class="form-check-label" for="apPayNaver">네이버페이</label>
-						</div>
-					</div>
-				</div>
 
 			</div>
 			<div class="col-sm-4">
@@ -96,7 +103,7 @@
 						<div class="col">
 							<strong class="text-danger">최종 금액</strong>
 						</div>
-						<div class="col text-end" id="price">${dividedPrice }원</div>
+						<div class="col text-end" id="price"> </div>
 
 					</div>
 				</div>

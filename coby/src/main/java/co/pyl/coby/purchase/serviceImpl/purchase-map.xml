@@ -107,7 +107,7 @@
 	<!-- 참여 현황 추가 -->
 	<insert id="applicateInsert" parameterType="ApplicateVO">
 		insert into
-		cb_applicate values(ap_seq.nextval, #{prNo}, #{userId}, #{apPrice},
+		cb_applicate values(ap_seq.nextval, #{prNo}, #{userId}, #{dividedPrice},
 		sysdate, #{apPay})
 	</insert>
 

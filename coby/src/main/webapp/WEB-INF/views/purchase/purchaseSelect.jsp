@@ -24,10 +24,16 @@
 	const userId = "${user.userId }";
 	const prNo = ${list[0].prNo };
 	let originalPrice = ${list[0].prPrice };
-	let people = ${people };
+	let people = ${people } + 1;
 	let ajaxParamPrNo = prNo;
 	let ajaxParamDividedPrice = followPrice(originalPrice, people);
 	let ajaxParamBossPrice = bossPrice(originalPrice, people);
+	
+	//통화 변경
+	//1인부담금
+	let setDividedPrice = document.createTextNode(numberWithCommas(ajaxParamDividedPrice));
+	//총금액
+	let setTotalPrice = document.createTextNode(numberWithCommas(originalPrice));
 	
 	//통화 변경 함수
 	function numberWithCommas(x) {
@@ -51,7 +57,7 @@
 					console.log('있음?없음? : ' + data);
 					data = $.trim(data);
 					if (data == "있음") {
-						alert("글 작성자는 참여신청을 할 수 없습니다.")
+						alert("이미 참여중입니다.")
 					} else if (data == "없음") {
 						frm.frmPrNo.value=ajaxParamPrNo;
 						console.log(ajaxParamPrNo);
@@ -245,11 +251,10 @@
 
 
 	$(document).ready(function() {
-		//1인 부담금
+		//가격 표시
 		
-		$('#dividedPrice').text(followPrice(originalPrice, people));
-		
-		console.log("파티장이 부담할 값 : " + bossPrice(originalPrice, people));
+		$('#dividedPrice').append(setDividedPrice.data);
+		$('#totalPrice').append(setTotalPrice.data);
 		
 	});
 	
@@ -530,7 +535,7 @@
 										<small>물건의 총 가격</small>
 									</div>
 									<div class="d-inline-flex p-1">
-										<h4 class="text-info">${list[0].prPrice }</h4>
+										<h4 class="text-info" id="totalPrice"></h4>
 									</div>
 									<small>원</small>
 								</div>

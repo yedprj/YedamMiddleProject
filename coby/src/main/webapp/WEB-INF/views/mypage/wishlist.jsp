@@ -43,7 +43,7 @@ function numberWithCommas(x) {
 				let div_sm4_2 = $('<div />').addClass("col-sm-4 align-self-center");
 				let inputChk = $('<input>').addClass("form-check-input").attr('type', 'checkbox').attr('name', data.wNo).attr('id', 'selectOne'); 
 				let div_sm8 = $('<div />').addClass("col-sm-8");
-				let img = $('<img />').addClass("rounded img-fluid").attr('src', data.prPhoto1).css({'width':'200px', 'height':'200px', 'object-fit':'cover'});
+				let img = $('<img />').addClass("rounded img-fluid").attr('src', data.prPhoto1).css({'width':'200px', 'height':'200px', 'object-fit':'cover', 'cursor':'pointer'});
 				$(img).on('click', function() {
 					location.href='purchaseSelect.do?prNo=' + data.prNo;
 				})
@@ -58,7 +58,7 @@ function numberWithCommas(x) {
 				let div_sm8_2 = $('<div />').addClass("col-sm-8 align-self-center");
 				let div_row_p3 = $('<div />').addClass("row p-3");
 				let div_sm6 = $('<div />').addClass("col-sm-6 align-self-center");
-				let p1 = $('<p />').addClass('h4').text(data.prTitle);
+				let p1 = $('<p />').addClass('h4').text(data.prTitle).css({'cursor':'pointer'});
 				$(p1).on('click', function() {
 					location.href='purchaseSelect.do?prNo=' + data.prNo;
 				})
