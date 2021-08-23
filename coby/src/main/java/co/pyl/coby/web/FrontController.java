@@ -14,6 +14,7 @@ import co.pyl.coby.admin.command.AdminAccount;
 import co.pyl.coby.admin.command.AdminHome;
 import co.pyl.coby.admin.command.AdminPayment;
 import co.pyl.coby.applicate.command.ApplicateForm;
+import co.pyl.coby.applicate.command.ApplicateInsert;
 import co.pyl.coby.board.command.BoardDelete;
 import co.pyl.coby.board.command.BoardInsert;
 import co.pyl.coby.board.command.BoardInsertForm;
@@ -158,11 +159,12 @@ public class FrontController extends HttpServlet {
 		map.put("/purchaseSelect.do", new PurchaseSelect()); // 공동구매 상세보기
 		map.put("/purchaseForm.do", new PurchaseForm()); // 공동구매 작성 폼 으로 가기
 		map.put("/purchaseInsert.do", new PurchaseInsert()); // 공동구매 등록 하기
+
 		map.put("/purchaseUpdateForm.do", new PurchaseUpdateForm()); //공동구매 수정하기 폼 ㄱㄱ
 		map.put("/purchaseUpdate.do", new PurchaseUpdate()); //공동구매 수정
 
 		map.put("/purchaseNotApplicate.do", new PurchaseNotApplicate()); //공동구매 글 올린 사람이 참여신청 못하게 확인하기
-
+		map.put("/applicateInsert.do", new ApplicateInsert()); //참여신청 클릭 후 insert, update 쿼리 2개 실행
 	}
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)

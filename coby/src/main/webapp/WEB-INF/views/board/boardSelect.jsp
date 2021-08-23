@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!-- 게시글 상세보기 -->
 <script>
@@ -51,7 +52,7 @@
 					<th>작성자</th>
 					<td>${board[0].userId}</td>
 					<th>작성시간</th>
-					<td>${board[0].boardDate}</td>
+					<td><fmt:formatDate value="${board[0].boardDate}" pattern="yyyy-MM-dd"/></td>
 				</tr>
 				<tr>
 					<th>내용</th>
@@ -101,7 +102,8 @@
 					<c:forEach var="cmt" items="${board}">
 						<tr>
 							<td style="background: #f7f7f7; color: #3b3a3a;">${cmt.cmtWriter}
-								<p style="font-size: 8px;">${cmt.cmtDate}</p>
+								<p style="font-size: 8px;">
+								<fmt:formatDate value="${cmt.cmtDate}" pattern="yyyy-MM-dd"/></p>
 							</td>
 							<td>${cmt.cmtContent}<c:if
 									test="${userId eq cmt.cmtWriter and cmt.cmtContent ne null }">

@@ -108,6 +108,13 @@ public class PurchaseServiceImpl implements PurchaseService {
 		return map.followApPriceUpdate(vo);
 	}
 
+	@Override
+	public int purchaseUpdate(PurchaseVO vo) {
+		// TODO Auto-generated method stub
+		return map.purchaseUpdate(vo);
+	}
+
+
 
 
 
