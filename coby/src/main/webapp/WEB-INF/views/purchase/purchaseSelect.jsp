@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%
+pageContext.setAttribute("replaceChar", "\n");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -203,7 +207,7 @@
 		}
 		    $(div_avatar).append(img_avatar);
 		    $(div_conteudo).append(div_info);
-		    $(div_info).append(b,document.createTextNode(" - "+data.prcmtDate));
+		    $(div_info).append(b,document.createTextNode(" - "+data.prcmtDate);
 		    $(div_conteudo).append(div_text);
 		    $(div_text).append(p);
 		
@@ -275,6 +279,10 @@
 		
 		return floor;
 	}
+	
+	
+}
+
 	
 </script>
 
@@ -605,7 +613,7 @@
 						</div>
 						<div>
 							<div class="py-3 border-top">내용</div>
-							<div class="border rounded-3 my-3 p-2">${list[0].prContent }</div>
+							<div class="border rounded-3 my-3 p-2">${fn:replace(list[0].prContent, replaceChar, "<br/>") }</div>
 						</div>
 
 						<div class="py-2">
@@ -633,7 +641,7 @@
 							<c:if test="${user.userId eq list[0].userId }">
 							  <form id="frm2" name="frm2" action="purchaseUpdateForm.do" method="post">
 							    <input type="hidden" name="prNo" value="${list[0].prNo }">
-							    <button type="submit" class="btn btn-outline-secondary">수정하기</button>
+							    <button type="submit" class="btn btn-outline-secondary" >수정하기</button>
 							  </form>
 							</c:if>
 							

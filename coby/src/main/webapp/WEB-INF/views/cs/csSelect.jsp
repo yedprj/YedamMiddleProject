@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <section class="bg-success py-5">
 	<div class="container">
@@ -35,7 +36,7 @@
 					<th>力格</th>
 					<td>${list[0].csTitle}</td>
 					<th>累己老</th>
-					<td>${list[0].csDate}</td>
+					<td><fmt:formatDate value="${list[0].csDate}" pattern="yyyy-MM-dd" /></td>
 				</tr>
 				<tr>
 					<th>郴侩</th>
@@ -60,7 +61,7 @@
 				<c:forEach var="cscmt" items="${list}">
 					<tr>
 						<td style="background: #f7f7f7; color: #3b3a3a;">${cscmt.cscmtWriter}
-							<p style="font-size: 8px;">${cscmt.cscmtDate}</p>
+							<p style="font-size: 8px;"><fmt:formatDate value="${cscmt.cscmtDate}" pattern="yyyy-MM-dd" /></p>
 						</td>
 						<td>
 							${cscmt.cscmtContent}

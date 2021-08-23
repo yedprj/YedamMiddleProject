@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <section class="bg-success py-5">
 	<div class="container">
 		<div class="row align-items-center py-3">
@@ -37,7 +37,7 @@
 							<tr>
 								<th>${cs.csNo}</th>
 								<td onclick="check('${cs.csWriter}','${cs.csNo}')">${cs.csTitle}</td>
-								<td>${cs.csDate}</td>
+								<td><fmt:formatDate value="${cs.csDate}" pattern="yyyy-MM-dd" /></td>
 								<td>${cs.csWriter}</td>
 							</tr>
 						</c:forEach>

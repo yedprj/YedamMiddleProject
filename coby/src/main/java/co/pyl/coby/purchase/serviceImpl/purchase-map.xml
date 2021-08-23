@@ -31,6 +31,11 @@
 		order by
 		prcmt_date
 	</select>
+	
+	<!-- 공동구매 게시글 수정 -->
+	<update id="purchaseUpdate" parameterType="PurchaseVO">
+		update cb_purchase set pr_content = #{prContent},pr_price = #{prPrice} where pr_no = #{prNo}
+	</update>
 
 	<!-- 공동구매 글 상세보기에서 댓글 입력하기 -->
 	<insert id='purchaseCmtInsert' parameterType="PrCmtVO">

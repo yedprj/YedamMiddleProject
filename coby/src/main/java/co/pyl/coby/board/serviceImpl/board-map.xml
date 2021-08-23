@@ -7,7 +7,7 @@
 	
 	<!-- 게시판 목록 -->
 	<select id="boardList" resultType="co.pyl.coby.board.vo.BoardVO">
-		select * from cb_board 
+		select * from cb_board
 	</select>
 	
 	<select id="boardSelect" resultType="co.pyl.coby.board.vo.BoardVO">
