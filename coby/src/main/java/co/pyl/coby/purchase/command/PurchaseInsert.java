@@ -30,9 +30,9 @@ public class PurchaseInsert implements Command {
 			MultipartRequest multi = new MultipartRequest(request, realPath, 1024 * 1024 * 2, "UTF-8",
 					new DefaultFileRenamePolicy());
 
-			prPhoto1 = "/image/" + multi.getFilesystemName("prPhoto1");
-			prPhoto2 = "/image/" + multi.getFilesystemName("prPhoto2");
-			prPhoto3 = "/image/" + multi.getFilesystemName("prPhoto3");
+			prPhoto1 = "image/" + multi.getFilesystemName("prPhoto1");
+			prPhoto2 = "image/" + multi.getFilesystemName("prPhoto2");
+			prPhoto3 = "image/" + multi.getFilesystemName("prPhoto3");
 
 			PurchaseService dao = new PurchaseServiceImpl();
 			PurchaseVO vo = new PurchaseVO();

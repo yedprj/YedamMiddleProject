@@ -591,6 +591,14 @@
 								<input type="hidden" id="frmDividedPrice" name="frmDividedPrice"
 									value="">
 							</form>
+							
+							<c:if test="${user.userId eq list[0].userId }">
+							  <form id="frm2" name="frm2" action="purchaseUpdateForm.do" method="post">
+							    <input type="hidden" name="prNo" value="${list[0].prNo }">
+							    <button type="submit" class="btn btn-outline-secondary">수정하기</button>
+							  </form>
+							</c:if>
+							
 							<button type="button" class="btn btn-outline-secondary"
 								onclick="history.back()">목록으로 돌아가기</button>
 							<button type="button" class="btn btn-outline-dark"

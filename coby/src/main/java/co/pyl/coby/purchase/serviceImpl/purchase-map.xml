@@ -61,7 +61,7 @@
 		#{prTitle}, #{prMin}, #{prMax}, #{prStartdate},
 		#{prEnddate},
 		#{prPrice},
-		#{prPhoto1}, #{prPhoto2}, #{prPhtro3}, #{prContent}, 1,
+		#{prPhoto1}, #{prPhoto2}, #{prPhoto3}, #{prContent}, 1,
 		#{userId}
 		)
 		<selectKey keyProperty="prNo" resultType="int" order="AFTER">
