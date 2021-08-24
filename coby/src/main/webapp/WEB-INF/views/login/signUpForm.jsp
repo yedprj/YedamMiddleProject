@@ -30,7 +30,7 @@
 									id="userId" name="userId" placeholder="아이디" required="required">
 							</div>
 							<div class="col-sm-6">
-								<button type="button" id="userIdCheck" class="btn btn-primary btn-user btn-block">아이디
+								<button type="button" id="userIdCheck" class="btn btn-success btn-user btn-block">아이디
 									중복체크</button>
 							</div>
 						</div>
@@ -62,7 +62,7 @@
 									required="required">
 							</div>
 							<div class="col-sm-6">
-								<button type="button" onclick="" class="btn btn-primary btn-user btn-block">휴대폰
+								<button type="button" onclick="" class="btn btn-success btn-user btn-block">휴대폰
 									본인확인</button>
 							</div>
 						</div>
@@ -91,7 +91,7 @@
 									id="postcode" name="postcode" placeholder="우편번호" readonly>
 							</div>
 							<div class="col-sm-6">
-								<button type="button" onclick="execDaumPostcode();" class="btn btn-primary btn-user btn-block">
+								<button type="button" onclick="execDaumPostcode();" class="btn btn-success btn-user btn-block">
 									주소검색</button>
 							</div>
 						</div>
@@ -119,7 +119,7 @@
 					
 	 
 						<div class="form-group mt-3 mb-4 d-grid mx-auto">
-							<button type="submit" class="btn btn-primary col-6 mx-auto">Sign up</button>
+							<button type="submit" class="btn btn-success col-6 mx-auto">Sign up</button>
 						</div>
 					</form>
 					

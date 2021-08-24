@@ -146,9 +146,17 @@ img {
 </style>
 </head>
 
+<section class="bg-success py-5">
+	<div class="container">
+		<div class="row align-items-center py-3">
+			<div class="col-md-8 text-white">
+				<h1>User Info Update</h1>
+			</div>
+		</div>
+	</div>
+</section>	
 
-
-<div class="container">
+<div class="container mb-4">
 	<div class="row">
 		<div class="col-2"></div>
 		<div class="col-8 pt-3 pb-2 mb-3">
@@ -248,15 +256,14 @@ img {
 								value="${user.userId }">
 
 							<div class="col text-center">
-								<input class="btn btn-outline-dark" type="submit" value="수정">
-								<button class="btn btn-outline-secondary" type="button"
+								<input class="btn btn-success" type="submit" value="수정">
+								<button class="btn btn-success" type="button"
 									onclick="location.href ='myPage.do'">취소</button>
 							</div>
 
 						</div>
 					</div>
 				</div>
-
 			</form>
 		</div>
 	

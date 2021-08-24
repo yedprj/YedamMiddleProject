@@ -75,6 +75,7 @@
 
 					<div class="col text-center mt-3">
 						<button class="btn btn-outline-danger" type="button" id="delBtn">탈퇴</button>
+						<input type="hidden" id="userId" name="userId" value="${userId }"> 
 						<button class="btn btn-outline-secondary" type="button"
 							onclick="location.href ='myPage.do'">취소</button>
 					</div>

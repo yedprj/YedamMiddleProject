@@ -50,9 +50,9 @@ tr:hover {
 			 e.preventDefault();
 			 console.log("클릭");
 			 
-			 var email = "${user.userEmail}";
-			 var name = "${user.userName}";
-			 var phone = "${user.userPhone}";
+			 var email = "aaa@naver.com";
+			 var name = "홍길동";
+			 var phone = "010-1111-2222";
 	         var IMP = window.IMP;   // 생략가능
 	         // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
 	         // i'mport 관리자 페이지 -> 내정보 -> 가맹점식별코드
@@ -87,26 +87,38 @@ tr:hover {
 	 }
 </script>
 
+<section class="bg-success py-5 mb-3">
+	<div class="container">
+		<div class="row align-items-center py-3">
+			<div class="col-md-8 text-white">
+				<h1>Participation</h1>
+			</div>
+		</div>
+	</div>
+</section>
 
-클릭하면 해당 상세글로 이동합니다.
-<table id="table">
-	<tr>
-		<th>주문 번호</th>
-		<th>구매일</th>
-		<th>제품</th>
-		<th>주문 금액</th>
-		<th></th>
-	</tr>
-	<c:forEach var="list" items="${list }">
-		<tr>
-			<td onclick="location.href='purchaseSelect.do?prNo=${list.prNo }'">${list.apNo }</td>
-			<td onclick="location.href='purchaseSelect.do?prNo=${list.prNo }'">${list.apDate }</td>
-			<td onclick="location.href='purchaseSelect.do?prNo=${list.prNo }'">${list.prTitle }</td>
-			<td onclick="location.href='purchaseSelect.do?prNo=${list.prNo }'">${list.apPrice }</td>
-			<td>
-				<button type="button" id="${list.apNo }" name="delBtn">결제 취소</button>
-				<button id="check_module">결제 하기</button>
-			</td>
+
+<div class= "container py-5">
+	<h3 class="h3">** 클릭하면 해당 상세글로 이동합니다. **</h3>
+	<table class="table table-hover mt-3" id="table">
+		<tr class="table-light">
+			<th>주문 번호</th>
+			<th>구매일</th>
+			<th>제품</th>
+			<th>주문 금액</th>
+			<th></th>
 		</tr>
-	</c:forEach>
-</table>
+		<c:forEach var="list" items="${list }">
+			<tr>
+				<td onclick="location.href='purchaseSelect.do?prNo=${list.prNo }'">${list.apNo }</td>
+				<td onclick="location.href='purchaseSelect.do?prNo=${list.prNo }'">${list.apDate }</td>
+				<td onclick="location.href='purchaseSelect.do?prNo=${list.prNo }'">${list.prTitle }</td>
+				<td onclick="location.href='purchaseSelect.do?prNo=${list.prNo }'">${list.apPrice }</td>
+				<td>
+					<button type="button" class="btn btn-success" id="${list.apNo }" name="delBtn">결제 취소</button>
+					<button id="check_module" class="btn btn-success">결제 하기</button>
+				</td>
+			</tr>
+		</c:forEach>
+	</table>
+</div>

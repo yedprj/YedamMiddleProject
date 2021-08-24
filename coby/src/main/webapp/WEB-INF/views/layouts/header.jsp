@@ -58,7 +58,7 @@
                     
                     <div class="col text-end">
 						<c:if test="${empty user.userId  }">
-							<button type="button" class="btn btn-outline-primary me-2"
+							<button type="button" class="btn btn-success me-2"
 								onclick="location.href='loginForm.do'">로그인</button>
 						</c:if>
 						<c:if test="${not empty user.userId  }">

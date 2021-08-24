@@ -28,7 +28,7 @@
 			<!-- body  -->
 			<div class="container">
 
-				<table border="1">
+				<table class="table">
 					<thead>
 						<tr>
 							<th>아이디</th>

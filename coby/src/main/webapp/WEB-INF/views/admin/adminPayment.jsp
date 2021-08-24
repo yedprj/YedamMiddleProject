@@ -36,7 +36,7 @@
 
 			<!-- body  -->
 			<div class="container">
-				<table border="1">
+				<table class="table">
 					<thead>
 						<tr>
 							<th>주문번호</th>

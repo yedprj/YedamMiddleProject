@@ -1,6 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<div class="container">
+
+<section class="bg-success py-5">
+	<div class="container">
+		<div class="row align-items-center py-3">
+			<div class="col-md-8 text-white">
+				<h1>My Page</h1>
+			</div>
+		</div>
+	</div>
+</section>	
+
+<div class="container mb-4">
 	<div
 		class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
 		<span class="link-dark fs-4">마이페이지</span>
@@ -19,9 +30,9 @@
 					</dd>
 				</dl>
 				<div class="col text-end">
-					<button class="btn btn-outline-dark" type="button" onclick = "location.href ='updateUserForm.do'">정보
+					<button class="btn btn-success" type="button" onclick = "location.href ='updateUserForm.do'">정보
 						수정</button>
-					<button class="btn btn-outline-secondary" type="button" onclick = "location.href ='deleteUserForm.do'">회원
+					<button class="btn btn-success" type="button" onclick = "location.href ='deleteUserForm.do'">회원
 						탈퇴</button>
 				</div>
 			</div>
