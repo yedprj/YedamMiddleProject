@@ -7,7 +7,7 @@
 <title>공동구매 수정하기</title>
 </head>
 <body>
-  <div class="container">
+ <div class="container">
     	<div
 			class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
 			<span class="link-dark fs-4 ">공동구매 수정</span>
@@ -15,7 +15,7 @@
 		</div>
 		<div class="row pb-3 mb-3">
 			<div class="col-sm-9">
-				<form id="frm" name="frm" action="" method="post">
+				<form id="frm" name="frm" action="purchaseUpdate.do" method="post">
 				  	<div class="row pb-3 mb-3 border-bottom">
 						<label for="itemSelect" class="col-sm-2 col-form-label">카테고리</label>
 						<div class="col-sm-3">
@@ -95,10 +95,18 @@
 						<button type="button" class="btn btn-outline-secondary" onclick="history.back()">목록으로 돌아가기</button>
 						<button id="submit" type="submit" class="btn btn-outline-dark">수정하기</button>
 					</div>
-					
+					<input type="hidden" id="prNo" name="prNo" value="${list[0].prNo}">
+					<input type="hidden" id="currentTime" name="currentTime">
+					<input type="hidden" id="basicprPrice" name="basicprPrice" value="${list[0].prPrice }">
 			    </form>
           </div>
        </div>
   </div>
+<script type="text/javascript">
+  const offset = new Date().getTimezoneOffset() * 60000;
+  const today = new Date(Date.now() - offset);
+
+  document.getElementById('currentTime').value= today.toISOString().substring(0, 19); //현재 날짜 가져오기
+</script>
 </body>
 </html>

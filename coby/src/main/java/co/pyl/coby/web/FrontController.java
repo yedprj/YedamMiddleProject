@@ -65,6 +65,7 @@ import co.pyl.coby.purchase.command.PurchaseInsert;
 import co.pyl.coby.purchase.command.PurchaseList;
 import co.pyl.coby.purchase.command.PurchaseNotApplicate;
 import co.pyl.coby.purchase.command.PurchaseSelect;
+import co.pyl.coby.purchase.command.PurchaseUpdate;
 import co.pyl.coby.purchase.command.PurchaseUpdateForm;
 import co.pyl.coby.login.command.LoginForm;
 import co.pyl.coby.login.command.SignUpForm;
@@ -159,6 +160,7 @@ public class FrontController extends HttpServlet {
 		map.put("/purchaseForm.do", new PurchaseForm()); // 공동구매 작성 폼 으로 가기
 		map.put("/purchaseInsert.do", new PurchaseInsert()); // 공동구매 등록 하기
 		map.put("/purchaseUpdateForm.do", new PurchaseUpdateForm()); //공동구매 수정하기 폼 ㄱㄱ
+		map.put("/purchaseUpdate.do", new PurchaseUpdate()); //공동구매 수정 해주세요
 		map.put("/purchaseNotApplicate.do", new PurchaseNotApplicate()); //공동구매 글 올린 사람이 참여신청 못하게 확인하기
 		map.put("/applicateInsert.do", new ApplicateInsert()); //참여신청 클릭 후 insert, update 쿼리 2개 실행
 	}

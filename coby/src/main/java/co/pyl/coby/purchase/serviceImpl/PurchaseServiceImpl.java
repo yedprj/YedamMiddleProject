@@ -52,6 +52,11 @@ public class PurchaseServiceImpl implements PurchaseService {
 		map.purchaseInsert(vo);
 		return vo.getPrNo();
 	}
+	
+	@Override
+	public int purchaseUpdate(PurchaseVO vo) {
+		return map.purchaseUpdate(vo);
+	}
 
 	@Override
 	public int ApplicatePeople(PurchaseVO vo) {
@@ -100,8 +105,6 @@ public class PurchaseServiceImpl implements PurchaseService {
 		// TODO Auto-generated method stub
 		return map.followApPriceUpdate(vo);
 	}
-
-
 
 
 }
