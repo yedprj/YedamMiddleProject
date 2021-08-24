@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <section class="bg-success py-5">
 	<div class="container">
 		<div class="row align-items-center py-3">
@@ -18,7 +18,7 @@
 			<h2 class="h2">고객센터 글 상세보기</h2>
 		</div>
 	</div>
-	
+
 	<div class="row">
 		<!-- 게시글 리스트 -->
 		<c:if test="${userId ne null}">
@@ -37,7 +37,8 @@
 							<tr>
 								<th>${cs.csNo}</th>
 								<td onclick="check('${cs.csWriter}','${cs.csNo}')">${cs.csTitle}</td>
-								<td>${cs.csDate}</td>
+								<td><fmt:formatDate value="${cs.csDate}"
+										pattern="yyyy-MM-dd" /></td>
 								<td>${cs.csWriter}</td>
 							</tr>
 						</c:forEach>
@@ -47,33 +48,34 @@
 
 			<div class="row">
 				<ul class="pagination pagination-lg justify-content-center">
-					<li class="page-item">
-						<a class="page-link rounded-0 shadow-sm border-top-0 border-left-0 text-dark" href="#">◀</a>
-					</li>
-					<li class="page-item">
-						<a class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" href="#">1</a>
-					</li>
-					<li class="page-item">
-						<a class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" href="#">2</a>
-					</li>
-					<li class="page-item">
-						<a class="page-link rounded-0 shadow-sm border-top-0 border-left-0 text-dark" href="#">3</a>	
-					</li>
-					<li class="page-item">
-						<a class="page-link rounded-0 shadow-sm border-top-0 border-left-0 text-dark" href="#">▶</a>
-					</li>
+					<li class="page-item"><a
+						class="page-link rounded-0 shadow-sm border-top-0 border-left-0 text-dark"
+						href="#">◀</a></li>
+					<li class="page-item"><a
+						class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark"
+						href="#">1</a></li>
+					<li class="page-item"><a
+						class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark"
+						href="#">2</a></li>
+					<li class="page-item"><a
+						class="page-link rounded-0 shadow-sm border-top-0 border-left-0 text-dark"
+						href="#">3</a></li>
+					<li class="page-item"><a
+						class="page-link rounded-0 shadow-sm border-top-0 border-left-0 text-dark"
+						href="#">▶</a></li>
 				</ul>
 			</div>
-			
+
 			<div class="d-flex justify-content-end">
 				<div class="row row-cols-lg-auto g-3">
 					<div class="col-12">
-						<input type="text" id="myInput" onkeyup="myFunction()" class="form-control"
-							placeholder="Search for names.." title="Type in a name">
+						<input type="text" id="myInput" onkeyup="myFunction()"
+							class="form-control" placeholder="Search for names.."
+							title="Type in a name">
 					</div>
-					 
 					<div class="col-12">
-						<a class="btn btn-success fx-2" href="csInsertForm.do" role="button">고객센터 글 쓰기</a>
+						<a class="btn btn-success fx-2" href="csInsertForm.do"
+							role="button">고객센터 글 쓰기</a>
 					</div>
 				</div>
 			</div>

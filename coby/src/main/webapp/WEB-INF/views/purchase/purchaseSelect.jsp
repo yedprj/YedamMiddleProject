@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<% pageContext.setAttribute("replaceChar", "\n"); %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -167,6 +170,7 @@
       	  success: function(result){
       	          console.log(result)
       	          selectCmtList(result)
+      	          alert("댓글이 등록 되었습니다.")
       	  }
       	})
       	
@@ -529,6 +533,12 @@
 								</div>
 
 							</div>
+
+						</div>
+						<div>
+							<div class="py-3 border-top">내용</div>
+							<div class="border rounded-3 my-3 p-2">${fn:replace(list[0].prContent, replaceChar, "<br/>") }</div>
+						</div>
 
 							<div class="row py-1">
 								<div class="col-sm-4">

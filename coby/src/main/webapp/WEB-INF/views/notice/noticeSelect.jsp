@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!-- 게시글 상세보기 -->
 <!-- <script>
 	function deleteComment() {
@@ -44,7 +44,7 @@
 					<th>제목</th>
 					<td>${list.ntTitle}</td>
 					<th>작성일</th>
-		            <td>${board[0].boardDate}</td>
+		            <td><fmt:formatDate value="${list.ntDate}" pattern="yyyy-MM-dd" /></td>
 				</tr>
 				<tr>
 					<th>내용</th>

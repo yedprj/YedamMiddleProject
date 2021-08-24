@@ -31,7 +31,7 @@
             	<tr>
             		<th scope="row">작성자</th>
             		<td>
-            			<input type="text" id="userId" name="userId" value="${userId }"> 
+            			<input type="text" id="userId" name="userId" value="${userId }" > 
             		</td>
             	</tr>
             	<tr>
