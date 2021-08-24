@@ -2,6 +2,9 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+
 <style>
 tr:hover {
 	cursor: pointer;
@@ -38,41 +41,50 @@ tr:hover {
 </script>
 
 <script>
- function price() {
-	 $('#check_module').click(function (){
-         var IMP = window.IMP;   // 생략가능
-         // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
-         // i'mport 관리자 페이지 -> 내정보 -> 가맹점식별코드
-         IMP.init('imp42110057');
+	$(function (){
+		price();
+	});
 
-         IMP.request_pay({
-             pg: 'inicis',
-             pay_method: 'card',
-             merchant_uid: 'merchant_' + new Date().getTime(),
-             name: '주문명: 결제테스트',
-             amount: 100,
-             buyer_email:'import@siot.do',
-             buyer_name: '구매자 이름',
-             buyer_tel: '010-1234-5678',
-             buyer_addr: '서울특별시 강남구 삼성동',
-             buyer_postcode: '123-456',
-             m_redirect_url: 'https://www.yourdomain.com/payments/complete'
-         }, function(rsp) {
-             console.log(rsp);
-             if (rsp.success) {
-                 var msg = '결제가 완료되었습니다.';
-                 msg += '고유ID : ' + rsp.imp_uid;
-                 msg += '상점 거래ID : ' + rsp.merchant_uid;
-                 msg += '결제 금액 : ' + rsp.paid_amount;
-                 msg += '카드 승인번호 : ' + rsp.apply_num;
-             } else {
-                 var msg = '결제에 실패하였습니다.';
-                 msg += '에러내용 : ' + rsp.error_msg;
-             }
-             alert(msg);
-         });
-     });
- }
+	 function price() {
+		 $('#check_module').click(function (e){
+			 e.preventDefault();
+			 console.log("클릭");
+			 
+			 var email = "${user.userEmail}";
+			 var name = "${user.userName}";
+			 var phone = "${user.userPhone}";
+	         var IMP = window.IMP;   // 생략가능
+	         // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
+	         // i'mport 관리자 페이지 -> 내정보 -> 가맹점식별코드
+	         IMP.init('imp42110057');
+	
+	         IMP.request_pay({
+	             pg: 'inicis',
+	             pay_method: 'card',
+	             merchant_uid: 'merchant_' + new Date().getTime(),
+	             name: '주문명: 결제테스트',
+	             amount: 100,
+	             buyer_email: email,
+	             buyer_name: name,
+	             buyer_tel: phone,
+	             buyer_addr: '서울특별시 강남구 삼성동',
+	             buyer_postcode: '123-456'
+	         }, function(rsp) {
+	             console.log(rsp);
+	             if (rsp.success) {
+	                 var msg = '결제가 완료되었습니다.';
+	                 msg += '고유ID : ' + rsp.imp_uid;
+	                 msg += '상점 거래ID : ' + rsp.merchant_uid;
+	                 msg += '결제 금액 : ' + rsp.paid_amount;
+	                 msg += '카드 승인번호 : ' + rsp.apply_num;
+	             } else {
+	                 var msg = '결제에 실패하였습니다.';
+	                 msg += '에러내용 : ' + rsp.error_msg;
+	             }
+	             alert(msg);
+	         });
+	     });
+	 }
 </script>
 
 
@@ -93,7 +105,7 @@ tr:hover {
 			<td onclick="location.href='purchaseSelect.do?prNo=${list.prNo }'">${list.apPrice }</td>
 			<td>
 				<button type="button" id="${list.apNo }" name="delBtn">결제 취소</button>
-				<button type="button" id="check_module" name="priBtn" onclick="price()">결제 하기</button>
+				<button id="check_module">결제 하기</button>
 			</td>
 		</tr>
 	</c:forEach>

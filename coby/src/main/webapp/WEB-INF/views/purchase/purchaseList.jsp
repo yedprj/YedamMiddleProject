@@ -42,9 +42,7 @@
 						<div class="card-body">
 							<h5 class="card-title">${item.prTitle }</h5>
 							<p class="card-text">${item.prPrice }원</p>
-
-							<a class="btn btn-primary" onclick="">상세보기</a>
-
+							<br>
 						</div>
 						<div class="card-footer">
 							<small class="text-muted">${item.prStartdate }</small>

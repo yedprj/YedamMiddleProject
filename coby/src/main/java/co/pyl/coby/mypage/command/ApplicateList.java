@@ -10,6 +10,9 @@ import co.pyl.coby.applicate.vo.ApplicateVO;
 import co.pyl.coby.common.Command;
 import co.pyl.coby.purchase.service.PurchaseService;
 import co.pyl.coby.purchase.serviceImpl.PurchaseServiceImpl;
+import co.pyl.coby.user.service.UserService;
+import co.pyl.coby.user.serviceImpl.UserServiceImpl;
+import co.pyl.coby.user.vo.UserVO;
 
 public class ApplicateList implements Command {
 
@@ -31,6 +34,13 @@ public class ApplicateList implements Command {
 			
 			PurchaseService dao = new PurchaseServiceImpl();
 			List<ApplicateVO> list = dao.applicateSelectMypage(vo);
+			
+			UserService userdao = new UserServiceImpl();
+			UserVO uvo = new UserVO();
+			uvo.setUserId(userId);
+			uvo = userdao.selectOneUser(uvo);
+			
+			request.setAttribute("user", uvo);
 			
 			request.setAttribute("list", list);
 			page = "mypage/applicateList";

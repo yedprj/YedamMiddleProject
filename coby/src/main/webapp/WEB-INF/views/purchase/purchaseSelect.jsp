@@ -480,202 +480,211 @@
 </style>
 </head>
 <body>
-	<div class="container h-100">
-		<div class="row">
-			<div class="pt-3 pb-2 mb-3">
-				<span class="link-dark fs-4">공동구매</span>
+	<section class="bg-success py-5">
+		<div class="container">
+			<div class="row align-items-center py-3">
+				<div class="col-md-8 text-white">
+					<h1>Group Buying</h1>
+				</div>
 			</div>
-
+		</div>
+	</section>
+	<div class="d-flex justify-content-center">
+		<div class="container h-100">
 			<div class="row">
-				<div class="col-sm-8">
-					<div class="h-100 p-4 border border-dark rounded-3">
-						<div>
-							<div class="border-bottom py-1">
-								<div class="row">
-									<div class="col-sm-9">
-										<div class="text-muted">
-											<small>${list[0].prCategory }</small>
-										</div>
+				<div class="pt-3 pb-2 mb-3">
+					<span class="link-dark fs-4">공동구매 상세보기</span>
+				</div>
 
-										<div class="h3">${list[0].prTitle }</div>
-									</div>
-									<!-- 위시리스트 -->
-									<div class="col-sm-3 align-self-bottom" id="heart">
-										<i></i><small>위시리스트 담기</small>
-									</div>
-
-								</div>
-							</div>
-							<div class="row">
+				<div class="row">
+					<div class="col-sm-8">
+						<div class="h-100 p-4 border border-dark rounded-3">
+							<div>
 								<div class="border-bottom py-1">
-									<div class="col-sm-8">
-										<img src="${list[0].userProfile }" class="image--cover">
-										<small>${list[0].userNickname }</small>
-									</div>
-									<div class="col-sm-4 text-end d-inline-flex p-1">
-										<small class="text-muted">글 번호 : ${list[0].prNo } </small>
-									</div>
-								</div>
-							</div>
+									<div class="row">
+										<div class="col-sm-9">
+											<div class="text-muted">
+												<small>${list[0].prCategory }</small>
+											</div>
 
-						</div>
-
-						<div class="row py-1">
-							<div class="col-sm-4">
-								<div class="d-inline-flex p-1">
-									<small>모집 일정</small>
-								</div>
-								<div class="d-inline-flex p-1 text-muted">
-									<small>${list[0].prStartdate } ~ ${list[0].prEnddate }</small>
-								</div>
-							</div>
-							<div class="col-sm-8 text-end">
-								<div>
-									<div class="d-inline-flex p-1">
-										<small>물건의 총 가격</small>
-									</div>
-									<div class="d-inline-flex p-1">
-										<h4 class="text-info" id="totalPrice"></h4>
-									</div>
-									<small>원</small>
-								</div>
-								<div>
-									<div class="d-inline-flex p-1">
-										<small>1인 부담금</small>
-									</div>
-									<div class="d-inline-flex p-1">
-										<h4 class="text-info" id="dividedPrice"></h4>
-									</div>
-									<small>원</small>
-								</div>
-							</div>
-
-							<div>
-								<div class="border-top"></div>
-							</div>
-
-							<div class="row py-3">
-								<div class="card m-2" style="width: 30rem;">
-									<div id="carouselExampleIndicators" class="carousel slide"
-										data-bs-ride="carousel">
-										<div class="carousel-indicators">
-											<button type="button"
-												data-bs-target="#carouselExampleIndicators"
-												data-bs-slide-to="0" class="active" aria-current="true"
-												aria-label="Slide 1"></button>
-											<button type="button"
-												data-bs-target="#carouselExampleIndicators"
-												data-bs-slide-to="1" aria-label="Slide 2"></button>
-											<button type="button"
-												data-bs-target="#carouselExampleIndicators"
-												data-bs-slide-to="2" aria-label="Slide 3"></button>
+											<div class="h3">${list[0].prTitle }</div>
 										</div>
-										<div class="carousel-inner">
-											<c:if test="${not empty list[0].prPhoto1}">
-												<div class="carousel-item active">
-													<img src="${list[0].prPhoto1 }" class="d-block w-100"
-														alt="src에 prPhoto1">
-												</div>
-											</c:if>
-											<c:if test="${not empty list[0].prPhoto2}">
-												<div class="carousel-item">
-													<img src="${list[0].prPhoto2 }" class="d-block w-100"
-														alt="src에 prPhoto2">
-												</div>
-											</c:if>
-											<c:if test="${not empty list[0].prPhoto3}">
-												<div class="carousel-item">
-													<img src="${list[0].prPhoto3 }" class="d-block w-100"
-														alt="src에 prPhoto3">
-												</div>
-											</c:if>
+										<!-- 위시리스트 -->
+										<div class="col-sm-3 align-self-bottom" id="heart">
+											<i></i><small>위시리스트 담기</small>
 										</div>
 
-										<button class="carousel-control-prev" type="button"
-											data-bs-target="#carouselExampleIndicators"
-											data-bs-slide="prev">
-											<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-											<span class="visually-hidden">Previous</span>
-										</button>
-										<button class="carousel-control-next" type="button"
-											data-bs-target="#carouselExampleIndicators"
-											data-bs-slide="next">
-											<span class="carousel-control-next-icon" aria-hidden="true"></span>
-											<span class="visually-hidden">Next</span>
-										</button>
 									</div>
-
 								</div>
+								<div class="row">
+									<div class="border-bottom py-1">
+										<div class="col-sm-8">
+											<img src="${list[0].userProfile }" class="image--cover">
+											<small>${list[0].userNickname }</small>
+										</div>
+										<div class="col-sm-4 text-end d-inline-flex p-1">
+											<small class="text-muted">글 번호 : ${list[0].prNo } </small>
+										</div>
+									</div>
+								</div>
+
 							</div>
-						</div>
-						<div>
-							<div class="py-3 border-top">내용</div>
-							<div class="border rounded-3 my-3 p-2">${list[0].prContent }</div>
-						</div>
 
-						<div class="py-2">
-							<small class="py-1">참여 현황 ( ${people } 명 참여중 )</small>
-
-							<div class="">
-								<c:forEach var="applicate" items="${applicateSelect }">
+							<div class="row py-1">
+								<div class="col-sm-4">
+									<div class="d-inline-flex p-1">
+										<small>모집 일정</small>
+									</div>
+									<div class="d-inline-flex p-1 text-muted">
+										<small>${list[0].prStartdate } ~ ${list[0].prEnddate }</small>
+									</div>
+								</div>
+								<div class="col-sm-8 text-end">
 									<div>
-										<img src="${applicate.userProfile }" class="image--cover">
-										${applicate.userNickname }, ${applicate.apDate } 참여
+										<div class="d-inline-flex p-1">
+											<small>물건의 총 가격</small>
+										</div>
+										<div class="d-inline-flex p-1">
+											<h4 class="text-info" id="totalPrice"></h4>
+										</div>
+										<small>원</small>
 									</div>
-								</c:forEach>
-							</div>
+									<div>
+										<div class="d-inline-flex p-1">
+											<small>1인 부담금</small>
+										</div>
+										<div class="d-inline-flex p-1">
+											<h4 class="text-info" id="dividedPrice"></h4>
+										</div>
+										<small>원</small>
+									</div>
+								</div>
 
-						</div>
+								<div>
+									<div class="border-top"></div>
+								</div>
 
-						<div class="py-3 text-center">
-							<form id="frm" name="frm" method="POST" action="applicateForm.do">
-								<input type="hidden" id="frmPrNo" name="frmPrNo" value="">
-								<input type="hidden" id="frmDividedPrice" name="frmDividedPrice"
-									value="">
-								<input type="hidden" id="frmBossPrice" name="frmBossPrice" value="">
-							</form>
-							
-							<c:if test="${user.userId eq list[0].userId }">
-							  <form id="frm2" name="frm2" action="purchaseUpdateForm.do" method="post">
-							    <input type="hidden" name="prNo" value="${list[0].prNo }">
-							    <button type="submit" class="btn btn-outline-secondary">수정하기</button>
-							  </form>
-							</c:if>
-							
-							<button type="button" class="btn btn-outline-secondary"
-								onclick="history.back()">목록으로 돌아가기</button>
-							<button type="button" class="btn btn-outline-dark"
-								onclick="applicate()">참여신청</button>
-						</div>
-						<!-- 댓글 폼 -->
-						<div class="row py-3">
-							<div class="col-sm-10">
-								<label for="comment">댓글 입력</label>
-								<div class="form-floating">
-									<textarea class="form-control" id="prcommentcontent"
-										name="prcommentcontent" style="height: 100px"></textarea>
+								<div class="row py-3">
+									<div class="card m-2" style="width: 30rem;">
+										<div id="template-mo-zay-hero-carousel" class="carousel slide"
+											data-bs-ride="carousel">
+											<ol class="carousel-indicators">
+												<li data-bs-target="#template-mo-zay-hero-carousel"
+													data-bs-slide-to="0" class="active"></li>
+												<li data-bs-target="#template-mo-zay-hero-carousel"
+													data-bs-slide-to="1"></li>
+												<li data-bs-target="#template-mo-zay-hero-carousel"
+													data-bs-slide-to="2"></li>
+											</ol>
+
+											<div class="carousel-inner">
+												<c:if test="${not empty list[0].prPhoto1}">
+													<div class="carousel-item active">
+														<div class="container">
+															<img src="${list[0].prPhoto1 }" class="d-block w-100"
+																alt="src에 prPhoto1">
+														</div>
+													</div>
+												</c:if>
+												<c:if test="${not empty list[0].prPhoto2}">
+													<div class="carousel-item">
+														<img src="${list[0].prPhoto2 }" class="d-block w-100"
+															alt="src에 prPhoto2">
+													</div>
+												</c:if>
+												<c:if test="${not empty list[0].prPhoto3}">
+													<div class="carousel-item">
+														<img src="${list[0].prPhoto3 }" class="d-block w-100"
+															alt="src에 prPhoto3">
+													</div>
+												</c:if>
+											</div>
+
+											<a
+												class="carousel-control-prev text-decoration-none w-auto ps-3"
+												href="#template-mo-zay-hero-carousel" role="button"
+												data-bs-slide="prev"> <i class="fas fa-chevron-left"></i>
+											</a> <a
+												class="carousel-control-next text-decoration-none w-auto pe-3"
+												href="#template-mo-zay-hero-carousel" role="button"
+												data-bs-slide="next"> <i class="fas fa-chevron-right"></i>
+											</a>
+										</div>
+
+									</div>
 								</div>
 							</div>
-							<div class="col-sm-2 align-self-center text-center">
-								<button type="button" class="btn btn-outline-dark btn-lg"
-									id="prcmtinsertbtn">등록</button>
-
-							</div>
-						</div>
-
-						<div class="py-1">
-							<small class="py-1">댓글</small>
 							<div>
+								<div class="py-3 border-top">내용</div>
+								<div class="border rounded-3 my-3 p-2">${list[0].prContent }</div>
+							</div>
 
-								<!-- 댓글 시작 -->
+							<div class="py-2">
+								<small class="py-1">참여 현황 ( ${people } 명 참여중 )</small>
 
-								<div class="area-comentarios">
-									<ul id="cmt">
-										<li class="unico-comentario normal"></li>
-									</ul>
+								<div class="">
+									<c:forEach var="applicate" items="${applicateSelect }">
+										<div>
+											<img src="${applicate.userProfile }" class="image--cover">
+											${applicate.userNickname }, ${applicate.apDate } 참여
+										</div>
+									</c:forEach>
 								</div>
-								<!-- 댓글 끝 -->
 
+							</div>
+
+							<div class="py-3 text-center">
+								<form id="frm" name="frm" method="POST"
+									action="applicateForm.do">
+									<input type="hidden" id="frmPrNo" name="frmPrNo" value="">
+									<input type="hidden" id="frmDividedPrice"
+										name="frmDividedPrice" value=""> <input type="hidden"
+										id="frmBossPrice" name="frmBossPrice" value="">
+								</form>
+
+								<c:if test="${user.userId eq list[0].userId }">
+									<form id="frm2" name="frm2" action="purchaseUpdateForm.do"
+										method="post">
+										<input type="hidden" name="prNo" value="${list[0].prNo }">
+										<button type="submit" class="btn btn-outline-secondary">수정하기</button>
+									</form>
+								</c:if>
+
+								<button type="button" class="btn btn-outline-secondary"
+									onclick="history.back()">목록으로 돌아가기</button>
+								<button type="button" class="btn btn-outline-dark"
+									onclick="applicate()">참여신청</button>
+							</div>
+							<!-- 댓글 폼 -->
+							<div class="row py-3">
+								<div class="col-sm-10">
+									<label for="comment">댓글 입력</label>
+									<div class="form-floating">
+										<textarea class="form-control" id="prcommentcontent"
+											name="prcommentcontent" style="height: 100px"></textarea>
+									</div>
+								</div>
+								<div class="col-sm-2 align-self-center text-center">
+									<button type="button" class="btn btn-outline-dark btn-lg"
+										id="prcmtinsertbtn">등록</button>
+
+								</div>
+							</div>
+
+							<div class="py-1">
+								<small class="py-1">댓글</small>
+								<div>
+
+									<!-- 댓글 시작 -->
+
+									<div class="area-comentarios">
+										<ul id="cmt">
+											<li class="unico-comentario normal"></li>
+										</ul>
+									</div>
+									<!-- 댓글 끝 -->
+
+								</div>
 							</div>
 						</div>
 					</div>
