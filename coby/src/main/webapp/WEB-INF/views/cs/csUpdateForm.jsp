@@ -19,7 +19,7 @@
 	</div>
 	
 	<!-- 게시글 수정 양식 -->
-	<form action="boardUpdate.do" method="post">
+	<form action="csUpdate.do" method="post">
 		<table class="board_view">
 			<colgroup>
 				<col width="15%">

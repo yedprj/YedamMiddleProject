@@ -16,6 +16,9 @@ public class CsUpdate implements Command {
 		CsService dao = new CsServiceImpl();
 		CsVO vo = new CsVO();
 		
+		System.out.println(Integer.valueOf(request.getParameter("csNo")));
+		System.out.println(request.getParameter("csContent"));
+		
 		vo.setCsNo(Integer.valueOf(request.getParameter("csNo")));
 		vo.setCsContent(request.getParameter("csContent"));
 		dao.csUpdate(vo);
